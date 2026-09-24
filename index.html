@@ -858,22 +858,22 @@
                     <div class="lesson-tools">
 
                         <button class="tool-button"
-                            onclick="openLesson('video')">
+                            onclick="window.location.href='lesson01.html#video'">
                             Video bài giảng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('document')">
+                            onclick="window.location.href='lesson01.html#document'">
                             Tài liệu
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('simulation')">
+                            onclick="window.location.href='lesson01.html#simulation'">
                             Mô phỏng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('quiz')">
+                            onclick="window.location.href='lesson01.html#quiz'">
                             Kiểm tra
                         </button>
 
@@ -913,22 +913,22 @@
                     <div class="lesson-tools">
 
                         <button class="tool-button"
-                            onclick="openLesson('video')">
+                            onclick="window.location.href='lesson02.html#video'">
                             Video bài giảng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('document')">
+                            onclick="window.location.href='lesson02.html#document'">
                             Tài liệu
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('simulation')">
+                            onclick="window.location.href='lesson02.html#simulation'">
                             Mô phỏng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('quiz')">
+                            onclick="window.location.href='lesson02.html#quiz'">
                             Kiểm tra
                         </button>
 
@@ -968,22 +968,22 @@
                     <div class="lesson-tools">
 
                         <button class="tool-button"
-                            onclick="openLesson('video')">
+                            onclick="window.location.href='lesson03.html#video'">
                             Video bài giảng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('document')">
+                            onclick="window.location.href='lesson03.html#document'">
                             Tài liệu
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('simulation')">
+                            onclick="window.location.href='lesson03.html#simulation'">
                             Mô phỏng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('quiz')">
+                            onclick="window.location.href='lesson03.html#quiz'">
                             Kiểm tra
                         </button>
 
@@ -1023,22 +1023,22 @@
                     <div class="lesson-tools">
 
                         <button class="tool-button"
-                            onclick="openLesson('video')">
+                            onclick="window.location.href='lesson04.html#video'">
                             Video bài giảng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('document')">
+                            onclick="window.location.href='lesson04.html#document'">
                             Tài liệu
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('simulation')">
+                            onclick="window.location.href='lesson04.html#simulation'">
                             Mô phỏng
                         </button>
 
                         <button class="tool-button"
-                            onclick="openLesson('quiz')">
+                            onclick="window.location.href='lesson04.html#quiz'">
                             Kiểm tra
                         </button>
 
@@ -1230,27 +1230,6 @@
             element.querySelector(".menu-text").innerText;
 
         showMessage("Bạn đang mở: " + text);
-    }
-
-
-    function openLesson(type) {
-
-        if (type === "video") {
-            showMessage("Trang video bài giảng sẽ được mở ở bước tiếp theo.");
-        }
-
-        if (type === "document") {
-            showMessage("Trang tài liệu sẽ được mở ở bước tiếp theo.");
-        }
-
-        if (type === "simulation") {
-            showMessage("Mô phỏng tương tác sẽ được xây dựng ở bước tiếp theo.");
-        }
-
-        if (type === "quiz") {
-            showMessage("Bài kiểm tra sẽ được xây dựng ở bước tiếp theo.");
-        }
-
     }
 
 </script>
