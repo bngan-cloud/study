@@ -1,379 +1,1259 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>StudyHub</title>
+    <title>StudyHub - Nền tảng học tập</title>
 
     <style>
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f6f7fb;
-            color: #20232a;
-        }
-
-        /* HEADER */
-
-        header {
-            height: 70px;
-            background: white;
-            border-bottom: 1px solid #e5e5e5;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 0 40px;
-        }
-
-        .logo {
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .user {
-            background: #f1f3f8;
-            padding: 10px 16px;
-            border-radius: 20px;
-        }
-
-
-        /* LAYOUT */
-
-        .layout {
-            display: flex;
-            min-height: calc(100vh - 70px);
-        }
-
-
-        /* SIDEBAR */
-
-        .sidebar {
-            width: 240px;
-            background: white;
-            border-right: 1px solid #e5e5e5;
-
-            padding: 25px 15px;
-        }
-
-        .sidebar h3 {
-            padding: 10px 15px;
-            margin-bottom: 15px;
-        }
-
-        .menu {
-            padding: 13px 15px;
-            margin-bottom: 5px;
-
-            border-radius: 10px;
-
-            cursor: pointer;
-        }
-
-        .menu:hover {
-            background: #f1f3f8;
-        }
-
-
-        /* MAIN */
-
-        main {
-            flex: 1;
-            padding: 40px;
-        }
-
-        .welcome {
-            margin-bottom: 30px;
-        }
-
-        .welcome h1 {
-            font-size: 32px;
-            margin-bottom: 8px;
-        }
-
-
-        /* COURSE */
-
-        .course {
-            background: white;
-
-            border-radius: 18px;
-
-            padding: 25px;
-
-            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-
-            max-width: 900px;
-        }
-
-        .course h2 {
-            margin-bottom: 10px;
-        }
-
-        .progress {
-            margin-top: 20px;
-
-            height: 10px;
-
-            background: #e5e7eb;
-
-            border-radius: 10px;
-
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 35%;
-            height: 100%;
-
-            background: #6c63ff;
-        }
-
-
-        /* LESSONS */
-
-        .lessons {
-            margin-top: 25px;
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 15px;
-        }
-
-        .lesson {
-            border: 1px solid #e5e5e5;
-
-            padding: 20px;
-
-            border-radius: 14px;
-
-            background: white;
-        }
-
-        .lesson-number {
-            font-size: 13px;
-            color: #777;
-
-            margin-bottom: 8px;
-        }
-
-        .lesson h3 {
-            margin-bottom: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172b4d;
         }
 
         button {
-            border: none;
-
-            background: #6c63ff;
-
-            color: white;
-
-            padding: 10px 15px;
-
-            border-radius: 8px;
-
+            font-family: inherit;
             cursor: pointer;
         }
 
-        button:hover {
-            opacity: 0.85;
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e6eaf0;
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
+        .logo {
+            width: 245px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1464d2;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #1464d2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .search {
+            width: 420px;
+            height: 42px;
+            border: 1px solid #dce2eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+            color: #7b8798;
+        }
+
+        .search-icon {
+            font-size: 19px;
+            margin-right: 10px;
+        }
+
+        .search input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .header-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .notification {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #52627a;
+            border: 1px solid #e1e6ed;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dce9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1464d2;
+            font-weight: 700;
+        }
+
+        .user-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .user-info span {
+            color: #8290a5;
+            font-size: 12px;
+        }
+
+        /* ================= LAYOUT ================= */
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 72px);
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 245px;
+            background: white;
+            border-right: 1px solid #e6eaf0;
+            padding: 25px 14px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8a96a8;
+            padding: 0 16px 15px;
+            text-transform: uppercase;
+        }
+
+        .menu-item {
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            margin-bottom: 5px;
+            color: #40516c;
+            font-size: 15px;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: #f0f5fc;
+            color: #1464d2;
+        }
+
+        .menu-item.active {
+            background: #1464d2;
+            color: white;
+            font-weight: 600;
+        }
+
+        .menu-icon {
+            width: 27px;
+            font-size: 17px;
+        }
+
+        /* ================= MAIN ================= */
+
+        .main {
+            flex: 1;
+            padding: 30px;
+            min-width: 0;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            background: linear-gradient(100deg, #eaf4ff, #d8ebff);
+            border-radius: 14px;
+            min-height: 245px;
+            padding: 32px;
+            display: flex;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 680px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            color: #1464d2;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 29px;
+            line-height: 1.25;
+            margin-bottom: 14px;
+            color: #123e78;
+        }
+
+        .hero p {
+            color: #536982;
+            line-height: 1.6;
+            font-size: 14px;
+            max-width: 610px;
+        }
+
+        .progress-label {
+            margin-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            width: 440px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .progress {
+            margin-top: 8px;
+            width: 440px;
+            height: 8px;
+            border-radius: 20px;
+            background: #c5ddf6;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 45%;
+            height: 100%;
+            background: #1464d2;
+            border-radius: 20px;
+        }
+
+        .hero-visual {
+            margin-left: auto;
+            width: 310px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-box {
+            width: 230px;
+            height: 150px;
+            background: rgba(255,255,255,0.45);
+            border-radius: 70% 45% 50% 40%;
+            position: relative;
+        }
+
+        .visual-screen {
+            position: absolute;
+            width: 120px;
+            height: 80px;
+            background: white;
+            border: 5px solid #1464d2;
+            border-radius: 8px;
+            top: 32px;
+            left: 55px;
+            transform: skewY(-5deg);
+        }
+
+        .visual-line {
+            height: 7px;
+            background: #9cc6ef;
+            border-radius: 5px;
+            margin: 12px;
+        }
+
+        /* ================= CONTENT ================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 300px;
+            gap: 22px;
+            margin-top: 24px;
+        }
+
+        .section-card {
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tabs {
+            height: 55px;
+            display: flex;
+            border-bottom: 1px solid #e5e9ef;
+            padding-left: 20px;
+        }
+
+        .tab {
+            border: none;
+            background: none;
+            padding: 0 18px;
+            font-size: 14px;
+            color: #718097;
+            border-bottom: 3px solid transparent;
+        }
+
+        .tab.active {
+            color: #1464d2;
+            border-bottom-color: #1464d2;
+            font-weight: 600;
+        }
+
+        .lesson-header {
+            padding: 20px;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* ================= LESSON ================= */
+
+        .lesson {
+            margin: 0 20px 12px;
+            border: 1px solid #e2e7ef;
+            border-radius: 10px;
+            min-height: 112px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            transition: 0.2s;
+        }
+
+        .lesson:hover {
+            border-color: #b8d2f0;
+            box-shadow: 0 4px 15px rgba(30,70,110,0.06);
+        }
+
+        .lesson-image {
+            width: 115px;
+            height: 78px;
+            border-radius: 7px;
+            background: #e8f2ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1464d2;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        .lesson-info {
+            padding-left: 15px;
+            width: 240px;
+        }
+
+        .lesson-number {
+            color: #1464d2;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .lesson-title {
+            font-size: 15px;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .lesson-duration {
+            margin-top: 9px;
+            color: #8793a5;
+            font-size: 12px;
+        }
+
+        .lesson-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .tool-button {
+            border: none;
+            background: #f4f7fb;
+            color: #435875;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .tool-button:hover {
+            background: #e7f1ff;
+            color: #1464d2;
+        }
+
+        .lesson-status {
+            width: 70px;
+            text-align: right;
+            color: #16a56a;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ================= RIGHT COLUMN ================= */
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .side-card {
+            background: white;
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .side-title {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .teacher {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .teacher-avatar {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #e5edf7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #5b6f89;
+            font-weight: bold;
+        }
+
+        .teacher strong {
+            font-size: 14px;
+        }
+
+        .teacher span {
+            display: block;
+            color: #8995a7;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .outline-button {
+            margin-top: 18px;
+            width: 100%;
+            height: 40px;
+            border: 1px solid #bdd3ef;
+            background: white;
+            color: #1464d2;
+            border-radius: 7px;
+        }
+
+        .upload-button {
+            width: 100%;
+            height: 43px;
+            background: white;
+            border: 1px solid #1464d2;
+            color: #1464d2;
+            border-radius: 7px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .upload-button.green {
+            border-color: #24a76f;
+            color: #24a76f;
+        }
+
+        .support-text {
+            color: #929eaf;
+            font-size: 11px;
+            line-height: 1.5;
+        }
+
+        /* ================= NOTIFICATION ================= */
+
+        .notice {
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 13px;
+        }
+
+        .notice:last-child {
+            border-bottom: none;
+        }
+
+        .notice-dot {
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            background: #1464d2;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .notice-time {
+            display: block;
+            color: #9aa5b4;
+            font-size: 11px;
+            margin-top: 5px;
+            margin-left: 15px;
+        }
+
+        /* ================= OVERLAY MESSAGE ================= */
+
+        .message {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #172b4d;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 8px;
+            display: none;
+            z-index: 200;
+            font-size: 13px;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 1100px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-visual {
+                display: none;
+            }
+        }
+
+        @media (max-width: 800px) {
+            .sidebar {
+                width: 75px;
+            }
+
+            .sidebar-title {
+                display: none;
+            }
+
+            .menu-item {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .menu-text {
+                display: none;
+            }
+
+            .logo {
+                width: 70px;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .search {
+                width: 250px;
+            }
+
+            .lesson {
+                flex-wrap: wrap;
+            }
+
+            .lesson-info {
+                width: calc(100% - 130px);
+            }
+
+            .lesson-tools {
+                width: 100%;
+                margin-top: 15px;
+            }
+
+            .lesson-status {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .header {
+                padding: 0 15px;
+            }
+
+            .search {
+                display: none;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .right-column {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 22px;
+            }
+
+            .hero h1 {
+                font-size: 23px;
+            }
+
+            .progress,
+            .progress-label {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
-
 <body>
 
+<!-- ================= HEADER ================= -->
 
-<header>
+<header class="header">
 
     <div class="logo">
-        📚 StudyHub
+        <div class="logo-mark">S</div>
+        <span class="logo-text">StudyHub</span>
     </div>
 
-    <div class="user">
-        👤 Học viên
+    <div class="search">
+        <span class="search-icon">⌕</span>
+        <input
+            type="text"
+            placeholder="Tìm kiếm khóa học, bài giảng, tài liệu..."
+        >
+    </div>
+
+    <div class="header-right">
+
+        <div class="notification" onclick="showMessage('Bạn không có thông báo mới')">
+            0
+        </div>
+
+        <div class="user">
+            <div class="avatar">HV</div>
+
+            <div class="user-info">
+                <strong>Học viên</strong>
+                <span>Người học</span>
+            </div>
+        </div>
+
     </div>
 
 </header>
 
 
+<!-- ================= MAIN LAYOUT ================= -->
 
 <div class="layout">
 
 
-    <!-- SIDEBAR -->
+    <!-- ================= SIDEBAR ================= -->
 
     <aside class="sidebar">
 
-        <h3>Khóa học</h3>
-
-        <div class="menu">
-            🏠 Tổng quan
+        <div class="sidebar-title">
+            Khóa học
         </div>
 
-        <div class="menu">
-            📚 Bài học
+        <div class="menu-item active" onclick="selectMenu(this)">
+            <span class="menu-icon">⌂</span>
+            <span class="menu-text">Trang chủ</span>
         </div>
 
-        <div class="menu">
-            🧪 Mô phỏng
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">▣</span>
+            <span class="menu-text">Khóa học của tôi</span>
         </div>
 
-        <div class="menu">
-            📝 Kiểm tra
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">□</span>
+            <span class="menu-text">Lịch học</span>
         </div>
 
-        <div class="menu">
-            📊 Tiến độ
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">▤</span>
+            <span class="menu-text">Tài liệu</span>
+        </div>
+
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">✓</span>
+            <span class="menu-text">Bài kiểm tra</span>
+        </div>
+
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">▥</span>
+            <span class="menu-text">Kết quả học tập</span>
+        </div>
+
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">▢</span>
+            <span class="menu-text">Diễn đàn</span>
+        </div>
+
+        <div class="menu-item" onclick="selectMenu(this)">
+            <span class="menu-icon">?</span>
+            <span class="menu-text">Hướng dẫn sử dụng</span>
         </div>
 
     </aside>
 
 
+    <!-- ================= CONTENT ================= -->
 
-    <!-- MAIN -->
-
-    <main>
-
-
-        <div class="welcome">
-
-            <h1>
-                Xin chào 👋
-            </h1>
-
-            <p>
-                Tiếp tục hành trình học tập của bạn.
-            </p>
-
-        </div>
+    <main class="main">
 
 
+        <!-- HERO -->
 
-        <div class="course">
+        <section class="hero">
 
-            <h2>
-                Quản trị Xuất nhập khẩu
-            </h2>
+            <div class="hero-content">
 
-            <p>
-                Khóa học tương tác
-            </p>
-
-
-            <div class="progress">
-
-                <div class="progress-bar"></div>
-
-            </div>
-
-            <p style="margin-top:8px;">
-                Đã hoàn thành 35%
-            </p>
-
-
-
-            <div class="lessons">
-
-
-                <div class="lesson">
-
-                    <div class="lesson-number">
-                        BUỔI 01
-                    </div>
-
-                    <h3>
-                        Tổng quan
-                    </h3>
-
-                    <button onclick="window.location.href='lesson01.html'">
-                        Học bài
-                    </button>
-
+                <div class="eyebrow">
+                    KHÓA HỌC
                 </div>
 
+                <h1>
+                    Trang bị kiến thức, kỹ năng số hóa
+                    cho lao động phổ thông
+                </h1>
 
+                <p>
+                    Khóa học giúp người lao động phổ thông nắm bắt
+                    kiến thức và kỹ năng số cơ bản để làm việc hiệu quả
+                    trong môi trường hiện đại.
+                </p>
 
-                <div class="lesson">
-
-                    <div class="lesson-number">
-                        BUỔI 02
-                    </div>
-
-                    <h3>
-                        Hợp đồng
-                    </h3>
-
-                    <button>
-                        Học bài
-                    </button>
-
+                <div class="progress-label">
+                    <span>Tiến độ khóa học</span>
+                    <span>45%</span>
                 </div>
 
-
-
-                <div class="lesson">
-
-                    <div class="lesson-number">
-                        BUỔI 03
-                    </div>
-
-                    <h3>
-                        Thanh toán quốc tế
-                    </h3>
-
-                    <button>
-                        Học bài
-                    </button>
-
+                <div class="progress">
+                    <div class="progress-fill"></div>
                 </div>
-
-
-
-                <div class="lesson">
-
-                    <div class="lesson-number">
-                        BUỔI 04
-                    </div>
-
-                    <h3>
-                        Chứng từ
-                    </h3>
-
-                    <button>
-                        Học bài
-                    </button>
-
-                </div>
-
 
             </div>
 
 
-        </div>
+            <div class="hero-visual">
 
+                <div class="visual-box">
+
+                    <div class="visual-screen">
+                        <div class="visual-line"></div>
+                        <div class="visual-line"></div>
+                        <div class="visual-line"></div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTENT GRID -->
+
+        <div class="content-grid">
+
+
+            <!-- LESSON AREA -->
+
+            <section class="section-card">
+
+                <div class="tabs">
+
+                    <button class="tab active">
+                        Nội dung khóa học
+                    </button>
+
+                    <button class="tab">
+                        Giới thiệu
+                    </button>
+
+                    <button class="tab">
+                        Thông báo
+                    </button>
+
+                    <button class="tab">
+                        Hỏi đáp
+                    </button>
+
+                </div>
+
+
+                <div class="lesson-header">
+                    Danh sách buổi học
+                </div>
+
+
+                <!-- LESSON 1 -->
+
+                <div class="lesson">
+
+                    <div class="lesson-image">
+                        Bài giảng
+                    </div>
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-number">
+                            BUỔI 1
+                        </div>
+
+                        <div class="lesson-title">
+                            Làm quen với công nghệ số
+                        </div>
+
+                        <div class="lesson-duration">
+                            45 phút
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-tools">
+
+                        <button class="tool-button"
+                            onclick="openLesson('video')">
+                            Video bài giảng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('document')">
+                            Tài liệu
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('simulation')">
+                            Mô phỏng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('quiz')">
+                            Kiểm tra
+                        </button>
+
+                    </div>
+
+                    <div class="lesson-status">
+                        Hoàn thành
+                    </div>
+
+                </div>
+
+
+                <!-- LESSON 2 -->
+
+                <div class="lesson">
+
+                    <div class="lesson-image">
+                        Bài giảng
+                    </div>
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-number">
+                            BUỔI 2
+                        </div>
+
+                        <div class="lesson-title">
+                            Sử dụng thiết bị thông minh an toàn và hiệu quả
+                        </div>
+
+                        <div class="lesson-duration">
+                            50 phút
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-tools">
+
+                        <button class="tool-button"
+                            onclick="openLesson('video')">
+                            Video bài giảng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('document')">
+                            Tài liệu
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('simulation')">
+                            Mô phỏng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('quiz')">
+                            Kiểm tra
+                        </button>
+
+                    </div>
+
+                    <div class="lesson-status">
+                        Đang học
+                    </div>
+
+                </div>
+
+
+                <!-- LESSON 3 -->
+
+                <div class="lesson">
+
+                    <div class="lesson-image">
+                        Bài giảng
+                    </div>
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-number">
+                            BUỔI 3
+                        </div>
+
+                        <div class="lesson-title">
+                            Kỹ năng tìm kiếm thông tin trên Internet
+                        </div>
+
+                        <div class="lesson-duration">
+                            40 phút
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-tools">
+
+                        <button class="tool-button"
+                            onclick="openLesson('video')">
+                            Video bài giảng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('document')">
+                            Tài liệu
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('simulation')">
+                            Mô phỏng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('quiz')">
+                            Kiểm tra
+                        </button>
+
+                    </div>
+
+                    <div class="lesson-status">
+                        Chưa học
+                    </div>
+
+                </div>
+
+
+                <!-- LESSON 4 -->
+
+                <div class="lesson">
+
+                    <div class="lesson-image">
+                        Bài giảng
+                    </div>
+
+                    <div class="lesson-info">
+
+                        <div class="lesson-number">
+                            BUỔI 4
+                        </div>
+
+                        <div class="lesson-title">
+                            Quản lý tệp và dữ liệu
+                        </div>
+
+                        <div class="lesson-duration">
+                            45 phút
+                        </div>
+
+                    </div>
+
+                    <div class="lesson-tools">
+
+                        <button class="tool-button"
+                            onclick="openLesson('video')">
+                            Video bài giảng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('document')">
+                            Tài liệu
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('simulation')">
+                            Mô phỏng
+                        </button>
+
+                        <button class="tool-button"
+                            onclick="openLesson('quiz')">
+                            Kiểm tra
+                        </button>
+
+                    </div>
+
+                    <div class="lesson-status">
+                        Chưa học
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- RIGHT COLUMN -->
+
+            <aside class="right-column">
+
+
+                <!-- TEACHER -->
+
+                <div class="side-card">
+
+                    <div class="side-title">
+                        Giảng viên
+                    </div>
+
+                    <div class="teacher">
+
+                        <div class="teacher-avatar">
+                            GV
+                        </div>
+
+                        <div>
+                            <strong>ThS. Trần Minh Đức</strong>
+                            <span>Giảng viên</span>
+                        </div>
+
+                    </div>
+
+                    <button class="outline-button"
+                        onclick="showMessage('Chức năng nhắn tin sẽ được phát triển ở bước sau')">
+                        Nhắn tin
+                    </button>
+
+                </div>
+
+
+                <!-- UPLOAD -->
+
+                <div class="side-card">
+
+                    <div class="side-title">
+                        Upload nội dung
+                    </div>
+
+                    <button class="upload-button"
+                        onclick="showMessage('Chức năng upload video sẽ được kết nối sau')">
+                        Upload video bài giảng
+                    </button>
+
+                    <button class="upload-button green"
+                        onclick="showMessage('Chức năng upload tài liệu sẽ được kết nối sau')">
+                        Upload tài liệu
+                    </button>
+
+                    <div class="support-text">
+                        Hỗ trợ: MP4, PPTX, PDF, DOCX
+                    </div>
+
+                </div>
+
+
+                <!-- NOTICE -->
+
+                <div class="side-card">
+
+                    <div class="side-title">
+                        Thông báo
+                    </div>
+
+                    <div class="notice">
+                        <span class="notice-dot"></span>
+                        Lịch học buổi 3 đã được cập nhật
+                        <span class="notice-time">
+                            2 ngày trước
+                        </span>
+                    </div>
+
+                    <div class="notice">
+                        <span class="notice-dot"></span>
+                        Bài kiểm tra buổi 2 đã mở
+                        <span class="notice-time">
+                            3 ngày trước
+                        </span>
+                    </div>
+
+                    <div class="notice">
+                        <span class="notice-dot"></span>
+                        Tài liệu mới đã được cập nhật
+                        <span class="notice-time">
+                            1 tuần trước
+                        </span>
+                    </div>
+
+                </div>
+
+
+                <!-- PROGRESS -->
+
+                <div class="side-card">
+
+                    <div class="side-title">
+                        Tiến độ tổng thể
+                    </div>
+
+                    <div style="
+                        text-align:center;
+                        padding:15px 0;
+                    ">
+
+                        <div style="
+                            width:130px;
+                            height:130px;
+                            border-radius:50%;
+                            border:14px solid #e3e8ef;
+                            border-top-color:#1464d2;
+                            border-right-color:#1464d2;
+                            margin:auto;
+                            display:flex;
+                            align-items:center;
+                            justify-content:center;
+                            font-size:25px;
+                            font-weight:700;
+                            color:#173b68;
+                        ">
+                            45%
+                        </div>
+
+                    </div>
+
+                    <button class="outline-button"
+                        onclick="showMessage('Trang chi tiết tiến độ sẽ được tạo ở bước sau')">
+                        Xem chi tiết
+                    </button>
+
+                </div>
+
+            </aside>
+
+        </div>
 
     </main>
 
-
 </div>
 
+
+<!-- MESSAGE -->
+
+<div class="message" id="message"></div>
+
+
+<script>
+
+    function showMessage(text) {
+
+        const message = document.getElementById("message");
+
+        message.innerText = text;
+        message.style.display = "block";
+
+        setTimeout(function() {
+            message.style.display = "none";
+        }, 2500);
+    }
+
+
+    function selectMenu(element) {
+
+        document
+            .querySelectorAll(".menu-item")
+            .forEach(function(item) {
+                item.classList.remove("active");
+            });
+
+        element.classList.add("active");
+
+        const text =
+            element.querySelector(".menu-text").innerText;
+
+        showMessage("Bạn đang mở: " + text);
+    }
+
+
+    function openLesson(type) {
+
+        if (type === "video") {
+            showMessage("Trang video bài giảng sẽ được mở ở bước tiếp theo.");
+        }
+
+        if (type === "document") {
+            showMessage("Trang tài liệu sẽ được mở ở bước tiếp theo.");
+        }
+
+        if (type === "simulation") {
+            showMessage("Mô phỏng tương tác sẽ được xây dựng ở bước tiếp theo.");
+        }
+
+        if (type === "quiz") {
+            showMessage("Bài kiểm tra sẽ được xây dựng ở bước tiếp theo.");
+        }
+
+    }
+
+</script>
 
 </body>
 </html>
