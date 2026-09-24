@@ -345,6 +345,7 @@
             align-items: center;
             padding: 15px;
             transition: 0.2s;
+            cursor: pointer;
         }
 
         .lesson:hover {
@@ -658,7 +659,6 @@
     </div>
 
     <div class="search">
-        <span class="search-icon">⌕</span>
         <input
             type="text"
             placeholder="Tìm kiếm khóa học, bài giảng, tài liệu..."
@@ -699,42 +699,34 @@
         </div>
 
         <div class="menu-item active" onclick="selectMenu(this)">
-            <span class="menu-icon">⌂</span>
             <span class="menu-text">Trang chủ</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">▣</span>
             <span class="menu-text">Khóa học của tôi</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">□</span>
             <span class="menu-text">Lịch học</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">▤</span>
             <span class="menu-text">Tài liệu</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">✓</span>
             <span class="menu-text">Bài kiểm tra</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">▥</span>
             <span class="menu-text">Kết quả học tập</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">▢</span>
             <span class="menu-text">Diễn đàn</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-icon">?</span>
             <span class="menu-text">Hướng dẫn sử dụng</span>
         </div>
 
@@ -833,7 +825,7 @@
 
                 <!-- LESSON 1 -->
 
-                <div class="lesson">
+                <div class="lesson" onclick="window.location.href='lesson01.html'">
 
                     <div class="lesson-image">
                         Bài giảng
@@ -855,30 +847,6 @@
 
                     </div>
 
-                    <div class="lesson-tools">
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson01.html#video'">
-                            Video bài giảng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson01.html#document'">
-                            Tài liệu
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson01.html#simulation'">
-                            Mô phỏng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson01.html#quiz'">
-                            Kiểm tra
-                        </button>
-
-                    </div>
-
                     <div class="lesson-status">
                         Hoàn thành
                     </div>
@@ -888,7 +856,7 @@
 
                 <!-- LESSON 2 -->
 
-                <div class="lesson">
+                <div class="lesson" onclick="window.location.href='lesson02.html'">
 
                     <div class="lesson-image">
                         Bài giảng
@@ -910,30 +878,6 @@
 
                     </div>
 
-                    <div class="lesson-tools">
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson02.html#video'">
-                            Video bài giảng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson02.html#document'">
-                            Tài liệu
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson02.html#simulation'">
-                            Mô phỏng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson02.html#quiz'">
-                            Kiểm tra
-                        </button>
-
-                    </div>
-
                     <div class="lesson-status">
                         Đang học
                     </div>
@@ -943,7 +887,7 @@
 
                 <!-- LESSON 3 -->
 
-                <div class="lesson">
+                <div class="lesson" onclick="window.location.href='lesson03.html'">
 
                     <div class="lesson-image">
                         Bài giảng
@@ -965,30 +909,6 @@
 
                     </div>
 
-                    <div class="lesson-tools">
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson03.html#video'">
-                            Video bài giảng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson03.html#document'">
-                            Tài liệu
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson03.html#simulation'">
-                            Mô phỏng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson03.html#quiz'">
-                            Kiểm tra
-                        </button>
-
-                    </div>
-
                     <div class="lesson-status">
                         Chưa học
                     </div>
@@ -998,7 +918,7 @@
 
                 <!-- LESSON 4 -->
 
-                <div class="lesson">
+                <div class="lesson" onclick="window.location.href='lesson04.html'">
 
                     <div class="lesson-image">
                         Bài giảng
@@ -1017,30 +937,6 @@
                         <div class="lesson-duration">
                             45 phút
                         </div>
-
-                    </div>
-
-                    <div class="lesson-tools">
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson04.html#video'">
-                            Video bài giảng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson04.html#document'">
-                            Tài liệu
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson04.html#simulation'">
-                            Mô phỏng
-                        </button>
-
-                        <button class="tool-button"
-                            onclick="window.location.href='lesson04.html#quiz'">
-                            Kiểm tra
-                        </button>
 
                     </div>
 
