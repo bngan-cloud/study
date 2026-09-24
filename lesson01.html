@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Buổi 01 - StudyHub</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f6f7fb;
+            color: #20232a;
+        }
+
+        header {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 40px;
+        }
+
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .back {
+            color: #6c63ff;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        .lesson-header {
+            margin-bottom: 30px;
+        }
+
+        .lesson-number {
+            color: #6c63ff;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 25px;
+
+            box-shadow:
+                0 5px 20px rgba(0,0,0,0.05);
+        }
+
+        .section h2 {
+            margin-bottom: 18px;
+        }
+
+        .video {
+            width: 100%;
+            height: 450px;
+
+            background: #20232a;
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+            font-size: 50px;
+        }
+
+        .documents {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(220px, 1fr));
+
+            gap: 15px;
+        }
+
+        .document {
+            border: 1px solid #e5e5e5;
+            border-radius: 12px;
+
+            padding: 20px;
+        }
+
+        .document h3 {
+            margin-bottom: 8px;
+        }
+
+        .document p {
+            color: #777;
+            margin-bottom: 15px;
+        }
+
+        .document button {
+            background: #6c63ff;
+            border: none;
+
+            color: white;
+
+            padding: 10px 15px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+        .simulation {
+            background: #f3f1ff;
+            border-radius: 14px;
+            padding: 25px;
+        }
+
+        .simulation button {
+            margin-top: 15px;
+
+            background: #6c63ff;
+            color: white;
+
+            border: none;
+
+            padding: 12px 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <div class="logo">
+        📚 StudyHub
+    </div>
+
+    <a href="index.html" class="back">
+        ← Quay lại khóa học
+    </a>
+
+</header>
+
+
+<main>
+
+
+    <div class="lesson-header">
+
+        <div class="lesson-number">
+            BUỔI 01
+        </div>
+
+        <h1>
+            Tổng quan
+        </h1>
+
+        <p>
+            Làm quen với những kiến thức nền tảng của môn học.
+        </p>
+
+    </div>
+
+
+
+    <!-- VIDEO -->
+
+    <div class="section">
+
+        <h2>
+            🎬 Video bài giảng
+        </h2>
+
+        <div class="video">
+            ▶
+        </div>
+
+        <p style="margin-top: 15px;">
+            Video bài giảng sẽ được cập nhật tại đây.
+        </p>
+
+    </div>
+
+
+
+    <!-- DOCUMENT -->
+
+    <div class="section">
+
+        <h2>
+            📚 Tài liệu buổi học
+        </h2>
+
+        <div class="documents">
+
+
+            <div class="document">
+
+                <h3>
+                    📊 PowerPoint
+                </h3>
+
+                <p>
+                    Slide bài giảng
+                </p>
+
+                <button>
+                    Xem tài liệu
+                </button>
+
+            </div>
+
+
+            <div class="document">
+
+                <h3>
+                    📄 Word
+                </h3>
+
+                <p>
+                    Tài liệu học tập
+                </p>
+
+                <button>
+                    Xem tài liệu
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- SIMULATION -->
+
+    <div class="section">
+
+        <h2>
+            🧪 Mô phỏng tương tác
+        </h2>
+
+        <div class="simulation">
+
+            <h3>
+                Thử sức với tình huống
+            </h3>
+
+            <p style="margin-top: 10px;">
+                Bạn sẽ được đưa vào một tình huống
+                thực tế và tự đưa ra quyết định.
+            </p>
+
+            <button>
+                Bắt đầu mô phỏng →
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- QUIZ -->
+
+    <div class="section">
+
+        <h2>
+            📝 Kiểm tra cuối buổi
+        </h2>
+
+        <p>
+            Hoàn thành bài kiểm tra để đánh dấu
+            buổi học đã hoàn thành.
+        </p>
+
+        <button
+            style="
+                margin-top:15px;
+                background:#6c63ff;
+                color:white;
+                border:none;
+                padding:12px 20px;
+                border-radius:8px;
+            "
+        >
+            Bắt đầu kiểm tra →
+        </button>
+
+    </div>
+
+
+</main>
+
+
+</body>
+
+</html>
