@@ -162,47 +162,43 @@
         /* ================= SIDEBAR ================= */
 
         .sidebar {
-            width: 262px;
+            width: 245px;
             background: white;
             border-right: 1px solid #e6eaf0;
-
-            padding: 30px 15px;
+            padding: 25px 14px;
             flex-shrink: 0;
         }
 
         .sidebar-title {
-            color: #5d86bf;
-            font-size: 14px;
-            font-weight: 600;
-
-            padding: 0 13px;
-            margin-bottom: 16px;
+            font-size: 12px;
+            font-weight: 700;
+            color: #8a96a8;
+            padding: 0 16px 15px;
+            text-transform: uppercase;
         }
 
         .menu-item {
             height: 48px;
-
+            border-radius: 8px;
             display: flex;
             align-items: center;
-
-            padding: 0 13px;
-
-            border-radius: 9px;
+            padding: 0 16px;
             margin-bottom: 5px;
-
-            color: #5274a8;
+            color: #40516c;
             font-size: 15px;
-
+            transition: 0.2s;
             cursor: pointer;
         }
 
         .menu-item:hover {
-            background: #f1f6fd;
+            background: #f0f5fc;
+            color: #1464d2;
         }
 
         .menu-item.active {
-            background: #1677ed;
+            background: #1464d2;
             color: white;
+            font-weight: 600;
         }
 
         .menu-text {
@@ -433,16 +429,6 @@
             font-size: 14px;
         }
 
-        .lesson-tag {
-            background: #eaf4ff;
-            color: #1464d2;
-
-            padding: 4px 9px;
-            border-radius: 12px;
-
-            font-size: 11px;
-        }
-
         .question-text {
             color: #234b82;
             font-size: 14px;
@@ -597,12 +583,36 @@
         }
 
 
+        /* ================= MOBILE MENU ================= */
+
+        .mobile-menu-button {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #dce2eb;
+            border-radius: 8px;
+            background: white;
+            color: #1464d2;
+            font-size: 22px;
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+
         /* ================= RESPONSIVE ================= */
 
         @media (max-width: 900px) {
 
             .sidebar {
-                width: 200px;
+                width: 180px;
             }
 
             .main {
@@ -614,37 +624,80 @@
                 grid-template-columns: 1fr 1fr;
             }
 
+            .sidebar-title {
+                display: block;
+                padding: 0 12px 15px;
+            }
+
+            .menu-item {
+                justify-content: flex-start;
+                padding: 0 12px;
+            }
+
+            .menu-text {
+                display: block;
+            }
+
         }
 
 
-        @media (max-width: 650px) {
+        @media (max-width: 600px) {
+
+            .mobile-menu-button {
+                display: flex;
+            }
 
             .header {
-                padding: 0 15px;
-            }
-
-            .logo {
-                width: auto;
-            }
-
-            .logo-text {
-                display: none;
+                padding: 0 15px 0 70px;
             }
 
             .search {
                 display: none;
             }
 
-            .header-right {
-                gap: 12px;
-            }
-
-            .user-info {
-                display: none;
-            }
+            /* SIDEBAR MOBILE */
 
             .sidebar {
-                display: none;
+                position: fixed;
+                top: 0;
+                left: -200px;
+                width: 180px;
+                height: 100vh;
+                padding: 90px 10px 25px;
+                z-index: 250;
+                transition: left 0.25s ease;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .sidebar-title {
+                display: block;
+                padding: 0 12px 15px;
+            }
+
+            .menu-item {
+                justify-content: flex-start;
+                padding: 0 12px;
+            }
+
+            .menu-text {
+                display: block;
+            }
+
+            /* OVERLAY */
+
+            .sidebar-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.25);
+                z-index: 200;
+            }
+
+            .sidebar-overlay.open {
+                display: block;
             }
 
             .main {
@@ -695,6 +748,15 @@
 
 
 <body>
+
+
+<!-- ================= MOBILE MENU BUTTON ================= -->
+
+<button class="mobile-menu-button" onclick="toggleSidebar()">
+    ☰
+</button>
+
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
 
 
 <!-- ================= HEADER ================= -->
@@ -781,96 +843,31 @@
     <aside class="sidebar">
 
         <div class="sidebar-title">
-            KHÓA HỌC
+            Khóa học
         </div>
 
-
-        <div
-            class="menu-item"
-            onclick="window.location.href='index.html'"
-        >
-            <span class="menu-text">
-                Trang chủ
-            </span>
+        <div class="menu-item" onclick="window.location.href='index.html'">
+            <span class="menu-text">Trang chủ</span>
         </div>
 
-
-        <div
-            class="menu-item"
-            onclick="window.location.href='index.html'"
-        >
-            <span class="menu-text">
-                Khóa học của tôi
-            </span>
+        <div class="menu-item" onclick="showMessage('Bạn đang mở: Khóa học của tôi')">
+            <span class="menu-text">Khóa học của tôi</span>
         </div>
 
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Lịch học đang được cập nhật')"
-        >
-            <span class="menu-text">
-                Lịch học
-            </span>
+        <div class="menu-item" onclick="showMessage('Bạn đang mở: Lịch học')">
+            <span class="menu-text">Lịch học</span>
         </div>
 
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Tài liệu đang được cập nhật')"
-        >
-            <span class="menu-text">
-                Tài liệu
-            </span>
+        <div class="menu-item" onclick="showMessage('Bạn đang mở: Kết quả học tập')">
+            <span class="menu-text">Kết quả học tập</span>
         </div>
-
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Bài kiểm tra đang được cập nhật')"
-        >
-            <span class="menu-text">
-                Bài kiểm tra
-            </span>
-        </div>
-
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Kết quả học tập đang được cập nhật')"
-        >
-            <span class="menu-text">
-                Kết quả học tập
-            </span>
-        </div>
-
 
         <div class="menu-item active">
-
-            <span class="menu-text">
-                Hỏi đáp
-            </span>
-
+            <span class="menu-text">Hỏi đáp</span>
         </div>
 
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Diễn đàn đang được cập nhật')"
-        >
-            <span class="menu-text">
-                Diễn đàn
-            </span>
-        </div>
-
-
-        <div
-            class="menu-item"
-            onclick="showMessage('Thông tin hướng dẫn sử dụng')"
-        >
-            <span class="menu-text">
-                About us
-            </span>
+        <div class="menu-item" onclick="showMessage('Bạn đang mở: About us')">
+            <span class="menu-text">About us</span>
         </div>
 
     </aside>
@@ -959,31 +956,6 @@
                         Câu hỏi của tôi
                     </button>
 
-
-                    <select class="lesson-filter">
-
-                        <option>
-                            Tất cả buổi học
-                        </option>
-
-                        <option>
-                            Buổi 1
-                        </option>
-
-                        <option>
-                            Buổi 2
-                        </option>
-
-                        <option>
-                            Buổi 3
-                        </option>
-
-                        <option>
-                            Buổi 4
-                        </option>
-
-                    </select>
-
                 </div>
 
 
@@ -1005,18 +977,14 @@
                                     Lê Ngọc Tân
                                 </strong>
 
-                                <span class="lesson-tag">
-                                    Buổi 1
-                                </span>
-
                             </div>
 
 
                             <div class="question-text">
-                                Thầy ơi, bữa trước tôi có lên Google coi được một cái thông tin,
-                                thấy hay nên tính để đó khi nào cần coi lại.
-                                Giờ tôi kiếm lại hoài không thấy nữa.
-                                Có cách nào tìm lại được cái bài lúc trước không thầy?
+                                Thầy ơi , bữa trước tôi có lên Google coi được một cái thông tin,
+                                thấy hay nên tính để đó chừng nào cần coi lại ,
+                                mà tôi kiếm lại hoài không thấy .
+                                Có cách nào tìm lại được cái bài lúc trước không thầy ?
                             </div>
 
 
@@ -1054,19 +1022,15 @@
                                     Huỳnh Trần Quốc Chi
                                 </strong>
 
-                                <span class="lesson-tag">
-                                    Buổi 1
-                                </span>
-
                             </div>
 
 
                             <div class="question-text">
-                                Thầy cho tôi hỏi, tôi lên Google thấy người ta chỉ cách làm
-                                cũng giống như bên công ty hướng dẫn.
-                                Mà cái trang đó tôi không biết của ai, không phải trang công ty.
-                                Vậy có cách nào coi trước coi người ta chỉ vậy có đúng không,
-                                chứ làm sai rồi cũng khó sửa.
+                                thầy cho tôi hỏi cái này ... tôi lên google thấy người ta chỉ cách làm
+                                cũng giống như bên công ty hướng dẫn ...
+                                mà cái trang đó tôi không biết của ai , không phải trang công ty...
+                                vậy có cách nào coi trước coi người ta chỉ vậy có đúng ko ...
+                                chứ làm sai rồi tôi cũng ko bt sửa ...
                             </div>
 
 
@@ -1104,15 +1068,11 @@
                                     Nguyễn Phạm Bảo Ngân
                                 </strong>
 
-                                <span class="lesson-tag">
-                                    Buổi 2
-                                </span>
-
                             </div>
 
 
                             <div class="question-text">
-                                Cô cho tôi hỏi, vợ chồng tôi ở nhà dùng chung một cái điện thoại.
+                                Vợ chồng tôi ở nhà dùng chung một cái điện thoại.
                                 Tôi có lưu mấy giấy tờ cá nhân trong đó, mà chồng tôi cũng hay lấy máy dùng.
                                 Vậy tôi để mấy giấy tờ đó ở đâu thì tiện, mà lỡ chồng bấm vô cũng không mở nhầm được?
                             </div>
@@ -1266,6 +1226,20 @@
         });
 
     });
+
+
+    function toggleSidebar() {
+
+        const sidebar =
+            document.querySelector(".sidebar");
+
+        const overlay =
+            document.querySelector(".sidebar-overlay");
+
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("open");
+
+    }
 
 </script>
 
