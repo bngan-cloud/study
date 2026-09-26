@@ -13,147 +13,307 @@
     <style>
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f6f7fb;
-            color: #20232a;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172b4d;
         }
 
-        header {
-            height: 70px;
-            background: white;
-            border-bottom: 1px solid #e5e5e5;
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
 
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e6eaf0;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-
-            padding: 0 40px;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
+            width: 245px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-size: 22px;
             font-weight: 700;
+            color: #1464d2;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #1464d2;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .header-right {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: 24px;
         }
 
         .back {
-            color: #6c63ff;
+            color: #1464d2;
             text-decoration: none;
+            font-size: 14px;
             font-weight: 600;
         }
+
+        .back:hover {
+            color: #0f51aa;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #dce9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1464d2;
+            font-weight: 700;
+        }
+
+        .user-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .user-info span {
+            color: #8290a5;
+            font-size: 12px;
+        }
+
+
+        /* ================= MAIN ================= */
 
         main {
             max-width: 1100px;
             margin: auto;
-            padding: 40px 25px;
+            padding: 30px;
         }
 
+
+        /* ================= LESSON HEADER ================= */
+
         .lesson-header {
-            margin-bottom: 30px;
+            background: linear-gradient(100deg, #eaf4ff, #d8ebff);
+            border-radius: 14px;
+            padding: 30px;
+            margin-bottom: 24px;
         }
 
         .lesson-number {
-            color: #6c63ff;
-            font-weight: 600;
+            color: #1464d2;
+            font-size: 13px;
+            font-weight: 700;
             margin-bottom: 10px;
         }
 
-        h1 {
-            font-size: 36px;
+        .lesson-header h1 {
+            font-size: 29px;
+            line-height: 1.25;
             margin-bottom: 10px;
+            color: #123e78;
         }
+
+        .lesson-header p {
+            color: #536982;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+
+        /* ================= SECTION ================= */
 
         .section {
             background: white;
-            border-radius: 18px;
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
             padding: 25px;
-            margin-bottom: 25px;
-
-            box-shadow:
-                0 5px 20px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
         }
 
         .section h2 {
+            font-size: 17px;
             margin-bottom: 18px;
+            color: #172b4d;
         }
+
+
+        /* ================= VIDEO ================= */
 
         .video {
             width: 100%;
             height: 450px;
-
-            background: #20232a;
-            border-radius: 14px;
+            background: #172b4d;
+            border-radius: 10px;
 
             display: flex;
             align-items: center;
             justify-content: center;
 
             color: white;
-            font-size: 50px;
+            font-size: 16px;
         }
 
-        .documents {
-            display: grid;
-
-            grid-template-columns:
-                repeat(auto-fit, minmax(220px, 1fr));
-
-            gap: 15px;
+        .video-placeholder {
+            text-align: center;
         }
 
-        .document {
-            border: 1px solid #e5e5e5;
-            border-radius: 12px;
+        .video-placeholder p {
+            margin-top: 10px;
+            color: #c8d1df;
+            font-size: 13px;
+        }
 
+
+        /* ================= DOCUMENT ================= */
+
+        .document-box {
+            border: 1px solid #e2e7ef;
+            border-radius: 10px;
             padding: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
         }
 
-        .document h3 {
-            margin-bottom: 8px;
+        .document-info h3 {
+            font-size: 15px;
+            margin-bottom: 7px;
         }
 
-        .document p {
-            color: #777;
-            margin-bottom: 15px;
+        .document-info p {
+            color: #8793a5;
+            font-size: 13px;
+            line-height: 1.5;
         }
 
-        .document button {
-            background: #6c63ff;
+        .document-button {
+            background: #1464d2;
             border: none;
-
             color: white;
-
-            padding: 10px 15px;
-
-            border-radius: 8px;
-
-            cursor: pointer;
+            padding: 10px 18px;
+            border-radius: 7px;
+            font-size: 13px;
+            white-space: nowrap;
         }
 
-        .simulation {
-            background: #f3f1ff;
-            border-radius: 14px;
-            padding: 25px;
+        .document-button:hover {
+            background: #1057ba;
         }
 
-        .simulation button {
+
+        /* ================= QUIZ ================= */
+
+        .quiz-description {
+            color: #536982;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .quiz-button {
             margin-top: 15px;
-
-            background: #6c63ff;
+            background: #1464d2;
             color: white;
-
             border: none;
+            padding: 11px 20px;
+            border-radius: 7px;
+            font-size: 13px;
+        }
 
-            padding: 12px 20px;
+        .quiz-button:hover {
+            background: #1057ba;
+        }
 
-            border-radius: 8px;
 
-            cursor: pointer;
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 700px) {
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .logo {
+                width: auto;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .header-right {
+                gap: 12px;
+            }
+
+            .back {
+                font-size: 13px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            main {
+                padding: 15px;
+            }
+
+            .lesson-header {
+                padding: 22px;
+            }
+
+            .lesson-header h1 {
+                font-size: 23px;
+            }
+
+            .section {
+                padding: 18px;
+            }
+
+            .video {
+                height: 230px;
+            }
+
+            .document-box {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .document-button {
+                width: 100%;
+            }
         }
 
     </style>
@@ -164,104 +324,104 @@
 <body>
 
 
-<header>
+<!-- ================= HEADER ================= -->
+
+<header class="header">
 
     <div class="logo">
-        📚 StudyHub
+
+        <div class="logo-mark">
+            S
+        </div>
+
+        <span class="logo-text">
+            StudyHub
+        </span>
+
     </div>
 
-    <a href="index.html" class="back">
-        ← Quay lại khóa học
-    </a>
+
+    <div class="header-right">
+
+        <a href="index.html" class="back">
+            Quay lại khóa học
+        </a>
+
+
+        <div class="user">
+
+            <div class="avatar">
+                HV
+            </div>
+
+            <div class="user-info">
+
+                <strong>
+                    Lê Vũ Quỳnh Giao
+                </strong>
+
+                <span>
+                    Học viên
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </header>
 
 
+
+<!-- ================= MAIN ================= -->
+
 <main>
 
+
+    <!-- LESSON HEADER -->
 
     <div class="lesson-header">
 
         <div class="lesson-number">
-            BUỔI 01
+            BUỔI 1
         </div>
 
         <h1>
-            Tổng quan
+            Làm quen với công nghệ số
         </h1>
 
         <p>
-            Làm quen với những kiến thức nền tảng của môn học.
+            Tìm hiểu những kiến thức nền tảng về công nghệ số
+            và làm quen với các công cụ số cơ bản trong cuộc sống
+            và công việc.
         </p>
 
     </div>
 
 
 
-    <!-- VIDEO -->
+    <!-- ================= VIDEO ================= -->
 
     <div class="section">
 
         <h2>
-            🎬 Video bài giảng
+            Video bài giảng
         </h2>
 
         <div class="video">
-            ▶
-        </div>
 
-        <p style="margin-top: 15px;">
-            Video bài giảng sẽ được cập nhật tại đây.
-        </p>
+            <div class="video-placeholder">
 
-    </div>
-
-
-
-    <!-- DOCUMENT -->
-
-    <div class="section">
-
-        <h2>
-            📚 Tài liệu buổi học
-        </h2>
-
-        <div class="documents">
-
-
-            <div class="document">
-
-                <h3>
-                    📊 PowerPoint
-                </h3>
+                <div>
+                    Video bài giảng
+                </div>
 
                 <p>
-                    Slide bài giảng
+                    Video bài giảng sẽ được cập nhật tại đây.
                 </p>
 
-                <button>
-                    Xem tài liệu
-                </button>
-
             </div>
-
-
-            <div class="document">
-
-                <h3>
-                    📄 Word
-                </h3>
-
-                <p>
-                    Tài liệu học tập
-                </p>
-
-                <button>
-                    Xem tài liệu
-                </button>
-
-            </div>
-
 
         </div>
 
@@ -269,27 +429,34 @@
 
 
 
-    <!-- SIMULATION -->
+    <!-- ================= DOCUMENT ================= -->
 
     <div class="section">
 
         <h2>
-            🧪 Mô phỏng tương tác
+            Tài liệu
         </h2>
 
-        <div class="simulation">
+        <div class="document-box">
 
-            <h3>
-                Thử sức với tình huống
-            </h3>
+            <div class="document-info">
 
-            <p style="margin-top: 10px;">
-                Bạn sẽ được đưa vào một tình huống
-                thực tế và tự đưa ra quyết định.
-            </p>
+                <h3>
+                    Tài liệu buổi học
+                </h3>
 
-            <button>
-                Bắt đầu mô phỏng →
+                <p>
+                    Xem tài liệu học tập và nội dung liên quan
+                    đến Buổi 1.
+                </p>
+
+            </div>
+
+            <button
+                class="document-button"
+                onclick="showMessage('Tài liệu sẽ được cập nhật tại đây')"
+            >
+                Xem tài liệu
             </button>
 
         </div>
@@ -298,36 +465,71 @@
 
 
 
-    <!-- QUIZ -->
+    <!-- ================= QUIZ ================= -->
 
     <div class="section">
 
         <h2>
-            📝 Kiểm tra cuối buổi
+            Kiểm tra cuối buổi
         </h2>
 
-        <p>
+        <p class="quiz-description">
             Hoàn thành bài kiểm tra để đánh dấu
             buổi học đã hoàn thành.
         </p>
 
         <button
-            style="
-                margin-top:15px;
-                background:#6c63ff;
-                color:white;
-                border:none;
-                padding:12px 20px;
-                border-radius:8px;
-            "
+            class="quiz-button"
+            onclick="showMessage('Bài kiểm tra sẽ được phát triển ở bước sau')"
         >
-            Bắt đầu kiểm tra →
+            Bắt đầu kiểm tra
         </button>
 
     </div>
 
 
 </main>
+
+
+<!-- ================= MESSAGE ================= -->
+
+<div
+    id="message"
+    style="
+        position: fixed;
+        right: 25px;
+        bottom: 25px;
+        background: #172b4d;
+        color: white;
+        padding: 13px 18px;
+        border-radius: 8px;
+        display: none;
+        z-index: 200;
+        font-size: 13px;
+    "
+></div>
+
+
+<script>
+
+    function showMessage(text) {
+
+        const message =
+            document.getElementById("message");
+
+        message.innerText = text;
+
+        message.style.display = "block";
+
+        setTimeout(function() {
+
+            message.style.display = "none";
+
+        }, 2500);
+
+    }
+
+</script>
 
 
 </body>
