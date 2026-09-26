@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Hỏi đáp - StudyHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172b4d;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e6eaf0;
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: 245px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 22px;
+            font-weight: 700;
+            color: #1464d2;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #1464d2;
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+        .search {
+            width: 510px;
+        }
+
+        .search input {
+            width: 100%;
+            height: 42px;
+
+            border: 1px solid #dce7f5;
+            border-radius: 8px;
+
+            padding: 0 15px;
+
+            outline: none;
+            color: #172b4d;
+            font-size: 14px;
+        }
+
+        .search input:focus {
+            border-color: #1464d2;
+        }
+
+        .header-right {
+            margin-left: auto;
+
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+
+        /* ================= NOTIFICATION ================= */
+
+        .notification {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid #dce7f5;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #1464d2;
+            cursor: pointer;
+        }
+
+        .notification svg {
+            width: 20px;
+            height: 20px;
+        }
+
+
+        /* ================= USER ================= */
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+
+            border-radius: 50%;
+            background: #dce9f9;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #1464d2;
+            font-weight: 700;
+        }
+
+        .user-info strong {
+            display: block;
+            font-size: 14px;
+        }
+
+        .user-info span {
+            color: #8290a5;
+            font-size: 12px;
+        }
+
+
+        /* ================= LAYOUT ================= */
+
+        .layout {
+            display: flex;
+            min-height: calc(100vh - 72px);
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 262px;
+            background: white;
+            border-right: 1px solid #e6eaf0;
+
+            padding: 30px 15px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-title {
+            color: #5d86bf;
+            font-size: 14px;
+            font-weight: 600;
+
+            padding: 0 13px;
+            margin-bottom: 16px;
+        }
+
+        .menu-item {
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 13px;
+
+            border-radius: 9px;
+            margin-bottom: 5px;
+
+            color: #5274a8;
+            font-size: 15px;
+
+            cursor: pointer;
+        }
+
+        .menu-item:hover {
+            background: #f1f6fd;
+        }
+
+        .menu-item.active {
+            background: #1677ed;
+            color: white;
+        }
+
+        .menu-text {
+            white-space: nowrap;
+        }
+
+
+        /* ================= MAIN ================= */
+
+        .main {
+            flex: 1;
+            padding: 20px;
+
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 350px;
+            gap: 20px;
+
+            background: #f5faff;
+        }
+
+
+        /* ================= QUESTIONS AREA ================= */
+
+        .questions-area {
+            min-width: 0;
+        }
+
+
+        /* ================= HERO ================= */
+
+        .qa-hero {
+            background: linear-gradient(
+                110deg,
+                #eaf4ff,
+                #d8ebff
+            );
+
+            border-radius: 12px;
+            padding: 20px 22px;
+            margin-bottom: 12px;
+        }
+
+        .qa-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+
+            color: #123e78;
+        }
+
+        .qa-icon {
+            width: 48px;
+            height: 48px;
+
+            border-radius: 50%;
+            background: #1478ed;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        .qa-icon svg {
+            width: 27px;
+            height: 27px;
+        }
+
+        .qa-title h1 {
+            font-size: 30px;
+            line-height: 1;
+        }
+
+        .qa-description {
+            margin-top: 8px;
+
+            color: #536982;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .qa-search-row {
+            display: flex;
+            gap: 18px;
+            margin-top: 12px;
+        }
+
+        .question-search {
+            flex: 1;
+            height: 44px;
+
+            border: none;
+            border-radius: 8px;
+
+            padding: 0 16px;
+
+            background: white;
+            outline: none;
+
+            color: #172b4d;
+            font-size: 14px;
+        }
+
+        .ask-button {
+            width: 150px;
+
+            border: none;
+            border-radius: 8px;
+
+            background: #1464d2;
+            color: white;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+        }
+
+        .ask-button:hover {
+            background: #0f56b8;
+        }
+
+
+        /* ================= QUESTION LIST ================= */
+
+        .question-container {
+            background: white;
+            border-radius: 12px;
+            padding: 16px 20px;
+        }
+
+        .question-filter {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            margin-bottom: 16px;
+        }
+
+        .filter-button {
+            border: none;
+            background: transparent;
+
+            color: #5274a8;
+
+            padding: 11px 18px;
+            border-radius: 9px;
+
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .filter-button.active {
+            background: #1677ed;
+            color: white;
+        }
+
+        .lesson-filter {
+            margin-left: auto;
+
+            height: 44px;
+            width: 205px;
+
+            border: 1px solid #dce7f5;
+            border-radius: 8px;
+
+            background: white;
+            color: #5274a8;
+
+            padding: 0 13px;
+            font-size: 14px;
+        }
+
+
+        /* ================= QUESTION CARD ================= */
+
+        .question-card {
+            border: 1px solid #dce7f5;
+            border-radius: 11px;
+
+            padding: 17px 18px;
+
+            margin-bottom: 14px;
+
+            position: relative;
+        }
+
+        .question-top {
+            display: flex;
+            gap: 16px;
+        }
+
+        .question-avatar {
+            width: 46px;
+            height: 46px;
+
+            border-radius: 50%;
+
+            background: #eaf4ff;
+            color: #1464d2;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-weight: 700;
+            font-size: 16px;
+
+            flex-shrink: 0;
+        }
+
+        .question-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .question-name {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            margin-bottom: 8px;
+        }
+
+        .question-name strong {
+            color: #173d77;
+            font-size: 14px;
+        }
+
+        .lesson-tag {
+            background: #eaf4ff;
+            color: #1464d2;
+
+            padding: 4px 9px;
+            border-radius: 12px;
+
+            font-size: 11px;
+        }
+
+        .question-text {
+            color: #234b82;
+            font-size: 14px;
+            line-height: 1.55;
+
+            padding-right: 70px;
+        }
+
+        .question-status {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+
+            background: #fff4e3;
+            color: #e89b27;
+
+            border-radius: 15px;
+            padding: 5px 10px;
+
+            font-size: 11px;
+        }
+
+        .question-meta {
+            margin-top: 9px;
+            color: #6f91bd;
+            font-size: 12px;
+        }
+
+
+        /* ================= RIGHT COLUMN ================= */
+
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .side-card {
+            background: white;
+
+            border: 1px solid #e5e9ef;
+            border-radius: 12px;
+
+            padding: 20px;
+        }
+
+        .side-card h2 {
+            color: #123e78;
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+
+        /* ================= TEACHER ================= */
+
+        .teacher {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .teacher-avatar {
+            width: 64px;
+            height: 64px;
+
+            border-radius: 50%;
+            background: #eaf4ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #1464d2;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .teacher-info strong {
+            display: block;
+            font-size: 14px;
+            color: #173d77;
+            margin-bottom: 5px;
+        }
+
+        .teacher-info span {
+            color: #7d91ad;
+            font-size: 13px;
+        }
+
+        .message-button {
+            width: 100%;
+            height: 42px;
+
+            margin-top: 14px;
+
+            background: white;
+            border: 1px solid #4c9aff;
+            border-radius: 8px;
+
+            color: #1464d2;
+            font-size: 14px;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= POPULAR QUESTIONS ================= */
+
+        .popular-item {
+            padding: 14px 0;
+
+            border-bottom: 1px solid #edf0f4;
+
+            color: #1470dc;
+            font-size: 14px;
+            line-height: 1.5;
+
+            cursor: pointer;
+        }
+
+        .popular-item:first-child {
+            padding-top: 0;
+        }
+
+        .popular-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .popular-item:hover {
+            color: #0f56b8;
+        }
+
+
+        /* ================= MESSAGE ================= */
+
+        #message {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+
+            background: #172b4d;
+            color: white;
+
+            padding: 13px 18px;
+            border-radius: 8px;
+
+            display: none;
+            z-index: 300;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .main {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .logo {
+                width: auto;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .search {
+                display: none;
+            }
+
+            .header-right {
+                gap: 12px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .sidebar {
+                display: none;
+            }
+
+            .main {
+                padding: 15px;
+            }
+
+            .qa-title h1 {
+                font-size: 24px;
+            }
+
+            .qa-search-row {
+                flex-direction: column;
+            }
+
+            .ask-button {
+                width: 100%;
+                height: 44px;
+            }
+
+            .question-filter {
+                flex-wrap: wrap;
+            }
+
+            .lesson-filter {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .right-column {
+                grid-template-columns: 1fr;
+            }
+
+            .question-text {
+                padding-right: 0;
+            }
+
+            .question-status {
+                position: static;
+                display: inline-block;
+                margin-top: 10px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            S
+        </div>
+
+        <span class="logo-text">
+            StudyHub
+        </span>
+
+    </div>
+
+
+    <div class="search">
+
+        <input
+            type="text"
+            placeholder="Tìm kiếm khóa học, bài giảng, tài liệu..."
+        >
+
+    </div>
+
+
+    <div class="header-right">
+
+        <div
+            class="notification"
+            onclick="showMessage('Bạn không có thông báo mới')"
+        >
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                <path d="M10 21h4"></path>
+            </svg>
+
+        </div>
+
+
+        <div class="user">
+
+            <div class="avatar">
+                HV
+            </div>
+
+            <div class="user-info">
+
+                <strong>
+                    Lê Vũ Quỳnh Giao
+                </strong>
+
+                <span>
+                    Học viên
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ================= LAYOUT ================= -->
+
+<div class="layout">
+
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-title">
+            KHÓA HỌC
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="window.location.href='index.html'"
+        >
+            <span class="menu-text">
+                Trang chủ
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="window.location.href='index.html'"
+        >
+            <span class="menu-text">
+                Khóa học của tôi
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Lịch học đang được cập nhật')"
+        >
+            <span class="menu-text">
+                Lịch học
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Tài liệu đang được cập nhật')"
+        >
+            <span class="menu-text">
+                Tài liệu
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Bài kiểm tra đang được cập nhật')"
+        >
+            <span class="menu-text">
+                Bài kiểm tra
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Kết quả học tập đang được cập nhật')"
+        >
+            <span class="menu-text">
+                Kết quả học tập
+            </span>
+        </div>
+
+
+        <div class="menu-item active">
+
+            <span class="menu-text">
+                Hỏi đáp
+            </span>
+
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Diễn đàn đang được cập nhật')"
+        >
+            <span class="menu-text">
+                Diễn đàn
+            </span>
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="showMessage('Thông tin hướng dẫn sử dụng')"
+        >
+            <span class="menu-text">
+                About us
+            </span>
+        </div>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+
+        <!-- ================= QUESTIONS ================= -->
+
+        <div class="questions-area">
+
+
+            <!-- HERO -->
+
+            <div class="qa-hero">
+
+                <div class="qa-title">
+
+                    <div class="qa-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                        >
+                            <path d="M4 4h16a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H9l-5 4v-4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm3 6h2V8H7v2zm4 0h2V8h-2v2zm4 0h2V8h-2v2z"></path>
+                        </svg>
+
+                    </div>
+
+                    <h1>
+                        Hỏi đáp
+                    </h1>
+
+                </div>
+
+
+                <p class="qa-description">
+                    Bạn có thắc mắc trong quá trình học?
+                    Đặt câu hỏi tại đây, giảng viên sẽ hỗ trợ bạn sớm nhất.
+                </p>
+
+
+                <div class="qa-search-row">
+
+                    <input
+                        class="question-search"
+                        type="text"
+                        placeholder="Tìm kiếm câu hỏi..."
+                    >
+
+                    <button
+                        class="ask-button"
+                        onclick="showMessage('Chức năng đặt câu hỏi sẽ được cập nhật sau')"
+                    >
+                        Đặt câu hỏi
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUESTION LIST -->
+
+            <div class="question-container">
+
+
+                <div class="question-filter">
+
+                    <button class="filter-button active">
+                        Tất cả
+                    </button>
+
+                    <button class="filter-button">
+                        Chưa trả lời
+                    </button>
+
+                    <button class="filter-button">
+                        Đã trả lời
+                    </button>
+
+                    <button class="filter-button">
+                        Câu hỏi của tôi
+                    </button>
+
+
+                    <select class="lesson-filter">
+
+                        <option>
+                            Tất cả buổi học
+                        </option>
+
+                        <option>
+                            Buổi 1
+                        </option>
+
+                        <option>
+                            Buổi 2
+                        </option>
+
+                        <option>
+                            Buổi 3
+                        </option>
+
+                        <option>
+                            Buổi 4
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- QUESTION 1 -->
+
+                <div class="question-card">
+
+                    <div class="question-top">
+
+                        <div class="question-avatar">
+                            LT
+                        </div>
+
+                        <div class="question-content">
+
+                            <div class="question-name">
+
+                                <strong>
+                                    Lê Ngọc Tân
+                                </strong>
+
+                                <span class="lesson-tag">
+                                    Buổi 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="question-text">
+                                Thầy ơi, bữa trước tôi có lên Google coi được một cái thông tin,
+                                thấy hay nên tính để đó khi nào cần coi lại.
+                                Giờ tôi kiếm lại hoài không thấy nữa.
+                                Có cách nào tìm lại được cái bài lúc trước không thầy?
+                            </div>
+
+
+                            <div class="question-meta">
+                                3 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;1 phản hồi
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="question-status">
+                        Chưa trả lời
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 2 -->
+
+                <div class="question-card">
+
+                    <div class="question-top">
+
+                        <div class="question-avatar">
+                            HTQ
+                        </div>
+
+                        <div class="question-content">
+
+                            <div class="question-name">
+
+                                <strong>
+                                    Huỳnh Trần Quốc Chi
+                                </strong>
+
+                                <span class="lesson-tag">
+                                    Buổi 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="question-text">
+                                Thầy cho tôi hỏi, tôi lên Google thấy người ta chỉ cách làm
+                                cũng giống như bên công ty hướng dẫn.
+                                Mà cái trang đó tôi không biết của ai, không phải trang công ty.
+                                Vậy có cách nào coi trước coi người ta chỉ vậy có đúng không,
+                                chứ làm sai rồi cũng khó sửa.
+                            </div>
+
+
+                            <div class="question-meta">
+                                4 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;2 phản hồi
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="question-status">
+                        Chưa trả lời
+                    </div>
+
+                </div>
+
+
+                <!-- QUESTION 3 -->
+
+                <div class="question-card">
+
+                    <div class="question-top">
+
+                        <div class="question-avatar">
+                            NB
+                        </div>
+
+                        <div class="question-content">
+
+                            <div class="question-name">
+
+                                <strong>
+                                    Nguyễn Phạm Bảo Ngân
+                                </strong>
+
+                                <span class="lesson-tag">
+                                    Buổi 2
+                                </span>
+
+                            </div>
+
+
+                            <div class="question-text">
+                                Cô cho tôi hỏi, vợ chồng tôi ở nhà dùng chung một cái điện thoại.
+                                Tôi có lưu mấy giấy tờ cá nhân trong đó, mà chồng tôi cũng hay lấy máy dùng.
+                                Vậy tôi để mấy giấy tờ đó ở đâu thì tiện, mà lỡ chồng bấm vô cũng không mở nhầm được?
+                            </div>
+
+
+                            <div class="question-meta">
+                                5 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;3 phản hồi
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="question-status">
+                        Chưa trả lời
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= RIGHT COLUMN ================= -->
+
+        <div class="right-column">
+
+
+            <!-- TEACHER -->
+
+            <div class="side-card">
+
+                <h2>
+                    Giảng viên
+                </h2>
+
+
+                <div class="teacher">
+
+                    <div class="teacher-avatar">
+                        GV
+                    </div>
+
+
+                    <div class="teacher-info">
+
+                        <strong>
+                            ThS. Trần Minh Đức
+                        </strong>
+
+                        <span>
+                            Giảng viên
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="message-button"
+                    onclick="showMessage('Chức năng nhắn tin sẽ được cập nhật sau')"
+                >
+                    Nhắn tin
+                </button>
+
+            </div>
+
+
+            <!-- POPULAR -->
+
+            <div class="side-card">
+
+                <h2>
+                    Câu hỏi phổ biến
+                </h2>
+
+
+                <div class="popular-item">
+                    Làm sao để tìm thông tin về tiền tăng ca?
+                </div>
+
+                <div class="popular-item">
+                    Có nên tin các bài đăng trên Facebook không?
+                </div>
+
+                <div class="popular-item">
+                    Làm thế nào để tìm lại thông tin đã xem trên Google?
+                </div>
+
+                <div class="popular-item">
+                    Nên lưu giấy tờ cá nhân ở đâu để an toàn?
+                </div>
+
+                <div class="popular-item">
+                    Làm sao để biết một trang web có phải của cơ quan nhà nước không?
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<!-- ================= MESSAGE ================= -->
+
+<div id="message"></div>
+
+
+<script>
+
+    function showMessage(text) {
+
+        const message =
+            document.getElementById("message");
+
+        message.innerText = text;
+
+        message.style.display = "block";
+
+        setTimeout(function() {
+
+            message.style.display = "none";
+
+        }, 2500);
+
+    }
+
+
+    const filterButtons =
+        document.querySelectorAll(".filter-button");
+
+
+    filterButtons.forEach(function(button) {
+
+        button.addEventListener("click", function() {
+
+            filterButtons.forEach(function(item) {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+        });
+
+    });
+
+</script>
+
+
+</body>
+
+</html>
