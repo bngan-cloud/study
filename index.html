@@ -390,36 +390,26 @@
             font-size: 12px;
         }
 
-        .lesson-tools {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            flex: 1;
-        }
-
-        .tool-button {
-            border: none;
-            background: #f4f7fb;
-            color: #435875;
-            padding: 8px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-        }
-
-        .tool-button:hover {
-            background: #e7f1ff;
-            color: #1464d2;
-        }
-
         .lesson-status {
-            width: 80px;
+            width: 120px;
             margin-left: auto;
             text-align: right;
-            color: #16a56a;
             font-size: 13px;
             font-weight: 600;
             flex-shrink: 0;
         }
+
+        .lesson-date {
+            color: #8793a5;
+            font-size: 12px;
+            font-weight: 400;
+            margin-bottom: 6px;
+        }
+
+        .lesson-status-text {
+            color: #16a56a;
+        }
+        
 
         /* ================= RIGHT COLUMN ================= */
 
@@ -566,20 +556,21 @@
 
         @media (max-width: 800px) {
             .sidebar {
-                width: 75px;
+                width: 180px;
             }
 
             .sidebar-title {
-                display: none;
+                display: block;
+                padding: 0 12px 15px;
             }
 
             .menu-item {
-                justify-content: center;
-                padding: 0;
+                justify-content: flex-start;
+                padding: 0 12px;
             }
 
             .menu-text {
-                display: none;
+                display: block;
             }
 
             .logo {
@@ -602,14 +593,6 @@
                 width: calc(100% - 130px);
             }
 
-            .lesson-tools {
-                width: 100%;
-                margin-top: 15px;
-            }
-
-            .lesson-status {
-                display: none;
-            }
         }
 
         @media (max-width: 600px) {
@@ -626,9 +609,25 @@
             }
 
             .sidebar {
-                display: none;
+                display: block;
+                width: 180px;
+                padding: 25px 10px;
             }
 
+            .sidebar-title {
+                display: block;
+                padding: 0 12px 15px;
+            }
+
+            .menu-item {
+                justify-content: flex-start;
+                padding: 0 12px;
+            }
+            
+            .menu-text {
+                display: block;
+            }
+            
             .right-column {
                 grid-template-columns: 1fr;
             }
@@ -677,8 +676,8 @@
             <div class="avatar">HV</div>
 
             <div class="user-info">
-                <strong>Học viên</strong>
-                <span>Người học</span>
+                <strong>Lê Vũ Quỳnh Giao</strong>
+                <span>Học viên</span>
             </div>
         </div>
 
@@ -842,11 +841,17 @@
                         <div class="lesson-duration">
                             90 phút
                         </div>
-
+                        
                     </div>
 
                     <div class="lesson-status">
-                        Hoàn thành
+                        <div class="lesson-date">
+                            02/05/2027
+                        </div>
+
+                        <div class="lesson-status-text">
+                            Hoàn thành
+                        </div>
                     </div>
 
                 </div>
@@ -872,16 +877,21 @@
 
                         <div class="lesson-duration">
                             90 phút
-                        </div>
+                        </div>    
 
                     </div>
 
                     <div class="lesson-status">
-                        Đang học
+                        <div class="lesson-date">
+                            09/05/2027
+                        </div>
+
+                        <div class="lesson-status-text">
+                            Đang học
+                        </div>
                     </div>
-
+                    
                 </div>
-
 
                 <!-- LESSON 3 -->
 
@@ -908,7 +918,13 @@
                     </div>
 
                     <div class="lesson-status">
-                        Chưa học
+                        <div class="lesson-date">
+                            16/05/2027
+                        </div>
+
+                        <div class="lesson-status-text">
+                            Chưa học
+                        </div>
                     </div>
 
                 </div>
@@ -935,11 +951,17 @@
                         <div class="lesson-duration">
                             90 phút
                         </div>
-
+                        
                     </div>
 
                     <div class="lesson-status">
-                        Chưa học
+                        <div class="lesson-date">
+                            23/05/2027
+                        </div>
+
+                        <div class="lesson-status-text">
+                            Chưa học
+                        </div>
                     </div>
 
                 </div>
@@ -977,31 +999,6 @@
                         onclick="showMessage('Chức năng nhắn tin sẽ được phát triển ở bước sau')">
                         Nhắn tin
                     </button>
-
-                </div>
-
-
-                <!-- UPLOAD -->
-
-                <div class="side-card">
-
-                    <div class="side-title">
-                        Upload nội dung
-                    </div>
-
-                    <button class="upload-button"
-                        onclick="showMessage('Chức năng upload video sẽ được kết nối sau')">
-                        Upload video bài giảng
-                    </button>
-
-                    <button class="upload-button green"
-                        onclick="showMessage('Chức năng upload tài liệu sẽ được kết nối sau')">
-                        Upload tài liệu
-                    </button>
-
-                    <div class="support-text">
-                        Hỗ trợ: MP4, PPTX, PDF, DOCX
-                    </div>
 
                 </div>
 
