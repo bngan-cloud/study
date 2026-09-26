@@ -390,6 +390,27 @@
             font-size: 12px;
         }
 
+        .lesson-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .tool-button {
+            border: none;
+            background: #f4f7fb;
+            color: #435875;
+            padding: 8px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+        }
+
+        .tool-button:hover {
+            background: #e7f1ff;
+            color: #1464d2;
+        }
+
         .lesson-status {
             width: 120px;
             margin-left: auto;
@@ -409,7 +430,6 @@
         .lesson-status-text {
             color: #16a56a;
         }
-        
 
         /* ================= RIGHT COLUMN ================= */
 
@@ -537,6 +557,29 @@
             font-size: 13px;
         }
 
+        /* ================= MOBILE MENU ================= */
+
+        .mobile-menu-button {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #dce2eb;
+            border-radius: 8px;
+            background: white;
+            color: #1464d2;
+            font-size: 22px;
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-overlay {
+            display: none;
+        }
+
         /* ================= RESPONSIVE ================= */
 
         @media (max-width: 1100px) {
@@ -593,11 +636,20 @@
                 width: calc(100% - 130px);
             }
 
+            .lesson-tools {
+                width: 100%;
+                margin-top: 15px;
+            }
         }
 
         @media (max-width: 600px) {
+
+            .mobile-menu-button {
+                display: flex;
+            }
+
             .header {
-                padding: 0 15px;
+                padding: 0 15px 0 70px;
             }
 
             .search {
@@ -608,10 +660,22 @@
                 padding: 15px;
             }
 
+            /* SIDEBAR MOBILE */
+
             .sidebar {
-                display: block;
+                position: fixed;
+                top: 0;
+                left: -200px;
                 width: 180px;
-                padding: 25px 10px;
+                height: 100vh;
+                padding: 90px 10px 25px;
+                z-index: 250;
+                transition: left 0.25s ease;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+            }
+
+            .sidebar.open {
+                left: 0;
             }
 
             .sidebar-title {
@@ -623,11 +687,24 @@
                 justify-content: flex-start;
                 padding: 0 12px;
             }
-            
+
             .menu-text {
                 display: block;
             }
-            
+
+            /* OVERLAY */
+
+            .sidebar-overlay {
+                position: fixed;
+                inset: 0;
+                background: rgba(0, 0, 0, 0.25);
+                z-index: 200;
+            }
+
+            .sidebar-overlay.open {
+                display: block;
+            }
+
             .right-column {
                 grid-template-columns: 1fr;
             }
@@ -649,6 +726,15 @@
 </head>
 
 <body>
+
+<!-- ================= MOBILE MENU BUTTON ================= -->
+
+<button class="mobile-menu-button" onclick="toggleSidebar()">
+    ☰
+</button>
+
+<div class="sidebar-overlay" onclick="toggleSidebar()"></div>
+
 
 <!-- ================= HEADER ================= -->
 
@@ -825,7 +911,7 @@
                 <div class="lesson" onclick="window.location.href='lesson01.html'">
 
                     <div class="lesson-image">
-                        Bài giảng
+                        BUỔI 1
                     </div>
 
                     <div class="lesson-info">
@@ -862,7 +948,7 @@
                 <div class="lesson" onclick="window.location.href='lesson02.html'">
 
                     <div class="lesson-image">
-                        Bài giảng
+                        BUỔI 2
                     </div>
 
                     <div class="lesson-info">
@@ -893,12 +979,13 @@
                     
                 </div>
 
+
                 <!-- LESSON 3 -->
 
                 <div class="lesson" onclick="window.location.href='lesson03.html'">
 
                     <div class="lesson-image">
-                        Bài giảng
+                        BUỔI 3
                     </div>
 
                     <div class="lesson-info">
@@ -935,7 +1022,7 @@
                 <div class="lesson" onclick="window.location.href='lesson04.html'">
 
                     <div class="lesson-image">
-                        Bài giảng
+                        BUỔI 4
                     </div>
 
                     <div class="lesson-info">
@@ -1080,6 +1167,16 @@
             element.querySelector(".menu-text").innerText;
 
         showMessage("Bạn đang mở: " + text);
+    }
+
+
+    function toggleSidebar() {
+
+        const sidebar = document.querySelector(".sidebar");
+        const overlay = document.querySelector(".sidebar-overlay");
+
+        sidebar.classList.toggle("open");
+        overlay.classList.toggle("open");
     }
 
 </script>
