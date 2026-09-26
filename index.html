@@ -101,6 +101,11 @@
             border: 1px solid #e1e6ed;
         }
 
+        .notification svg {
+            width: 18px;
+            height: 18px;
+        }
+
         .user {
             display: flex;
             align-items: center;
@@ -754,8 +759,21 @@
 
     <div class="header-right">
 
-        <div class="notification" onclick="showMessage('Bạn không có thông báo mới')">
-            0
+        <div
+            class="notification"
+            onclick="showMessage('Bạn không có thông báo mới')"
+        >
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
+                <path d="M10 21h4"></path>
+            </svg>
         </div>
 
         <div class="user">
@@ -801,8 +819,8 @@
             <span class="menu-text">Kết quả học tập</span>
         </div>
 
-        <div class="menu-item" onclick="selectMenu(this)">
-            <span class="menu-text">Diễn đàn</span>
+        <div class="menu-item" onclick="window.location.href='hoidap.html'">
+            <span class="menu-text">Hỏi đáp</span>
         </div>
 
         <div class="menu-item" onclick="selectMenu(this)">
@@ -880,10 +898,6 @@
 
                     <button class="tab active">
                         Nội dung khóa học
-                    </button>
-
-                    <button class="tab">
-                        Hỏi đáp
                     </button>
 
                 </div>
