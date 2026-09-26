@@ -99,17 +99,24 @@
         .notification {
             width: 36px;
             height: 36px;
+            border: 1px solid #e1e6ed;
             border-radius: 50%;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             color: #52627a;
-            border: 1px solid #e1e6ed;
+            flex-shrink: 0;
+            position: relative;
         }
 
         .notification svg {
+            position: absolute;
             width: 18px;
             height: 18px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: block;
         }
 
 
