@@ -563,14 +563,6 @@
                 display: block;
             }
 
-            .logo {
-                width: 70px;
-            }
-
-            .logo-text {
-                display: none;
-            }
-
             .search {
                 width: 250px;
             }
@@ -591,13 +583,36 @@
 
         @media (max-width: 600px) {
 
-            .mobile-menu-button {
-                display: flex;
-            }
+    .mobile-menu-button {
+        display: flex;
+    }
 
-            .header {
-                padding: 0 15px 0 70px;
-            }
+    .header {
+        height: 64px;
+        padding: 0 15px 0 70px;
+    }
+
+            .logo {
+    width: auto;
+    min-width: 0;
+    gap: 8px;
+    font-size: 20px;
+    white-space: nowrap;
+}
+
+.logo-mark {
+    width: 32px;
+    height: 32px;
+    border-width: 2px;
+    border-radius: 7px;
+    font-size: 16px;
+}
+
+.logo-text {
+    display: block;
+    font-size: 20px;
+    line-height: 1;
+}
 
             .search {
                 display: none;
