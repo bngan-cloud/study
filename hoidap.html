@@ -2084,31 +2084,72 @@ async function deleteAnswer(id) {
 
 async function submitAnswer() {
 
-    const input =
+    const nameInput =
+        document.querySelector("#answer-name");
+
+    const contentInput =
         document.querySelector("#answer-content");
 
-    if (!input) return;
+    if (!nameInput || !contentInput) return;
+
+
+    const name =
+        nameInput.value.trim();
 
     const content =
-        input.value.trim();
+        contentInput.value.trim();
 
-    if (!content) {
-        showMessage("Vui lòng nhập nội dung phản hồi");
+
+    if (!name) {
+
+        showMessage(
+            "Vui lòng nhập tên của bạn"
+        );
+
+        nameInput.focus();
+
         return;
     }
+
+
+    if (!content) {
+
+        showMessage(
+            "Vui lòng nhập nội dung phản hồi"
+        );
+
+        contentInput.focus();
+
+        return;
+    }
+
 
     const questionId =
         document
             .getElementById("question-detail")
             .dataset.questionId;
 
+
     if (!questionId) {
-        showMessage("Không xác định được câu hỏi");
+
+        showMessage(
+            "Không xác định được câu hỏi"
+        );
+
         return;
     }
 
-    const name = "Lê Vũ Quỳnh Giao";
-    const avatar = "HV";
+
+    const avatar =
+        name
+            .split(" ")
+            .map(function(word) {
+                return word.charAt(0);
+            })
+            .slice(-2)
+            .join("")
+            .toUpperCase();
+
 
     const { data, error } =
         await supabaseClient
@@ -2123,6 +2164,7 @@ async function submitAnswer() {
             ])
             .select()
             .single();
+
 
     if (error) {
 
@@ -2139,24 +2181,34 @@ async function submitAnswer() {
         return;
     }
 
+
     const myAnswers =
         JSON.parse(
             localStorage.getItem("myAnswers") || "[]"
         );
 
+
     myAnswers.push(String(data.id));
+
 
     localStorage.setItem(
         "myAnswers",
         JSON.stringify(myAnswers)
     );
 
-    input.value = "";
+
+    nameInput.value = "";
+    contentInput.value = "";
+
 
     await loadAnswers(questionId);
     await loadQuestions();
 
-    showMessage("Đã gửi phản hồi");
+
+    showMessage(
+        "Đã gửi phản hồi"
+    );
+
 }
     /* ================= FORMAT TIME ================= */
 
