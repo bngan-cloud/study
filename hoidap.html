@@ -743,7 +743,7 @@
         }
 
     </style>
-
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 
@@ -923,7 +923,7 @@
 
                     <button
                         class="ask-button"
-                        onclick="showMessage('Chức năng đặt câu hỏi sẽ được cập nhật sau')"
+                        onclick="openAskForm()"
                     >
                         Đặt câu hỏi
                     </button>
@@ -1190,6 +1190,23 @@
 
 <script>
 
+    /* ================= SUPABASE ================= */
+
+    const SUPABASE_URL =
+        "https://gsdjtsllxbadbfsfaqfx.supabase.co";
+
+    const SUPABASE_KEY =
+        "sb_publishable_9WZSyLqYWTF7yPRGQXGWsA_wQGETJ1D";
+
+    const supabaseClient =
+        supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
+
+
+    /* ================= MESSAGE ================= */
+
     function showMessage(text) {
 
         const message =
@@ -1208,24 +1225,331 @@
     }
 
 
+    /* ================= ASK FORM ================= */
+
+    function openAskForm() {
+
+        const name = prompt(
+            "Nhập tên của bạn:"
+        );
+
+        if (!name || name.trim() === "") {
+            return;
+        }
+
+        const content = prompt(
+            "Nhập câu hỏi của bạn:"
+        );
+
+        if (!content || content.trim() === "") {
+            return;
+        }
+
+        createQuestion(
+            name.trim(),
+            content.trim()
+        );
+
+    }
+
+
+    /* ================= CREATE QUESTION ================= */
+
+    async function createQuestion(name, content) {
+
+        try {
+
+            const avatar =
+                name
+                    .split(" ")
+                    .map(function(word) {
+                        return word.charAt(0);
+                    })
+                    .slice(-2)
+                    .join("")
+                    .toUpperCase();
+
+
+            const { data, error } =
+                await supabaseClient
+                    .from("questions")
+                    .insert([
+                        {
+                            name: name,
+                            avatar: avatar,
+                            content: content
+                        }
+                    ])
+                    .select();
+
+
+            if (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Không thể gửi câu hỏi. Vui lòng thử lại."
+                );
+
+                return;
+            }
+
+
+            showMessage(
+                "Đã đăng câu hỏi thành công."
+            );
+
+
+            loadQuestions();
+
+        } catch (error) {
+
+            console.error(error);
+
+            showMessage(
+                "Có lỗi xảy ra khi gửi câu hỏi."
+            );
+
+        }
+
+    }
+
+
+    /* ================= LOAD QUESTIONS ================= */
+
+    async function loadQuestions() {
+
+        try {
+
+            const { data, error } =
+                await supabaseClient
+                    .from("questions")
+                    .select("*")
+                    .order("created_at", {
+                        ascending: false
+                    });
+
+
+            if (error) {
+
+                console.error(error);
+
+                showMessage(
+                    "Không thể tải câu hỏi."
+                );
+
+                return;
+            }
+
+
+            displayOnlineQuestions(data);
+
+        } catch (error) {
+
+            console.error(error);
+
+        }
+
+    }
+
+
+    /* ================= DISPLAY ONLINE QUESTIONS ================= */
+
+    function displayOnlineQuestions(questions) {
+
+        const container =
+            document.querySelector(".question-container");
+
+
+        if (!container) {
+            return;
+        }
+
+
+        /*
+         * Xóa các câu hỏi online cũ.
+         * Những câu hỏi mẫu hiện tại của bà
+         * vẫn được giữ nguyên.
+         */
+
+        document
+            .querySelectorAll(".online-question")
+            .forEach(function(card) {
+                card.remove();
+            });
+
+
+        const filter =
+            document.querySelector(".question-filter");
+
+
+        questions.forEach(function(question) {
+
+            const card =
+                document.createElement("div");
+
+            card.className =
+                "question-card online-question";
+
+
+            const time =
+                formatTime(question.created_at);
+
+
+            card.innerHTML = `
+
+                <div class="question-top">
+
+                    <div class="question-avatar">
+                        ${escapeHTML(question.avatar || "HV")}
+                    </div>
+
+                    <div class="question-content">
+
+                        <div class="question-name">
+
+                            <strong>
+                                ${escapeHTML(question.name)}
+                            </strong>
+
+                        </div>
+
+                        <div class="question-text">
+                            ${escapeHTML(question.content)}
+                        </div>
+
+                        <div class="question-meta">
+                            ${time}&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="question-status">
+                    Chưa trả lời
+                </div>
+
+            `;
+
+
+            /*
+             * Câu hỏi mới được thêm ngay
+             * phía dưới bộ lọc.
+             */
+
+            filter.insertAdjacentElement(
+                "afterend",
+                card
+            );
+
+        });
+
+    }
+
+
+    /* ================= FORMAT TIME ================= */
+
+    function formatTime(dateString) {
+
+        const date =
+            new Date(dateString);
+
+        const now =
+            new Date();
+
+        const difference =
+            Math.floor(
+                (now - date) / 1000
+            );
+
+
+        if (difference < 60) {
+            return "Vừa đăng";
+        }
+
+
+        if (difference < 3600) {
+
+            return (
+                Math.floor(
+                    difference / 60
+                )
+                + " phút trước"
+            );
+
+        }
+
+
+        if (difference < 86400) {
+
+            return (
+                Math.floor(
+                    difference / 3600
+                )
+                + " giờ trước"
+            );
+
+        }
+
+
+        return (
+            Math.floor(
+                difference / 86400
+            )
+            + " ngày trước"
+        );
+
+    }
+
+
+    /* ================= SECURITY ================= */
+
+    function escapeHTML(text) {
+
+        return text
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* ================= FILTER ================= */
+
     const filterButtons =
         document.querySelectorAll(".filter-button");
 
 
     filterButtons.forEach(function(button) {
 
-        button.addEventListener("click", function() {
+        button.addEventListener(
+            "click",
+            function() {
 
-            filterButtons.forEach(function(item) {
-                item.classList.remove("active");
-            });
+                filterButtons.forEach(
+                    function(item) {
 
-            button.classList.add("active");
+                        item.classList.remove(
+                            "active"
+                        );
 
-        });
+                    }
+                );
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+        );
 
     });
 
+
+    /* ================= MOBILE SIDEBAR ================= */
 
     function toggleSidebar() {
 
@@ -1236,12 +1560,17 @@
             document.querySelector(".sidebar-overlay");
 
         sidebar.classList.toggle("open");
+
         overlay.classList.toggle("open");
 
     }
 
-</script>
 
+    /* ================= LOAD DATA ================= */
+
+    loadQuestions();
+
+</script>
 
 </body>
 
