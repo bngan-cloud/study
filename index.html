@@ -83,57 +83,6 @@
             font-size: 14px;
         }
 
-        .header-right {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
-
-        .notification {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #52627a;
-            border: 1px solid #e1e6ed;
-        }
-
-        .notification svg {
-            width: 18px;
-            height: 18px;
-        }
-
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #dce9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1464d2;
-            font-weight: 700;
-        }
-
-        .user-info strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .user-info span {
-            color: #8290a5;
-            font-size: 12px;
-        }
-
         /* ================= LAYOUT ================= */
 
         .layout {
@@ -487,19 +436,16 @@
         }
 
         .outline-button {
-    width: 100%;
-    height: 42px;
-    margin-top: 14px;
-
-    background: white;
-    border: 1px solid #4c9aff;
-    border-radius: 8px;
-
-    color: #1464d2;
-    font-size: 14px;
-
-    cursor: pointer;
-}
+            width: 100%;
+            height: 42px;
+            margin-top: 14px;
+            background: white;
+            border: 1px solid #4c9aff;
+            border-radius: 8px;
+            color: #1464d2;
+            font-size: 14px;
+            cursor: pointer;
+        }
 
         .upload-button {
             width: 100%;
@@ -526,16 +472,16 @@
         /* ================= NOTIFICATION ================= */
 
         .notice {
-    padding: 12px 0;
-    border-bottom: 1px solid #edf0f4;
-    font-size: 13px;
-    cursor: pointer;
-    transition: 0.2s;
-}
+            padding: 12px 0;
+            border-bottom: 1px solid #edf0f4;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
 
-.notice:hover {
-    color: #1464d2;
-}
+        .notice:hover {
+            color: #1464d2;
+        }
 
         .notice:last-child {
             border-bottom: none;
@@ -556,21 +502,6 @@
             font-size: 11px;
             margin-top: 5px;
             margin-left: 15px;
-        }
-
-        /* ================= OVERLAY MESSAGE ================= */
-
-        .message {
-            position: fixed;
-            right: 25px;
-            bottom: 25px;
-            background: #172b4d;
-            color: white;
-            padding: 13px 18px;
-            border-radius: 8px;
-            display: none;
-            z-index: 200;
-            font-size: 13px;
         }
 
         /* ================= MOBILE MENU ================= */
@@ -768,36 +699,6 @@
         >
     </div>
 
-    <div class="header-right">
-
-        <div
-            class="notification"
-            onclick="showMessage('Bạn không có thông báo mới')"
-        >
-            <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            >
-                <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"></path>
-                <path d="M10 21h4"></path>
-            </svg>
-        </div>
-
-        <div class="user">
-            <div class="avatar">HV</div>
-
-            <div class="user-info">
-                <strong>Lê Vũ Quỳnh Giao</strong>
-                <span>Học viên</span>
-            </div>
-        </div>
-
-    </div>
-
 </header>
 
 
@@ -814,13 +715,13 @@
             Khóa học
         </div>
 
-        <div class="menu-item active" onclick="selectMenu(this)">
+        <div class="menu-item active">
             <span class="menu-text">Trang chủ</span>
         </div>
 
         <div class="menu-item" onclick="window.location.href='lichhoc.html'">
-    <span class="menu-text">Lịch học</span>
-</div>
+            <span class="menu-text">Lịch học</span>
+        </div>
 
         <div class="menu-item" onclick="window.location.href='hoidap.html'">
             <span class="menu-text">Hỏi đáp</span>
@@ -1083,8 +984,10 @@
 
                     </div>
 
-                    <button class="outline-button"
-                        onclick="window.open('https://zalo.me/0399104732', '_blank')">
+                    <button
+                        class="outline-button"
+                        onclick="window.open('https://zalo.me/0399104732', '_blank')"
+                    >
                         Liên hệ
                     </button>
 
@@ -1093,50 +996,49 @@
 
                 <!-- NOTICE -->
 
-<!-- NOTICE -->
-<div class="side-card">
+                <div class="side-card">
 
-    <div class="side-title">
-        Thông báo
-    </div>
+                    <div class="side-title">
+                        Thông báo
+                    </div>
 
-    <div
-    class="notice"
-    onclick="window.location.href='lichhoc.html'"
->
-    <span class="notice-dot"></span>
-    Lịch học buổi 2 đã được cập nhật.
+                    <div
+                        class="notice"
+                        onclick="window.location.href='lichhoc.html'"
+                    >
+                        <span class="notice-dot"></span>
+                        Lịch học buổi 2 đã được cập nhật.
 
-    <span class="notice-time">
-        2 ngày trước
-    </span>
-</div>
+                        <span class="notice-time">
+                            2 ngày trước
+                        </span>
+                    </div>
 
-    <div
-        class="notice"
-        onclick="window.location.href='lesson01.html'"
-    >
-        <span class="notice-dot"></span>
-        Đánh giá buổi 1 đã được cập nhật.
+                    <div
+                        class="notice"
+                        onclick="window.location.href='lesson01.html'"
+                    >
+                        <span class="notice-dot"></span>
+                        Đánh giá buổi 1 đã được cập nhật.
 
-        <span class="notice-time">
-            3 ngày trước
-        </span>
-    </div>
+                        <span class="notice-time">
+                            3 ngày trước
+                        </span>
+                    </div>
 
-    <div
-        class="notice"
-        onclick="window.location.href='lesson01.html'"
-    >
-        <span class="notice-dot"></span>
-        Tài liệu buổi 1 đã được cập nhật.
+                    <div
+                        class="notice"
+                        onclick="window.location.href='lesson01.html'"
+                    >
+                        <span class="notice-dot"></span>
+                        Tài liệu buổi 1 đã được cập nhật.
 
-        <span class="notice-time">
-            1 tuần trước
-        </span>
-    </div>
+                        <span class="notice-time">
+                            1 tuần trước
+                        </span>
+                    </div>
 
-</div>
+                </div>
 
             </aside>
 
@@ -1147,42 +1049,7 @@
 </div>
 
 
-<!-- MESSAGE -->
-
-<div class="message" id="message"></div>
-
-
 <script>
-
-    function showMessage(text) {
-
-        const message = document.getElementById("message");
-
-        message.innerText = text;
-        message.style.display = "block";
-
-        setTimeout(function() {
-            message.style.display = "none";
-        }, 2500);
-    }
-
-
-    function selectMenu(element) {
-
-        document
-            .querySelectorAll(".menu-item")
-            .forEach(function(item) {
-                item.classList.remove("active");
-            });
-
-        element.classList.add("active");
-
-        const text =
-            element.querySelector(".menu-text").innerText;
-
-        showMessage("Bạn đang mở: " + text);
-    }
-
 
     function toggleSidebar() {
 
