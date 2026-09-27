@@ -580,6 +580,14 @@ body {
     border-radius: 10px;
 
     padding: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+   .upcoming-class:hover {
+    background: #f8fbff;
+    border-color: #9fc3ff;
 }
 
 .upcoming-label {
@@ -1974,30 +1982,29 @@ function updateUpcomingClass() {
 
     container.innerHTML = `
 
-        <div class="upcoming-label">
-            Buổi học sắp tới
-        </div>
+    <div class="upcoming-name">
+        ${CLASS_NAME}
+    </div>
 
-        <div class="upcoming-name">
-            ${CLASS_NAME}
-        </div>
+    <div class="upcoming-info">
 
-        <div class="upcoming-info">
+        ${LESSON_START} – ${LESSON_END}
 
-            ${LESSON_START} – ${LESSON_END}
+        <br>
 
-            <br>
+        Chủ nhật, ${formatDate(lessonDate)}
 
-            Chủ nhật, ${formatDate(lessonDate)}
+    </div>
 
-        </div>
+    <div class="upcoming-session">
+        Buổi học ${nextLesson.session}
+    </div>
 
-        <div class="upcoming-session">
-            Buổi học ${nextLesson.session}
-        </div>
+`;
 
-    `;
-
+container.onclick = function() {
+    showLesson(nextLesson.session);
+};
 }
 
 
