@@ -742,6 +742,40 @@
 
         }
 
+                /* ================= QUESTION ACTIONS ================= */
+
+        .question-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .question-actions button {
+            border: none;
+            padding: 7px 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .edit-question {
+            background: #eef4ff;
+            color: #2563eb;
+        }
+
+        .delete-question {
+            background: #fff0f0;
+            color: #dc2626;
+        }
+
+        .edit-question:hover {
+            background: #dce9ff;
+        }
+
+        .delete-question:hover {
+            background: #ffe0e0;
+        }
+
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -1257,62 +1291,83 @@
 
     async function createQuestion(name, content) {
 
-        try {
+    try {
 
-            const avatar =
-                name
-                    .split(" ")
-                    .map(function(word) {
-                        return word.charAt(0);
-                    })
-                    .slice(-2)
-                    .join("")
-                    .toUpperCase();
-
-
-            const { data, error } =
-                await supabaseClient
-                    .from("questions")
-                    .insert([
-                        {
-                            name: name,
-                            avatar: avatar,
-                            content: content
-                        }
-                    ])
-                    .select();
+        const avatar =
+            name
+                .split(" ")
+                .map(function(word) {
+                    return word.charAt(0);
+                })
+                .slice(-2)
+                .join("")
+                .toUpperCase();
 
 
-            if (error) {
-
-                console.error(error);
-
-                showMessage(
-                    "Không thể gửi câu hỏi. Vui lòng thử lại."
-                );
-
-                return;
-            }
-
-
-            showMessage(
-                "Đã đăng câu hỏi thành công."
-            );
+        const { data, error } =
+            await supabaseClient
+                .from("questions")
+                .insert([
+                    {
+                        name: name,
+                        avatar: avatar,
+                        content: content
+                    }
+                ])
+                .select()
+                .single();
 
 
-            loadQuestions();
-
-        } catch (error) {
+        if (error) {
 
             console.error(error);
 
             showMessage(
-                "Có lỗi xảy ra khi gửi câu hỏi."
+                "Không thể gửi câu hỏi. Vui lòng thử lại."
             );
 
+            return;
         }
 
+
+        /*
+         * Lưu ID câu hỏi vừa tạo
+         * vào trình duyệt của người dùng.
+         */
+
+        const myQuestions =
+            JSON.parse(
+                localStorage.getItem("myQuestions") || "[]"
+            );
+
+
+        myQuestions.push(data.id);
+
+
+        localStorage.setItem(
+            "myQuestions",
+            JSON.stringify(myQuestions)
+        );
+
+
+        showMessage(
+            "Đã đăng câu hỏi thành công."
+        );
+
+
+        loadQuestions();
+
+    } catch (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Có lỗi xảy ra khi gửi câu hỏi."
+        );
+
     }
+
+}
 
 
     /* ================= LOAD QUESTIONS ================= */
@@ -1357,96 +1412,271 @@
 
     function displayOnlineQuestions(questions) {
 
-        const container =
-            document.querySelector(".question-container");
+    const container =
+        document.querySelector(".question-container");
 
 
-        if (!container) {
-            return;
-        }
+    if (!container) {
+        return;
+    }
 
 
-        /*
-         * Xóa các câu hỏi online cũ.
-         * Những câu hỏi mẫu hiện tại của bà
-         * vẫn được giữ nguyên.
-         */
+    /*
+     * Xóa các câu hỏi online cũ.
+     */
 
-        document
-            .querySelectorAll(".online-question")
-            .forEach(function(card) {
-                card.remove();
-            });
+    document
+        .querySelectorAll(".online-question")
+        .forEach(function(card) {
+            card.remove();
+        });
 
 
-        const filter =
-            document.querySelector(".question-filter");
+    const filter =
+        document.querySelector(".question-filter");
 
 
-        questions.forEach(function(question) {
+    /*
+     * Lấy danh sách câu hỏi do chính người dùng
+     * đã đăng trên trình duyệt này.
+     */
 
-            const card =
-                document.createElement("div");
-
-            card.className =
-                "question-card online-question";
-
-
-            const time =
-                formatTime(question.created_at);
+    const myQuestions =
+        JSON.parse(
+            localStorage.getItem("myQuestions") || "[]"
+        );
 
 
-            card.innerHTML = `
+    questions.forEach(function(question) {
 
-                <div class="question-top">
+        const card =
+            document.createElement("div");
 
-                    <div class="question-avatar">
-                        ${escapeHTML(question.avatar || "HV")}
-                    </div>
+        card.className =
+            "question-card online-question";
 
-                    <div class="question-content">
 
-                        <div class="question-name">
+        const time =
+            formatTime(question.created_at);
 
-                            <strong>
-                                ${escapeHTML(question.name)}
-                            </strong>
 
-                        </div>
+        const isMine =
+            myQuestions.includes(question.id);
 
-                        <div class="question-text">
-                            ${escapeHTML(question.content)}
-                        </div>
 
-                        <div class="question-meta">
-                            ${time}&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
-                        </div>
+        let actionButtons = "";
 
-                    </div>
 
-                </div>
+        if (isMine) {
 
-                <div class="question-status">
-                    Chưa trả lời
+            actionButtons = `
+
+                <div class="question-actions">
+
+                    <button
+                        class="edit-question"
+                        onclick="editQuestion(${question.id})"
+                    >
+                        Sửa
+                    </button>
+
+                    <button
+                        class="delete-question"
+                        onclick="deleteQuestion(${question.id})"
+                    >
+                        Xóa
+                    </button>
+
                 </div>
 
             `;
 
+        }
 
-            /*
-             * Câu hỏi mới được thêm ngay
-             * phía dưới bộ lọc.
-             */
 
-            filter.insertAdjacentElement(
-                "afterend",
-                card
-            );
+        card.innerHTML = `
+
+            <div class="question-top">
+
+                <div class="question-avatar">
+                    ${escapeHTML(question.avatar || "HV")}
+                </div>
+
+                <div class="question-content">
+
+                    <div class="question-name">
+
+                        <strong>
+                            ${escapeHTML(question.name)}
+                        </strong>
+
+                    </div>
+
+                    <div class="question-text">
+                        ${escapeHTML(question.content)}
+                    </div>
+
+                    <div class="question-meta">
+                        ${time}&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="question-status">
+                Chưa trả lời
+            </div>
+
+            ${actionButtons}
+
+        `;
+
+
+        filter.insertAdjacentElement(
+            "afterend",
+            card
+        );
+
+    });
+
+}
+
+    /* ================= EDIT QUESTION ================= */
+
+async function editQuestion(id) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("questions")
+            .select("*")
+            .eq("id", id)
+            .single();
+
+
+    if (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Không thể tải câu hỏi."
+        );
+
+        return;
+    }
+
+
+    const newContent =
+        prompt(
+            "Chỉnh sửa câu hỏi:",
+            data.content
+        );
+
+
+    if (
+        newContent === null ||
+        newContent.trim() === ""
+    ) {
+        return;
+    }
+
+
+    const { error: updateError } =
+        await supabaseClient
+            .from("questions")
+            .update({
+                content: newContent.trim()
+            })
+            .eq("id", id);
+
+
+    if (updateError) {
+
+        console.error(updateError);
+
+        showMessage(
+            "Không thể sửa câu hỏi."
+        );
+
+        return;
+    }
+
+
+    showMessage(
+        "Đã sửa câu hỏi."
+    );
+
+
+    loadQuestions();
+
+}
+    /* ================= DELETE QUESTION ================= */
+
+async function deleteQuestion(id) {
+
+    const confirmed =
+        confirm(
+            "Bạn có chắc muốn xóa câu hỏi này không?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const { error } =
+        await supabaseClient
+            .from("questions")
+            .delete()
+            .eq("id", id);
+
+
+    if (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Không thể xóa câu hỏi."
+        );
+
+        return;
+    }
+
+
+    /*
+     * Xóa ID khỏi danh sách câu hỏi
+     * của người dùng trên trình duyệt.
+     */
+
+    const myQuestions =
+        JSON.parse(
+            localStorage.getItem("myQuestions") || "[]"
+        );
+
+
+    const updatedQuestions =
+        myQuestions.filter(function(questionId) {
+
+            return questionId !== id;
 
         });
 
-    }
 
+    localStorage.setItem(
+        "myQuestions",
+        JSON.stringify(updatedQuestions)
+    );
+
+
+    showMessage(
+        "Đã xóa câu hỏi."
+    );
+
+
+    loadQuestions();
+
+}
 
     /* ================= FORMAT TIME ================= */
 
