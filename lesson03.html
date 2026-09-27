@@ -29,6 +29,9 @@
             cursor: pointer;
         }
 
+
+        /* ================= HEADER ================= */
+
         .header {
             height: 72px;
             background: white;
@@ -109,11 +112,18 @@
             font-size: 12px;
         }
 
+
+        /* ================= MAIN ================= */
+
         main {
+            width: calc(100% - 245px);
             max-width: 1100px;
-            margin: auto;
+            margin-left: 245px;
             padding: 30px;
         }
+
+
+        /* ================= LESSON HEADER ================= */
 
         .lesson-header {
             background: linear-gradient(100deg, #eaf4ff, #d8ebff);
@@ -129,11 +139,21 @@
             margin-bottom: 10px;
         }
 
+        .lesson-header h1 {
+            font-size: 29px;
+            line-height: 1.25;
+            margin-bottom: 10px;
+            color: #123e78;
+        }
+
         .lesson-header p {
             color: #536982;
             font-size: 14px;
             line-height: 1.6;
         }
+
+
+        /* ================= SECTION ================= */
 
         .section {
             background: white;
@@ -149,14 +169,19 @@
             color: #172b4d;
         }
 
+
+        /* ================= VIDEO ================= */
+
         .video {
             width: 100%;
             height: 450px;
             background: #172b4d;
             border-radius: 10px;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             color: white;
             font-size: 16px;
         }
@@ -171,10 +196,14 @@
             font-size: 13px;
         }
 
+
+        /* ================= DOCUMENT ================= */
+
         .document-box {
             border: 1px solid #dce2eb;
             border-radius: 12px;
             padding: 20px 24px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -192,7 +221,7 @@
             color: #9aa5b4;
             font-size: 12px;
         }
-        
+
         .document-button {
             border: none;
             background: #1464d2;
@@ -206,6 +235,9 @@
         .document-button:hover {
             background: #0f56b8;
         }
+
+
+        /* ================= QUIZ ================= */
 
         .quiz-box {
             border: 1px solid #dce2eb;
@@ -256,10 +288,154 @@
             background: #0f56b8;
         }
 
-        @media (max-width: 700px) {
+
+        /* ================= FEEDBACK ================= */
+
+        .feedback-box {
+            border: 1px solid #dce2eb;
+            border-radius: 12px;
+            padding: 20px 24px;
+        }
+
+        .feedback-info h3 {
+            margin: 0 0 8px;
+            color: #172b4d;
+            font-size: 16px;
+        }
+
+        .feedback-info p {
+            color: #8793a5;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 18px;
+        }
+
+        .feedback-button {
+            border: none;
+            background: #1464d2;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .feedback-button:hover {
+            background: #0f56b8;
+        }
+
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 245px;
+            height: calc(100vh - 72px);
+            background: white;
+            border-right: 1px solid #e6eaf0;
+            padding: 20px 15px;
+            z-index: 250;
+        }
+
+        .sidebar-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #8793a5;
+            margin: 5px 10px 15px;
+        }
+
+        .menu-item {
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            color: #536982;
+            font-size: 14px;
+        }
+
+        .menu-item:hover {
+            background: #f0f6ff;
+            color: #1464d2;
+        }
+
+        .menu-item.active {
+            background: #eaf4ff;
+            color: #1464d2;
+            font-weight: 600;
+        }
+
+
+        /* ================= MOBILE MENU ================= */
+
+        .menu-button {
+            display: none;
+            position: fixed;
+            top: 16px;
+            left: 15px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid #dce2eb;
+            border-radius: 8px;
+            background: white;
+            color: #1464d2;
+            font-size: 22px;
+            z-index: 300;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.25);
+            z-index: 200;
+            display: none;
+        }
+
+        .sidebar-overlay.open {
+            display: block;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 600px) {
 
             .header {
-                padding: 0 15px;
+                padding: 0 15px 0 70px;
+            }
+
+            .menu-button {
+                display: flex;
+            }
+
+
+            /* Sidebar trên mobile */
+
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: -200px;
+                width: 180px;
+                height: 100vh;
+                padding: 90px 10px 25px;
+                transition: left 0.25s ease;
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+                z-index: 250;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+
+            /* Nội dung mobile */
+
+            main {
+                width: 100%;
+                margin-left: 0;
+                padding: 15px;
             }
 
             .logo {
@@ -282,12 +458,12 @@
                 display: none;
             }
 
-            main {
-                padding: 15px;
-            }
-
             .lesson-header {
                 padding: 22px;
+            }
+
+            .lesson-header h1 {
+                font-size: 23px;
             }
 
             .section {
@@ -331,7 +507,16 @@
 <body>
 
 
+<!-- ================= HEADER ================= -->
+
 <header class="header">
+
+    <button
+        class="menu-button"
+        onclick="toggleSidebar()"
+    >
+        ☰
+    </button>
 
     <div class="logo">
 
@@ -378,8 +563,51 @@
 </header>
 
 
+<!-- ================= SIDEBAR ================= -->
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-title">
+        KHÓA HỌC
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="window.location.href='index.html'"
+    >
+        Trang chủ
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="showMessage('Bạn đang mở: Lịch học')"
+    >
+        Lịch học
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="window.location.href='hoidap.html'"
+    >
+        Hỏi đáp
+    </div>
+
+</aside>
+
+
+<div
+    class="sidebar-overlay"
+    id="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
+
+
+<!-- ================= MAIN ================= -->
+
 <main>
 
+
+    <!-- ================= LESSON HEADER ================= -->
 
     <div class="lesson-header">
 
@@ -395,6 +623,8 @@
 
     </div>
 
+
+    <!-- ================= VIDEO ================= -->
 
     <div class="section">
 
@@ -421,6 +651,8 @@
     </div>
 
 
+    <!-- ================= DOCUMENT ================= -->
+
     <div class="section">
 
         <h2>
@@ -434,15 +666,16 @@
                 <h3>
                     Buổi 3: Kỹ năng tìm kiếm thông tin trên Internet
                 </h3>
+
                 <div class="document-meta">
-                    Tài liệu chưa được cập nhật
+                    Tài liệu chưa được cập nhật.
                 </div>
 
             </div>
 
             <button
                 class="document-button"
-                onclick="showMessage('Tài liệu sẽ được cập nhật sau')"
+                onclick="showMessage('Tài liệu sẽ được cập nhật sau.')"
             >
                 Mở tài liệu
             </button>
@@ -451,6 +684,8 @@
 
     </div>
 
+
+    <!-- ================= QUIZ ================= -->
 
     <div class="section">
 
@@ -469,6 +704,7 @@
                 <div class="quiz-details">
 
                     <div>
+
                         <span class="quiz-label">
                             Số câu
                         </span>
@@ -476,9 +712,12 @@
                         <strong>
                             10 câu
                         </strong>
+
                     </div>
 
+
                     <div>
+
                         <span class="quiz-label">
                             Thời gian
                         </span>
@@ -486,9 +725,12 @@
                         <strong>
                             15 phút
                         </strong>
+
                     </div>
 
+
                     <div>
+
                         <span class="quiz-label">
                             Số lần làm
                         </span>
@@ -496,9 +738,12 @@
                         <strong>
                             Không giới hạn
                         </strong>
+
                     </div>
 
+
                     <div>
+
                         <span class="quiz-label">
                             Kết quả
                         </span>
@@ -506,6 +751,7 @@
                         <strong>
                             Hiển thị điểm sau khi hoàn thành
                         </strong>
+
                     </div>
 
                 </div>
@@ -525,8 +771,44 @@
     </div>
 
 
+    <!-- ================= FEEDBACK ================= -->
+
+    <div class="section">
+
+        <h2>
+            Đánh giá buổi học
+        </h2>
+
+        <div class="feedback-box">
+
+            <div class="feedback-info">
+
+                <h3>
+                    Đánh giá buổi học 3
+                </h3>
+
+                <p>
+                    Ý kiến của bạn giúp chúng tôi cải thiện chất lượng giảng dạy và nội dung khóa học.
+                </p>
+
+            </div>
+
+            <button
+                class="feedback-button"
+                onclick="showMessage('Form đánh giá sẽ được cập nhật sau khi hoàn thành buổi học.')"
+            >
+                Đánh giá buổi học
+            </button>
+
+        </div>
+
+    </div>
+
+
 </main>
 
+
+<!-- ================= MESSAGE ================= -->
 
 <div
     id="message"
@@ -539,7 +821,7 @@
         padding: 13px 18px;
         border-radius: 8px;
         display: none;
-        z-index: 200;
+        z-index: 400;
         font-size: 13px;
     "
 ></div>
@@ -561,6 +843,21 @@
             message.style.display = "none";
 
         }, 2500);
+
+    }
+
+
+    function toggleSidebar() {
+
+        const sidebar =
+            document.getElementById("sidebar");
+
+        const overlay =
+            document.getElementById("sidebar-overlay");
+
+        sidebar.classList.toggle("open");
+
+        overlay.classList.toggle("open");
 
     }
 
