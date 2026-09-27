@@ -325,7 +325,83 @@
 .feedback-button:hover {
     background: #0f56b8;
 }
+/* ================= SIDEBAR ================= */
 
+.menu-button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    margin-right: 15px;
+}
+
+.menu-button span {
+    width: 22px;
+    height: 2px;
+    background: #172b4d;
+    border-radius: 2px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 72px;
+    left: -260px;
+    width: 260px;
+    height: calc(100vh - 72px);
+    background: white;
+    border-right: 1px solid #e6eaf0;
+    padding: 20px 15px;
+    z-index: 90;
+    transition: left 0.25s ease;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.sidebar-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #8793a5;
+    margin: 5px 10px 15px;
+}
+
+.menu-item {
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    color: #536982;
+    font-size: 14px;
+}
+
+.menu-item:hover {
+    background: #f0f6ff;
+    color: #1464d2;
+}
+
+.menu-item.active {
+    background: #eaf4ff;
+    color: #1464d2;
+    font-weight: 600;
+}
+
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.15);
+    display: none;
+    z-index: 80;
+}
+
+.sidebar-overlay.show {
+    display: block;
+}
 
         /* ================= RESPONSIVE ================= */
 
@@ -412,6 +488,16 @@
 
 <header class="header">
 
+    <button
+        class="menu-button"
+        onclick="toggleSidebar()"
+        aria-label="Mở menu"
+    >
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
     <div class="logo">
 
         <div class="logo-mark">
@@ -456,7 +542,43 @@
 
 </header>
 
+<!-- ================= SIDEBAR ================= -->
 
+<aside class="sidebar" id="sidebar">
+
+    <div class="sidebar-title">
+        Khóa học
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="window.location.href='index.html'"
+    >
+        Trang chủ
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="showMessage('Bạn đang mở: Lịch học')"
+    >
+        Lịch học
+    </div>
+
+    <div
+        class="menu-item"
+        onclick="window.location.href='hoidap.html'"
+    >
+        Hỏi đáp
+    </div>
+
+</aside>
+
+
+<div
+    class="sidebar-overlay"
+    id="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
 
 <!-- ================= MAIN ================= -->
 
@@ -704,7 +826,19 @@
         }, 2500);
 
     }
+function toggleSidebar() {
 
+    const sidebar =
+        document.getElementById("sidebar");
+
+    const overlay =
+        document.getElementById("sidebar-overlay");
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("show");
+
+}
 </script>
 
 
