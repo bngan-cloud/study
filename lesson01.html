@@ -32,87 +32,62 @@
 
         /* ================= HEADER ================= */
 
-        .header {
-            height: 72px;
-            background: white;
-            border-bottom: 1px solid #e6eaf0;
-            display: flex;
-            align-items: center;
-            padding: 0 32px;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+.header {
+    height: 72px;
+    background: white;
+    border-bottom: 1px solid #e6eaf0;
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
 
-        .logo {
-            width: 245px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 22px;
-            font-weight: 700;
-            color: #1464d2;
-        }
+.logo {
+    width: 245px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1464d2;
+}
 
-        .logo-mark {
-            width: 40px;
-            height: 40px;
-            border: 3px solid #1464d2;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 19px;
-            font-weight: bold;
-        }
+.logo-mark {
+    width: 40px;
+    height: 40px;
+    border: 3px solid #1464d2;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    font-weight: bold;
+}
 
-        .header-right {
-            margin-left: auto;
-            display: flex;
-            align-items: center;
-            gap: 24px;
-        }
+.logo-text {
+    display: block;
+}
 
-        .back {
-            color: #1464d2;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 600;
-        }
+.search {
+    width: 510px;
+}
 
-        .back:hover {
-            color: #0f51aa;
-        }
+.search input {
+    width: 100%;
+    height: 42px;
+    border: 1px solid #dce7f5;
+    border-radius: 8px;
+    padding: 0 15px;
+    outline: none;
+    color: #172b4d;
+    font-size: 14px;
+}
 
-        .user {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: #dce9f9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #1464d2;
-            font-weight: 700;
-        }
-
-        .user-info strong {
-            display: block;
-            font-size: 14px;
-        }
-
-        .user-info span {
-            color: #8290a5;
-            font-size: 12px;
-        }
-
-
+.search input:focus {
+    border-color: #1464d2;
+}
         /* ================= MAIN ================= */
 
         main {
@@ -439,24 +414,16 @@
 }
 
     .logo {
-        width: auto;
-    }
+    width: auto;
+}
 
-    .logo-text {
-        display: none;
-    }
+.logo-text {
+    display: none;
+}
 
-    .header-right {
-        gap: 12px;
-    }
-
-    .back {
-        font-size: 13px;
-    }
-
-    .user-info {
-        display: none;
-    }
+.search {
+    display: none;
+}
 
     .lesson-header {
         padding: 22px;
@@ -505,14 +472,26 @@
 
 <body>
 
+<!-- ================= MOBILE MENU BUTTON ================= -->
+
+<button
+    class="menu-button"
+    onclick="toggleSidebar()"
+    aria-label="Mở menu"
+>
+    ☰
+</button>
+
+<div
+    class="sidebar-overlay"
+    id="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
+
 
 <!-- ================= HEADER ================= -->
 
 <header class="header">
-
-    <button class="menu-button" onclick="toggleSidebar()">
-    ☰
-</button>
 
     <div class="logo">
 
@@ -527,73 +506,56 @@
     </div>
 
 
-    <div class="header-right">
+    <div class="search">
 
-        <a href="index.html" class="back">
-            Quay lại khóa học
-        </a>
-
-
-        <div class="user">
-
-            <div class="avatar">
-                HV
-            </div>
-
-            <div class="user-info">
-
-                <strong>
-                    Lê Vũ Quỳnh Giao
-                </strong>
-
-                <span>
-                    Học viên
-                </span>
-
-            </div>
-
-        </div>
+        <input
+            type="text"
+            placeholder="Tìm kiếm khóa học, bài giảng, tài liệu..."
+        >
 
     </div>
 
-</header>
+</header>    
 
 <!-- ================= SIDEBAR ================= -->
 
 <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-title">
-        KHÓA HỌC
+        Khóa học
     </div>
+
 
     <div
         class="menu-item"
         onclick="window.location.href='index.html'"
     >
-        Trang chủ
+        <span class="menu-text">
+            Trang chủ
+        </span>
     </div>
+
 
     <div
         class="menu-item"
-        onclick="showMessage('Bạn đang mở: Lịch học')"
+        onclick="window.location.href='lichhoc.html'"
     >
-        Lịch học
+        <span class="menu-text">
+            Lịch học
+        </span>
     </div>
+
 
     <div
         class="menu-item"
         onclick="window.location.href='hoidap.html'"
     >
-        Hỏi đáp
+        <span class="menu-text">
+            Hỏi đáp
+        </span>
     </div>
 
 </aside>
-
-<div
-    class="sidebar-overlay"
-    id="sidebar-overlay"
-    onclick="toggleSidebar()"
-></div>
 
 <!-- ================= MAIN ================= -->
 
