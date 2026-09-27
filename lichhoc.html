@@ -465,7 +465,92 @@ body {
 .day-header.sunday .day-date {
     color: #5274a8;
 }
+/* =========================
+   LỊCH THÁNG
+========================= */
 
+.month-calendar {
+    display: none;
+}
+
+.month-day-name {
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f5f8fc;
+    border-right: 1px solid #e1e8f0;
+    border-bottom: 1px solid #e1e8f0;
+    font-size: 13px;
+    font-weight: 700;
+    color: #40516c;
+}
+
+.month-day-name.sunday {
+    color: #e14b4b;
+}
+
+.month-cell {
+    min-height: 120px;
+    padding: 8px;
+    background: white;
+    border-right: 1px solid #e1e8f0;
+    border-bottom: 1px solid #e1e8f0;
+    box-sizing: border-box;
+}
+
+.month-cell.other-month {
+    background: #f8fafc;
+}
+
+.month-date {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+    border-radius: 50%;
+    font-size: 13px;
+    font-weight: 600;
+    color: #40516c;
+}
+
+.month-cell.today .month-date {
+    background: #1464d2;
+    color: white;
+}
+
+.month-cell.sunday .month-date {
+    color: #e14b4b;
+}
+
+.month-cell.today.sunday .month-date {
+    color: white;
+}
+
+.month-class {
+    padding: 7px;
+    margin-top: 4px;
+    border-radius: 6px;
+    background: #eaf3ff;
+    border-left: 3px solid #1464d2;
+    overflow: hidden;
+}
+
+.month-class-name {
+    font-size: 11px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #1464d2;
+    overflow-wrap: anywhere;
+}
+
+.month-class-time {
+    margin-top: 3px;
+    font-size: 10px;
+    color: #53647d;
+}
 
 /* =====================================================
    TIME COLUMN
@@ -862,6 +947,24 @@ body {
         padding: 15px;
     }
 
+   .schedule-container {
+    padding: 15px 12px;
+}
+
+.calendar-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    -webkit-overflow-scrolling: touch;
+
+    scrollbar-width: thin;
+}
+
+.calendar-wrapper::-webkit-scrollbar {
+    height: 6px;
+}
+
     .right-column {
         grid-template-columns: 1fr;
     }
@@ -882,75 +985,180 @@ body {
     .view-button {
         flex: 1;
     }
-   .calendar {
-    grid-template-columns: 45px repeat(7, minmax(0, 1fr));
+   /* =====================================================
+   LỊCH TUẦN TRÊN ĐIỆN THOẠI
+   Cho phép cuộn ngang để không bị dồn chữ
+===================================================== */
+
+.calendar-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
 }
+
+
+/* Chiều rộng lịch cố định trên mobile */
+
+.calendar {
+    width: 760px;
+    min-width: 760px;
+
+    grid-template-columns:
+        55px
+        repeat(7, 1fr);
+
+    overflow: visible;
+}
+
+
+/* Ô lịch */
 
 .calendar-cell {
     min-width: 0;
 }
 
+
+/* Header ngày */
+
 .day-header {
-    min-width: 0;
     min-height: 80px;
+    padding: 8px 4px;
+
     overflow: hidden;
 }
 
 .day-name {
-    font-size: 11px;
+    font-size: 12px;
     white-space: nowrap;
 }
 
 .day-date {
     font-size: 10px;
     white-space: nowrap;
+    margin-top: 4px;
 }
+
+
+/* Cột giờ */
 
 .time-header {
     min-height: 80px;
 }
 
 .time-cell {
-    min-height: 80px;
-    font-size: 9px;
+    min-height: 90px;
+
+    font-size: 10px;
+
     padding-top: 12px;
-    overflow: hidden;
+
+    white-space: nowrap;
 }
+
+
+/* Ô trống */
 
 .empty-cell {
-    min-height: 80px;
+    min-height: 90px;
 }
+
+
+/* Ô có lớp */
 
 .class-cell {
-    min-height: 80px;
-    padding: 3px;
-    min-width: 0;
-    overflow: hidden;
+    min-height: 90px;
+
+    padding: 5px;
+
+    overflow: visible;
 }
+
+
+/* Thẻ lớp học */
 
 .class-item {
-    min-height: 74px;
-    padding: 5px;
-    border-radius: 6px;
-    min-width: 0;
+    min-height: 80px;
+
+    padding: 8px;
+
+    border-radius: 7px;
+
     overflow: hidden;
 }
 
+
+/* Tên lớp */
+
 .class-name {
-    font-size: 9px;
-    line-height: 1.25;
-    margin-bottom: 4px;
-    overflow-wrap: anywhere;
-    word-break: break-word;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 6px;
+    overflow-wrap: break-word;
+    word-break: normal;
 }
+
+
+/* Buổi học */
 
 .class-session {
-    font-size: 9px;
-    margin-bottom: 3px;
+    font-size: 10px;
+    margin-bottom: 4px;
 }
 
+
+/* Thời gian */
+
 .class-time {
-    font-size: 8px;
+    font-size: 9px;
+    white-space: nowrap;
+}
+   /* =====================================================
+   LỊCH THÁNG TRÊN ĐIỆN THOẠI
+===================================================== */
+
+.month-calendar {
+    width: 700px;
+    min-width: 700px;
+}
+
+
+.month-day-name {
+    height: 38px;
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+
+.month-cell {
+    min-height: 100px;
+    padding: 6px;
+}
+
+
+.month-date {
+    width: 24px;
+    height: 24px;
+    font-size: 11px;
+}
+
+
+.month-class {
+    padding: 6px;
+    margin-top: 4px;
+}
+
+
+.month-class-name {
+    font-size: 9px;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
+}
+
+
+.month-class-time {
+    font-size: 9px;
+    margin-top: 3px;
 }
 }
 </style>
@@ -1130,28 +1338,13 @@ body {
 
 
             <div class="view-buttons">
-
-                <button
-                    class="view-button active"
-                >
-                    Tuần
-                </button>
-
-                <button
-                    class="view-button"
-                    onclick="showMessage('Chế độ tháng đang được phát triển.')"
-                >
-                    Tháng
-                </button>
-
-                <button
-                    class="view-button"
-                    onclick="showMessage('Chế độ danh sách đang được phát triển.')"
-                >
-                    Danh sách
-                </button>
-
-            </div>
+    <button class="view-button active" onclick="setView('week')">
+        Tuần
+    </button>
+    <button class="view-button" onclick="setView('month')">
+        Tháng
+    </button>
+</div>
 
         </div>
 
@@ -1171,13 +1364,11 @@ body {
 
         <div class="calendar-wrapper">
 
-            <div
-                class="calendar"
-                id="calendar"
-            >
-            </div>
+    <div class="calendar" id="calendar"></div>
 
-        </div>
+    <div class="month-calendar" id="monthCalendar"></div>
+
+</div>
 
     </div>
 
@@ -1485,9 +1676,8 @@ function getWeekNumber(date) {
 
 }
 
-
 /* =====================================================
-   RENDER CALENDAR
+   RENDER CALENDAR TUẦN
 ===================================================== */
 
 function renderCalendar() {
@@ -1536,12 +1726,8 @@ function renderCalendar() {
             "calendar-cell day-header";
 
 
-        /* Chủ nhật */
-
         if (i === 6) {
-
             header.classList.add("sunday");
-
         }
 
 
@@ -1614,13 +1800,8 @@ function renderCalendar() {
 
 
             /*
-             * Buổi học 09:30–11:00.
-             *
-             * Nó thuộc ô khung 09:00–11:00.
-             *
-             * Vì lesson chỉ có date = Chủ nhật,
-             * nó chắc chắn chỉ xuất hiện
-             * ở cột Chủ nhật.
+             * Buổi học 09:30–11:00
+             * nằm trong khung 09:00–11:00
              */
 
             if (
@@ -1641,7 +1822,7 @@ function renderCalendar() {
                     >
 
                         <div class="class-name">
-                            ${CLASS_NAME}
+                            Đào tạo năng lực số & AI
                         </div>
 
                         <div class="class-session">
@@ -1667,6 +1848,197 @@ function renderCalendar() {
 
 
     updateWeekInformation();
+
+}
+
+
+/* =====================================================
+   RENDER LỊCH THÁNG
+===================================================== */
+
+function renderMonthCalendar() {
+
+    const monthCalendar =
+        document.getElementById("monthCalendar");
+
+    const currentDate =
+        new Date(currentWeekStart);
+
+    const year =
+        currentDate.getFullYear();
+
+    const month =
+        currentDate.getMonth();
+
+
+    /* Ngày đầu tháng */
+
+    const firstDay =
+        new Date(year, month, 1);
+
+
+    /*
+     * CSS lịch bắt đầu từ Thứ 2
+     *
+     * JS:
+     * Chủ nhật = 0
+     * Thứ 2 = 1
+     * ...
+     * Thứ 7 = 6
+     */
+
+    let startDay =
+        firstDay.getDay();
+
+    startDay =
+        startDay === 0
+            ? 6
+            : startDay - 1;
+
+
+    /* Ngày cuối tháng */
+
+    const lastDay =
+        new Date(year, month + 1, 0);
+
+    const daysInMonth =
+        lastDay.getDate();
+
+
+    /*
+     * Luôn đủ số ô để tạo các hàng hoàn chỉnh
+     */
+
+    const totalCells =
+        Math.ceil(
+            (startDay + daysInMonth) / 7
+        ) * 7;
+
+
+    let html = "";
+
+
+    /* -----------------------------------------------
+       TÊN NGÀY
+    ----------------------------------------------- */
+
+    dayNames.forEach(function(day, index) {
+
+        html += `
+
+            <div
+                class="month-day-name
+                ${index === 6 ? "sunday" : ""}"
+            >
+                ${day}
+            </div>
+
+        `;
+
+    });
+
+
+    /* -----------------------------------------------
+       NGÀY TRONG THÁNG
+    ----------------------------------------------- */
+
+    for (
+        let i = 0;
+        i < totalCells;
+        i++
+    ) {
+
+        const dayNumber =
+            i - startDay + 1;
+
+
+        /*
+         * Ô trống trước / sau tháng
+         */
+
+        if (
+            dayNumber < 1 ||
+            dayNumber > daysInMonth
+        ) {
+
+            html += `
+                <div class="month-cell other-month"></div>
+            `;
+
+            continue;
+
+        }
+
+
+        const date =
+            new Date(
+                year,
+                month,
+                dayNumber
+            );
+
+
+        const isSunday =
+            date.getDay() === 0;
+
+
+        const lesson =
+            getLesson(date);
+
+
+        html += `
+
+            <div class="
+                month-cell
+                ${isSunday ? "sunday" : ""}
+            ">
+
+                <div class="month-date">
+                    ${dayNumber}
+                </div>
+
+        `;
+
+
+        /* -------------------------------------------
+           CÓ BUỔI HỌC
+        ------------------------------------------- */
+
+        if (lesson) {
+
+            html += `
+
+                <div
+                    class="month-class"
+                    onclick="showLesson(${lesson.session})"
+                >
+
+                    <div class="month-class-name">
+                        Buổi học ${lesson.session}
+                    </div>
+
+                    <div class="month-class-time">
+                        ${LESSON_START} – ${LESSON_END}
+                    </div>
+
+                </div>
+
+            `;
+
+        }
+
+
+        html += `
+
+            </div>
+
+        `;
+
+    }
+
+
+    monthCalendar.innerHTML =
+        html;
 
 }
 
@@ -1708,17 +2080,74 @@ function updateWeekInformation() {
 
 }
 
-
 /* =====================================================
-   CHUYỂN TUẦN
+   CHUYỂN TUẦN / THÁNG BẰNG NÚT ‹ ›
 ===================================================== */
 
 function changeWeek(direction) {
+
+    const monthCalendar =
+        document.getElementById("monthCalendar");
+
+
+    /* =================================================
+       NẾU ĐANG Ở CHẾ ĐỘ THÁNG
+       
+       ‹ = tháng trước
+       › = tháng sau
+    ================================================= */
+
+    if (
+        monthCalendar.style.display === "grid"
+    ) {
+
+        currentWeekStart =
+            new Date(
+                currentWeekStart.getFullYear(),
+                currentWeekStart.getMonth() + direction,
+                1
+            );
+
+
+        renderMonthCalendar();
+
+
+        /*
+         * Đổi tiêu đề thành:
+         * Tháng 05/2027
+         */
+
+        const month =
+            currentWeekStart.getMonth() + 1;
+
+        const year =
+            currentWeekStart.getFullYear();
+
+
+        document.getElementById("week-title").textContent =
+            `Tháng ${String(month).padStart(2, "0")}/${year}`;
+
+
+        document.getElementById("week-info").textContent =
+            `Lịch học tháng ${String(month).padStart(2, "0")}/${year}`;
+
+
+        return;
+    }
+
+
+    /* =================================================
+       NẾU ĐANG Ở CHẾ ĐỘ TUẦN
+       
+       ‹ = tuần trước
+       › = tuần sau
+    ================================================= */
 
     currentWeekStart.setDate(
         currentWeekStart.getDate() +
         direction * 7
     );
+
 
     renderCalendar();
 
@@ -1891,7 +2320,110 @@ function showMessage(text) {
         }, 3500);
 
 }
+/* =====================================================
+   CHUYỂN CHẾ ĐỘ TUẦN / THÁNG
+===================================================== */
 
+function setView(view) {
+
+    const calendar =
+        document.getElementById("calendar");
+
+    const monthCalendar =
+        document.getElementById("monthCalendar");
+
+    const buttons =
+        document.querySelectorAll(".view-button");
+
+
+    /* =================================================
+       BỎ ACTIVE Ở TẤT CẢ NÚT
+    ================================================= */
+
+    buttons.forEach(function(button) {
+
+        button.classList.remove("active");
+
+    });
+
+
+    /* =================================================
+       CHẾ ĐỘ TUẦN
+    ================================================= */
+
+    if (view === "week") {
+
+    calendar.style.display =
+        "grid";
+
+    monthCalendar.style.display =
+        "none";
+
+
+    buttons[0].classList.add("active");
+
+
+    /* Đưa currentWeekStart về Thứ 2 */
+
+    const day =
+        currentWeekStart.getDay();
+
+    const diff =
+        day === 0
+            ? -6
+            : 1 - day;
+
+    currentWeekStart.setDate(
+        currentWeekStart.getDate() + diff
+    );
+
+
+    renderCalendar();
+
+    return;
+}
+
+
+    /* =================================================
+       CHẾ ĐỘ THÁNG
+    ================================================= */
+
+    if (view === "month") {
+
+        calendar.style.display =
+            "none";
+
+        monthCalendar.style.display =
+            "grid";
+
+
+        buttons[1].classList.add("active");
+
+
+        renderMonthCalendar();
+
+
+        /*
+         * Đổi tiêu đề
+         */
+
+        const month =
+            currentWeekStart.getMonth() + 1;
+
+        const year =
+            currentWeekStart.getFullYear();
+
+
+        document.getElementById("week-title").textContent =
+            `Tháng ${String(month).padStart(2, "0")}/${year}`;
+
+
+        document.getElementById("week-info").textContent =
+            `Lịch học tháng ${String(month).padStart(2, "0")}/${year}`;
+
+    }
+
+}
 
 /* =====================================================
    KHỞI TẠO
