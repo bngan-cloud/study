@@ -311,37 +311,41 @@
     height: calc(100vh - 72px);
     background: white;
     border-right: 1px solid #e6eaf0;
-    padding: 20px 15px;
+    padding: 25px 14px;
     z-index: 250;
 }
 
 .sidebar-title {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
-    color: #8793a5;
-    margin: 5px 10px 15px;
+    color: #8a96a8;
+    padding: 0 16px 15px;
+    text-transform: uppercase;
 }
 
 .menu-item {
-    padding: 12px 15px;
+    height: 48px;
     border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
     margin-bottom: 5px;
+    color: #40516c;
+    font-size: 15px;
+    transition: 0.2s;
     cursor: pointer;
-    color: #536982;
-    font-size: 14px;
 }
 
 .menu-item:hover {
-    background: #f0f6ff;
+    background: #f0f5fc;
     color: #1464d2;
 }
 
 .menu-item.active {
-    background: #eaf4ff;
-    color: #1464d2;
+    background: #1464d2;
+    color: white;
     font-weight: 600;
 }
-
 /* Nút 3 gạch - chỉ hiện trên điện thoại */
 
 .menu-button {
