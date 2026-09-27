@@ -1,0 +1,2189 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Lịch học - StudyHub</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f7fb;
+            color: #172b4d;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .header {
+            height: 72px;
+            background: white;
+            border-bottom: 1px solid #e6eaf0;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 32px;
+
+            position: sticky;
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        /* ================= LOGO ================= */
+
+        .logo {
+            width: 245px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 12px;
+
+            font-size: 22px;
+            font-weight: 700;
+
+            color: #1464d2;
+
+            flex-shrink: 0;
+        }
+
+        .logo-mark {
+            width: 40px;
+            height: 40px;
+
+            border: 3px solid #1464d2;
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 19px;
+            font-weight: bold;
+        }
+
+
+        /* ================= SEARCH ================= */
+
+        .search {
+            width: 490px;
+            height: 42px;
+
+            border: 1px solid #dce2eb;
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 15px;
+
+            color: #7b8798;
+        }
+
+        .search-icon {
+            width: 18px;
+            height: 18px;
+
+            margin-right: 10px;
+        }
+
+        .search input {
+            width: 100%;
+
+            border: none;
+            outline: none;
+
+            font-size: 14px;
+            color: #172b4d;
+        }
+
+
+        /* =====================================================
+           LAYOUT
+        ===================================================== */
+
+        .layout {
+            display: flex;
+
+            min-height: calc(100vh - 72px);
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            width: 245px;
+
+            background: white;
+
+            border-right: 1px solid #e6eaf0;
+
+            padding: 25px 14px;
+
+            flex-shrink: 0;
+        }
+
+
+        .sidebar-title {
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: #8a96a8;
+
+            padding: 0 16px 15px;
+
+            text-transform: uppercase;
+        }
+
+
+        .menu-item {
+            height: 48px;
+
+            border-radius: 8px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 16px;
+
+            margin-bottom: 5px;
+
+            color: #40516c;
+
+            font-size: 15px;
+
+            transition: 0.2s;
+
+            cursor: pointer;
+        }
+
+
+        .menu-item:hover {
+            background: #f0f5fc;
+            color: #1464d2;
+        }
+
+
+        .menu-item.active {
+            background: #1464d2;
+
+            color: white;
+
+            font-weight: 600;
+        }
+
+
+        .menu-icon {
+            width: 27px;
+
+            margin-right: 8px;
+
+            font-size: 17px;
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        .main {
+            flex: 1;
+
+            padding: 22px;
+
+            min-width: 0;
+
+            background: #f5faff;
+        }
+
+
+        /* =====================================================
+           TOP TITLE
+        ===================================================== */
+
+        .page-title {
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .page-title-icon {
+            width: 50px;
+            height: 50px;
+
+            border-radius: 10px;
+
+            background: #eaf4ff;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #1464d2;
+        }
+
+
+        .page-title-icon svg {
+            width: 29px;
+            height: 29px;
+        }
+
+
+        .page-title h1 {
+            color: #123e78;
+
+            font-size: 29px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .page-title p {
+            color: #617997;
+
+            font-size: 14px;
+        }
+
+
+        /* =====================================================
+           CONTENT GRID
+        ===================================================== */
+
+        .schedule-layout {
+            display: grid;
+
+            grid-template-columns: minmax(0, 1fr) 320px;
+
+            gap: 20px;
+        }
+
+
+        /* =====================================================
+           CALENDAR AREA
+        ===================================================== */
+
+        .calendar-card {
+            background: white;
+
+            border: 1px solid #e3e9f1;
+
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+
+        /* ================= CALENDAR TOP ================= */
+
+        .calendar-top {
+            height: 74px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 18px;
+
+            border-bottom: 1px solid #e6ebf2;
+        }
+
+
+        .week-selector {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+
+        .week-arrow {
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid #dce5f0;
+
+            background: white;
+
+            color: #31547e;
+
+            border-radius: 8px;
+
+            font-size: 24px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            transition: 0.2s;
+        }
+
+
+        .week-arrow:hover {
+            background: #eef5ff;
+
+            color: #1464d2;
+
+            border-color: #bcd6f5;
+        }
+
+
+        .week-current {
+            min-width: 270px;
+
+            height: 40px;
+
+            padding: 0 16px;
+
+            border: 1px solid #dce5f0;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #173d77;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            user-select: none;
+        }
+
+
+        /* ================= VIEW BUTTONS ================= */
+
+        .view-buttons {
+            display: flex;
+
+            gap: 5px;
+        }
+
+
+        .view-button {
+            height: 42px;
+
+            padding: 0 15px;
+
+            border: 1px solid #dce5f0;
+
+            background: white;
+
+            color: #5274a8;
+
+            border-radius: 8px;
+
+            font-size: 13px;
+
+            transition: 0.2s;
+        }
+
+
+        .view-button:hover {
+            background: #f1f6fd;
+        }
+
+
+        .view-button.active {
+            background: #1464d2;
+
+            color: white;
+
+            border-color: #1464d2;
+        }
+
+
+        /* =====================================================
+           WEEK TABLE
+        ===================================================== */
+
+        .calendar-wrapper {
+            width: 100%;
+
+            overflow-x: auto;
+        }
+
+
+        .calendar {
+            min-width: 820px;
+
+            display: grid;
+
+            grid-template-columns: 110px repeat(7, minmax(105px, 1fr));
+        }
+
+
+        /* ================= DAY HEADER ================= */
+
+        .day-header {
+            height: 76px;
+
+            border-right: 1px solid #e2e8f0;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: #fbfcfe;
+        }
+
+
+        .day-header.time-header {
+            align-items: flex-start;
+
+            padding-left: 15px;
+
+            color: #6f819a;
+        }
+
+
+        .day-name {
+            font-size: 13px;
+
+            color: #5274a8;
+
+            font-weight: 600;
+
+            margin-bottom: 5px;
+        }
+
+
+        .day-date {
+            font-size: 13px;
+
+            color: #7c8da4;
+        }
+
+
+        .day-header.today {
+            background: #eef6ff;
+        }
+
+
+        .day-header.today .day-name {
+            color: #1464d2;
+        }
+
+
+        /* ================= TIME COLUMN ================= */
+
+        .time-cell {
+            min-height: 72px;
+
+            border-right: 1px solid #e2e8f0;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            background: #fbfcfe;
+
+            display: flex;
+
+            align-items: flex-start;
+
+            padding: 15px 12px;
+
+            color: #6f819a;
+
+            font-size: 13px;
+        }
+
+
+        /* ================= EMPTY CELLS ================= */
+
+        .calendar-cell {
+            min-height: 72px;
+
+            border-right: 1px solid #e2e8f0;
+
+            border-bottom: 1px solid #e2e8f0;
+
+            position: relative;
+
+            background: white;
+        }
+
+
+        .calendar-cell:hover {
+            background: #fbfdff;
+        }
+
+
+        /* =====================================================
+           CLASS EVENT
+        ===================================================== */
+
+        .class-event {
+            position: absolute;
+
+            left: 7px;
+            right: 7px;
+
+            top: 6px;
+
+            min-height: 60px;
+
+            background: #f0e8ff;
+
+            border-left: 4px solid #8e55d9;
+
+            border-radius: 8px;
+
+            padding: 8px 9px;
+
+            color: #6436a2;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+
+            z-index: 2;
+        }
+
+
+        .class-event:hover {
+            background: #e8dcff;
+
+            transform: translateY(-1px);
+
+            box-shadow: 0 4px 12px rgba(90, 50, 140, 0.12);
+        }
+
+
+        .class-event-title {
+            font-size: 12px;
+
+            font-weight: 700;
+
+            line-height: 1.35;
+
+            margin-bottom: 7px;
+        }
+
+
+        .class-event-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            font-size: 11px;
+
+            color: #72539a;
+
+            margin-bottom: 4px;
+        }
+
+
+        .class-event-info svg {
+            width: 12px;
+            height: 12px;
+
+            flex-shrink: 0;
+        }
+
+
+        /* =====================================================
+           RIGHT COLUMN
+        ===================================================== */
+
+        .right-column {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 18px;
+        }
+
+
+        .side-card {
+            background: white;
+
+            border: 1px solid #e3e9f1;
+
+            border-radius: 12px;
+
+            padding: 20px;
+        }
+
+
+        .side-title {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            color: #123e78;
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            margin-bottom: 18px;
+        }
+
+
+        .side-title-left {
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+        }
+
+
+        .side-title-left svg {
+            width: 20px;
+            height: 20px;
+
+            color: #1464d2;
+        }
+
+
+        .see-all {
+            color: #1464d2;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+
+        /* ================= UPCOMING ================= */
+
+        .upcoming-item {
+            display: flex;
+
+            gap: 12px;
+
+            padding: 10px 0;
+        }
+
+
+        .upcoming-dot {
+            width: 12px;
+            height: 12px;
+
+            border-radius: 50%;
+
+            background: #b56de0;
+
+            margin-top: 4px;
+
+            flex-shrink: 0;
+        }
+
+
+        .upcoming-title {
+            color: #173d77;
+
+            font-size: 14px;
+
+            font-weight: 600;
+
+            line-height: 1.4;
+
+            margin-bottom: 8px;
+        }
+
+
+        .upcoming-info {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+
+            color: #7890ad;
+
+            font-size: 12px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .upcoming-info svg {
+            width: 14px;
+            height: 14px;
+        }
+
+
+        /* =====================================================
+           MOTIVATION
+        ===================================================== */
+
+        .motivation {
+            background: linear-gradient(
+                120deg,
+                #edf9ff,
+                #eef7ff
+            );
+
+            border-color: #d8ecfa;
+
+            min-height: 125px;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .motivation h3 {
+            color: #1470dc;
+
+            font-size: 16px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .motivation p {
+            color: #617997;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+
+            max-width: 210px;
+        }
+
+
+        .motivation-books {
+            position: absolute;
+
+            right: 15px;
+
+            bottom: 13px;
+
+            font-size: 42px;
+
+            opacity: 0.8;
+        }
+
+
+        /* =====================================================
+           MESSAGE
+        ===================================================== */
+
+        #message {
+            position: fixed;
+
+            right: 25px;
+
+            bottom: 25px;
+
+            background: #172b4d;
+
+            color: white;
+
+            padding: 13px 18px;
+
+            border-radius: 8px;
+
+            display: none;
+
+            z-index: 500;
+
+            font-size: 13px;
+        }
+
+
+        /* =====================================================
+           MOBILE MENU
+        ===================================================== */
+
+        .mobile-menu-button {
+            display: none;
+
+            position: fixed;
+
+            top: 16px;
+
+            left: 15px;
+
+            width: 40px;
+            height: 40px;
+
+            border: 1px solid #dce2eb;
+
+            border-radius: 8px;
+
+            background: white;
+
+            color: #1464d2;
+
+            font-size: 22px;
+
+            z-index: 300;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .sidebar-overlay {
+            display: none;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .schedule-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+
+                grid-template-columns: 1fr 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 180px;
+            }
+
+            .logo {
+                width: 70px;
+            }
+
+            .logo-text {
+                display: none;
+            }
+
+            .search {
+                width: 300px;
+            }
+
+            .calendar-top {
+                height: auto;
+
+                padding: 15px;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 12px;
+            }
+
+            .week-selector {
+                justify-content: center;
+            }
+
+            .view-buttons {
+                justify-content: center;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .mobile-menu-button {
+                display: flex;
+            }
+
+
+            .header {
+                padding: 0 15px 0 70px;
+            }
+
+
+            .search {
+                display: none;
+            }
+
+
+            .sidebar {
+                position: fixed;
+
+                top: 0;
+                left: -200px;
+
+                width: 180px;
+                height: 100vh;
+
+                padding: 90px 10px 25px;
+
+                z-index: 250;
+
+                transition: left 0.25s ease;
+
+                box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+            }
+
+
+            .sidebar.open {
+                left: 0;
+            }
+
+
+            .sidebar-overlay {
+                position: fixed;
+
+                inset: 0;
+
+                background: rgba(0, 0, 0, 0.25);
+
+                z-index: 200;
+            }
+
+
+            .sidebar-overlay.open {
+                display: block;
+            }
+
+
+            .main {
+                padding: 15px;
+            }
+
+
+            .page-title h1 {
+                font-size: 24px;
+            }
+
+
+            .page-title p {
+                font-size: 12px;
+            }
+
+
+            .right-column {
+                grid-template-columns: 1fr;
+            }
+
+
+            .week-current {
+                min-width: 210px;
+
+                font-size: 12px;
+            }
+
+
+            .week-arrow {
+                width: 36px;
+                height: 36px;
+            }
+
+
+            .view-button {
+                flex: 1;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     MOBILE BUTTON
+===================================================== -->
+
+<button
+    class="mobile-menu-button"
+    onclick="toggleSidebar()"
+>
+    ☰
+</button>
+
+
+<div
+    class="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+
+    <div class="logo">
+
+        <div class="logo-mark">
+            S
+        </div>
+
+        <span class="logo-text">
+            StudyHub
+        </span>
+
+    </div>
+
+
+    <div class="search">
+
+        <svg
+            class="search-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+        >
+            <circle
+                cx="11"
+                cy="11"
+                r="7"
+            ></circle>
+
+            <path
+                d="M20 20l-4-4"
+            ></path>
+        </svg>
+
+
+        <input
+            type="text"
+            placeholder="Tìm kiếm khóa học, bài giảng, tài liệu..."
+        >
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
+
+<div class="layout">
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================= -->
+
+    <aside class="sidebar">
+
+
+        <div class="sidebar-title">
+            KHÓA HỌC
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="window.location.href='index.html'"
+        >
+
+            <span class="menu-icon">⌂</span>
+
+            <span>
+                Trang chủ
+            </span>
+
+        </div>
+
+
+        <div class="menu-item active">
+
+            <span class="menu-icon">▣</span>
+
+            <span>
+                Lịch học
+            </span>
+
+        </div>
+
+
+        <div
+            class="menu-item"
+            onclick="window.location.href='hoidap.html'"
+        >
+
+            <span class="menu-icon">▣</span>
+
+            <span>
+                Hỏi đáp
+            </span>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- =================================================
+         MAIN
+    ================================================= -->
+
+    <main class="main">
+
+
+        <!-- =================================================
+             PAGE TITLE
+        ================================================= -->
+
+        <div class="page-title">
+
+
+            <div class="page-title-icon">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                >
+
+                    <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="17"
+                        rx="2"
+                    ></rect>
+
+                    <line
+                        x1="16"
+                        y1="2"
+                        x2="16"
+                        y2="6"
+                    ></line>
+
+                    <line
+                        x1="8"
+                        y1="2"
+                        x2="8"
+                        y2="6"
+                    ></line>
+
+                    <line
+                        x1="3"
+                        y1="10"
+                        x2="21"
+                        y2="10"
+                    ></line>
+
+                </svg>
+
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Lịch học
+                </h1>
+
+                <p>
+                    Theo dõi lịch học của bạn và không bỏ lỡ bất kỳ buổi học nào!
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             SCHEDULE LAYOUT
+        ================================================= -->
+
+        <div class="schedule-layout">
+
+
+            <!-- =================================================
+                 CALENDAR
+            ================================================= -->
+
+            <section class="calendar-card">
+
+
+                <!-- CALENDAR TOP -->
+
+                <div class="calendar-top">
+
+
+                    <div class="week-selector">
+
+
+                        <button
+                            class="week-arrow"
+                            onclick="changeWeek(-1)"
+                        >
+                            ‹
+                        </button>
+
+
+                        <div
+                            id="week-current"
+                            class="week-current"
+                        >
+                            Tuần 17 (26/04 – 02/05/2027)
+                        </div>
+
+
+                        <button
+                            class="week-arrow"
+                            onclick="changeWeek(1)"
+                        >
+                            ›
+                        </button>
+
+
+                    </div>
+
+
+                    <div class="view-buttons">
+
+
+                        <button
+                            class="view-button active"
+                        >
+                            ▣ &nbsp; Tuần
+                        </button>
+
+
+                        <button
+                            class="view-button"
+                            onclick="showMessage('Chế độ tháng hiện chưa được bật')"
+                        >
+                            □ &nbsp; Tháng
+                        </button>
+
+
+                        <button
+                            class="view-button"
+                            onclick="showMessage('Chế độ danh sách hiện chưa được bật')"
+                        >
+                            ☷ &nbsp; Danh sách
+                        </button>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- CALENDAR -->
+
+                <div class="calendar-wrapper">
+
+                    <div
+                        id="calendar"
+                        class="calendar"
+                    >
+
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- =================================================
+                 RIGHT COLUMN
+            ================================================= -->
+
+            <aside class="right-column">
+
+
+                <!-- UPCOMING CLASS -->
+
+                <div class="side-card">
+
+
+                    <div class="side-title">
+
+
+                        <div class="side-title-left">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+
+                                <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="17"
+                                    rx="2"
+                                ></rect>
+
+                                <line
+                                    x1="16"
+                                    y1="2"
+                                    x2="16"
+                                    y2="6"
+                                ></line>
+
+                                <line
+                                    x1="8"
+                                    y1="2"
+                                    x2="8"
+                                    y2="6"
+                                ></line>
+
+                            </svg>
+
+
+                            <span>
+                                Lớp học sắp tới
+                            </span>
+
+                        </div>
+
+
+                        <span
+                            class="see-all"
+                            onclick="showMessage('Đây là toàn bộ lịch học')"
+                        >
+                            Xem tất cả ›
+                        </span>
+
+
+                    </div>
+
+
+                    <div
+                        id="upcoming-class"
+                        class="upcoming-item"
+                    >
+
+                        <!-- JS sẽ tự cập nhật -->
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MOTIVATION -->
+
+                <div class="side-card motivation">
+
+
+                    <h3>
+                        🌱 Có lên nhé!
+                    </h3>
+
+
+                    <p>
+                        Mỗi buổi học là một bước tiến gần hơn tới mục tiêu của bạn!
+                    </p>
+
+
+                    <div class="motivation-books">
+                        📚
+                    </div>
+
+
+                </div>
+
+
+            </aside>
+
+
+        </div>
+
+
+    </main>
+
+
+</div>
+
+
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
+
+<div id="message"></div>
+
+
+<script>
+
+
+/* =====================================================
+   DỮ LIỆU 8 BUỔI HỌC
+===================================================== */
+
+const classes = [
+
+    {
+        date: "2027-05-02",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 1",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-05-09",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 2",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-05-16",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 3",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-05-23",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 4",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-05-30",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 5",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-06-06",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 6",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-06-13",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 7",
+        start: "09:00",
+        end: "10:30"
+    },
+
+    {
+        date: "2027-06-20",
+        title: "Trang bị kiến thức, kỹ năng số hóa cho lao động phổ thông",
+        lesson: "Buổi 8",
+        start: "09:00",
+        end: "10:30"
+    }
+
+];
+
+
+/* =====================================================
+   TUẦN HIỆN TẠI
+   26/04/2027
+===================================================== */
+
+let currentWeekStart =
+    new Date(2027, 3, 26);
+
+
+/* =====================================================
+   TÊN NGÀY
+===================================================== */
+
+const dayNames = [
+    "Thứ 2",
+    "Thứ 3",
+    "Thứ 4",
+    "Thứ 5",
+    "Thứ 6",
+    "Thứ 7",
+    "Chủ nhật"
+];
+
+
+/* =====================================================
+   CÁC KHUNG GIỜ
+===================================================== */
+
+const timeSlots = [
+    "07:00 – 09:00",
+    "09:00 – 11:00",
+    "11:00 – 13:00",
+    "13:00 – 15:00",
+    "15:00 – 17:00",
+    "17:00 – 19:00",
+    "19:00 – 21:00"
+];
+
+
+/* =====================================================
+   FORMAT DATE
+===================================================== */
+
+function formatDate(date) {
+
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const year =
+        date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+
+}
+
+
+/* =====================================================
+   FORMAT YYYY-MM-DD
+===================================================== */
+
+function formatISO(date) {
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* =====================================================
+   CLONE DATE
+===================================================== */
+
+function cloneDate(date) {
+
+    return new Date(
+        date.getFullYear(),
+        date.getMonth(),
+        date.getDate()
+    );
+
+}
+
+
+/* =====================================================
+   GET DATE + DAYS
+===================================================== */
+
+function addDays(date, days) {
+
+    const result =
+        cloneDate(date);
+
+    result.setDate(
+        result.getDate() + days
+    );
+
+    return result;
+
+}
+
+
+/* =====================================================
+   CHECK SAME DATE
+===================================================== */
+
+function isSameDate(date1, date2) {
+
+    return (
+        date1.getFullYear() === date2.getFullYear() &&
+        date1.getMonth() === date2.getMonth() &&
+        date1.getDate() === date2.getDate()
+    );
+
+}
+
+
+/* =====================================================
+   RENDER CALENDAR
+===================================================== */
+
+function renderCalendar() {
+
+    const calendar =
+        document.getElementById("calendar");
+
+    calendar.innerHTML = "";
+
+
+    /* -----------------------------------------------
+       TIME HEADER
+    ------------------------------------------------ */
+
+    const timeHeader =
+        document.createElement("div");
+
+    timeHeader.className =
+        "day-header time-header";
+
+    timeHeader.innerText =
+        "";
+
+    calendar.appendChild(timeHeader);
+
+
+    /* -----------------------------------------------
+       7 NGÀY TRONG TUẦN
+    ------------------------------------------------ */
+
+    for (
+        let i = 0;
+        i < 7;
+        i++
+    ) {
+
+        const date =
+            addDays(
+                currentWeekStart,
+                i
+            );
+
+
+        const header =
+            document.createElement("div");
+
+        header.className =
+            "day-header";
+
+
+        const today =
+            new Date();
+
+
+        if (isSameDate(date, today)) {
+
+            header.classList.add("today");
+
+        }
+
+
+        header.innerHTML = `
+
+            <div class="day-name">
+                ${dayNames[i]}
+            </div>
+
+            <div class="day-date">
+                ${formatDate(date)}
+            </div>
+
+        `;
+
+
+        calendar.appendChild(header);
+
+    }
+
+
+    /* -----------------------------------------------
+       TẠO CÁC KHUNG GIỜ
+    ------------------------------------------------ */
+
+    timeSlots.forEach(function(timeSlot, rowIndex) {
+
+
+        /* TIME */
+
+        const timeCell =
+            document.createElement("div");
+
+        timeCell.className =
+            "time-cell";
+
+        timeCell.innerText =
+            timeSlot;
+
+        calendar.appendChild(timeCell);
+
+
+        /* 7 NGÀY */
+
+        for (
+            let dayIndex = 0;
+            dayIndex < 7;
+            dayIndex++
+        ) {
+
+            const date =
+                addDays(
+                    currentWeekStart,
+                    dayIndex
+                );
+
+
+            const cell =
+                document.createElement("div");
+
+            cell.className =
+                "calendar-cell";
+
+
+            /*
+             * Nếu là khung 09:00 – 11:00
+             * và ngày có lớp học
+             */
+
+            if (
+                rowIndex === 1
+            ) {
+
+                const classData =
+                    classes.find(function(item) {
+
+                        return (
+                            item.date ===
+                            formatISO(date)
+                        );
+
+                    });
+
+
+                if (classData) {
+
+                    const event =
+                        document.createElement("div");
+
+                    event.className =
+                        "class-event";
+
+
+                    event.innerHTML = `
+
+                        <div class="class-event-title">
+                            ${classData.title}
+                        </div>
+
+                        <div class="class-event-info">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                ></circle>
+
+                                <polyline
+                                    points="12 7 12 12 15 14"
+                                ></polyline>
+                            </svg>
+
+                            ${classData.start} – ${classData.end}
+
+                        </div>
+
+
+                        <div class="class-event-info">
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                            >
+                                <rect
+                                    x="3"
+                                    y="4"
+                                    width="18"
+                                    height="17"
+                                    rx="2"
+                                ></rect>
+
+                                <line
+                                    x1="16"
+                                    y1="2"
+                                    x2="16"
+                                    y2="6"
+                                ></line>
+
+                                <line
+                                    x1="8"
+                                    y1="2"
+                                    x2="8"
+                                    y2="6"
+                                ></line>
+                            </svg>
+
+                            ${classData.lesson}
+
+                        </div>
+
+                    `;
+
+
+                    event.onclick =
+                        function() {
+
+                            showMessage(
+                                `${classData.lesson}: ${formatDate(date)} | ${classData.start} – ${classData.end}`
+                            );
+
+                        };
+
+
+                    cell.appendChild(event);
+
+                }
+
+            }
+
+
+            calendar.appendChild(cell);
+
+        }
+
+    });
+
+
+    updateWeekTitle();
+
+    updateUpcomingClass();
+
+}
+
+
+/* =====================================================
+   UPDATE TIÊU ĐỀ TUẦN
+===================================================== */
+
+function updateWeekTitle() {
+
+    const endDate =
+        addDays(
+            currentWeekStart,
+            6
+        );
+
+
+    /*
+     * Tính số tuần theo năm.
+     * Tuần 17 của giao diện bắt đầu
+     * từ 26/04/2027.
+     */
+
+    const referenceStart =
+        new Date(2027, 0, 4);
+
+
+    const difference =
+        currentWeekStart - referenceStart;
+
+
+    const weekNumber =
+        Math.floor(
+            difference /
+            (7 * 24 * 60 * 60 * 1000)
+        ) + 1;
+
+
+    const title =
+        document.getElementById(
+            "week-current"
+        );
+
+
+    title.innerText =
+        `Tuần ${weekNumber} (${formatDate(currentWeekStart)} – ${formatDate(endDate)})`;
+
+}
+
+
+/* =====================================================
+   CHUYỂN TUẦN
+===================================================== */
+
+function changeWeek(direction) {
+
+    currentWeekStart =
+        addDays(
+            currentWeekStart,
+            direction * 7
+        );
+
+
+    renderCalendar();
+
+}
+
+
+/* =====================================================
+   UPCOMING CLASS
+===================================================== */
+
+function updateUpcomingClass() {
+
+    const container =
+        document.getElementById(
+            "upcoming-class"
+        );
+
+
+    if (!container) return;
+
+
+    const upcoming =
+        classes.find(function(item) {
+
+            const classDate =
+                new Date(
+                    item.date + "T" + item.start
+                );
+
+            return (
+                classDate >=
+                new Date()
+            );
+
+        });
+
+
+    /*
+     * Vì lịch bắt đầu năm 2027,
+     * nếu ngày hiện tại đã vượt qua lịch,
+     * vẫn hiển thị buổi cuối.
+     */
+
+    const item =
+        upcoming ||
+        classes[classes.length - 1];
+
+
+    const date =
+        new Date(
+            item.date + "T00:00:00"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="upcoming-dot"></div>
+
+        <div>
+
+            <div class="upcoming-title">
+                ${item.title}
+            </div>
+
+            <div class="upcoming-info">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+
+                    <circle
+                        cx="12"
+                        cy="12"
+                        r="9"
+                    ></circle>
+
+                    <polyline
+                        points="12 7 12 12 15 14"
+                    ></polyline>
+
+                </svg>
+
+                ${item.start} – ${item.end}
+
+            </div>
+
+
+            <div class="upcoming-info">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+
+                    <rect
+                        x="3"
+                        y="4"
+                        width="18"
+                        height="17"
+                        rx="2"
+                    ></rect>
+
+                    <line
+                        x1="16"
+                        y1="2"
+                        x2="16"
+                        y2="6"
+                    ></line>
+
+                    <line
+                        x1="8"
+                        y1="2"
+                        x2="8"
+                        y2="6"
+                    ></line>
+
+                </svg>
+
+                ${formatDate(date)}
+
+            </div>
+
+
+            <div class="upcoming-info">
+
+                🔄 &nbsp; Mỗi chủ nhật
+
+            </div>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+function showMessage(text) {
+
+    const message =
+        document.getElementById(
+            "message"
+        );
+
+
+    message.innerText =
+        text;
+
+
+    message.style.display =
+        "block";
+
+
+    setTimeout(function() {
+
+        message.style.display =
+            "none";
+
+    }, 2500);
+
+}
+
+
+/* =====================================================
+   MOBILE SIDEBAR
+===================================================== */
+
+function toggleSidebar() {
+
+    const sidebar =
+        document.querySelector(
+            ".sidebar"
+        );
+
+
+    const overlay =
+        document.querySelector(
+            ".sidebar-overlay"
+        );
+
+
+    sidebar.classList.toggle(
+        "open"
+    );
+
+
+    overlay.classList.toggle(
+        "open"
+    );
+
+}
+
+
+/* =====================================================
+   KHỞI TẠO
+===================================================== */
+
+renderCalendar();
+
+</script>
+
+
+</body>
+
+</html>
