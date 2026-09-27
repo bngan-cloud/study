@@ -668,6 +668,159 @@ body {
     line-height: 1.7;
 }
 
+   /* =====================================================
+   POPUP CHI TIẾT BUỔI HỌC
+===================================================== */
+
+.lesson-modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(23, 43, 77, 0.35);
+
+    z-index: 500;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.lesson-modal.open {
+    display: flex;
+}
+
+.lesson-modal-box {
+    width: 420px;
+    max-width: 100%;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    padding: 28px;
+
+    box-shadow:
+        0 15px 40px rgba(23, 43, 77, 0.18);
+
+    position: relative;
+}
+
+.lesson-modal-close {
+    position: absolute;
+
+    top: 14px;
+    right: 16px;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: #f3f6fa;
+
+    color: #6f7785;
+
+    font-size: 22px;
+    line-height: 1;
+
+    cursor: pointer;
+}
+
+.lesson-modal-close:hover {
+    background: #e9eef5;
+    color: #172b4d;
+}
+
+.lesson-modal-label {
+    color: #1464d2;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    margin-bottom: 10px;
+}
+
+.lesson-modal-title {
+    color: #123e78;
+
+    font-size: 21px;
+    line-height: 1.45;
+
+    font-weight: 700;
+
+    padding-right: 25px;
+
+    margin-bottom: 20px;
+}
+
+.lesson-modal-info {
+    background: #f5f8fc;
+
+    border-radius: 9px;
+
+    padding: 14px 16px;
+
+    color: #536982;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 22px;
+}
+
+.lesson-modal-info strong {
+    color: #173d77;
+}
+
+.lesson-modal-button {
+    width: 100%;
+
+    height: 46px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #1464d2;
+
+    color: #ffffff;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.lesson-modal-button:hover {
+    background: #0f56b8;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .lesson-modal {
+        padding: 20px;
+    }
+
+    .lesson-modal-box {
+        width: 100%;
+        padding: 24px;
+        border-radius: 12px;
+    }
+
+    .lesson-modal-title {
+        font-size: 19px;
+    }
+
+}
 
 /* =====================================================
    MESSAGE
@@ -1217,6 +1370,63 @@ body {
 
 
 </main>
+
+</div>
+
+
+
+<!-- =====================================================
+     POPUP CHI TIẾT BUỔI HỌC
+===================================================== -->
+
+<div
+    class="lesson-modal"
+    id="lesson-modal"
+    onclick="closeLessonModal(event)"
+>
+
+    <div
+        class="lesson-modal-box"
+        onclick="event.stopPropagation()"
+    >
+
+        <button
+            class="lesson-modal-close"
+            onclick="closeLessonModal()"
+            aria-label="Đóng"
+        >
+            ×
+        </button>
+
+
+        <div class="lesson-modal-label">
+            BUỔI HỌC
+        </div>
+
+
+        <div
+            class="lesson-modal-title"
+            id="lesson-modal-title"
+        >
+        </div>
+
+
+        <div
+            class="lesson-modal-info"
+            id="lesson-modal-info"
+        >
+        </div>
+
+
+        <button
+            class="lesson-modal-button"
+            id="lesson-modal-button"
+            onclick="joinClass()"
+        >
+            Vào lớp
+        </button>
+
+    </div>
 
 </div>
 
@@ -1821,13 +2031,69 @@ function showLesson(session) {
         );
 
 
-    showMessage(
-        `${CLASS_NAME} — Buổi học ${session} — ${formatDate(date)} — ${LESSON_START}–${LESSON_END}`
-    );
+    document.getElementById("lesson-modal-title").textContent =
+        `Buổi học ${session}`;
+
+
+    document.getElementById("lesson-modal-info").innerHTML = `
+
+        <strong>Khóa học:</strong><br>
+        ${CLASS_NAME}
+
+        <br><br>
+
+        <strong>Thời gian:</strong><br>
+        ${LESSON_START} – ${LESSON_END}
+
+        <br><br>
+
+        <strong>Ngày học:</strong><br>
+        Chủ nhật, ${formatDate(date)}
+
+    `;
+
+
+    document
+        .getElementById("lesson-modal")
+        .classList.add("open");
+
+}
+
+/* =====================================================
+   ĐÓNG POPUP
+===================================================== */
+
+function closeLessonModal(event) {
+
+    if (
+        event &&
+        event.target !== event.currentTarget
+    ) {
+        return;
+    }
+
+
+    document
+        .getElementById("lesson-modal")
+        .classList.remove("open");
 
 }
 
 
+/* =====================================================
+   NÚT VÀO LỚP
+===================================================== */
+
+function joinClass() {
+
+    const meetLink = "https://meet.google.com/sue-ukxh-tnu";
+
+    window.open(
+        meetLink,
+        "_blank"
+    );
+
+}
 /* =====================================================
    MESSAGE
 ===================================================== */
