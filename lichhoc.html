@@ -56,12 +56,10 @@ body {
 /* Logo */
 
 .logo {
-    width: 295px;
-
+    width: 230px;
     display: flex;
     align-items: center;
     gap: 14px;
-
     flex-shrink: 0;
 }
 
@@ -139,67 +137,46 @@ body {
 ===================================================== */
 
 .sidebar {
-    width: 295px;
+    width: 230px;
+    min-width: 230px;
 
-    flex-shrink: 0;
-
-    background: #ffffff;
+    background: #fff;
 
     border-right: 1px solid #e6eaf0;
 
-    padding: 30px 17px;
+    padding: 30px 12px;
+
+    flex-shrink: 0;
 }
 
 .sidebar-title {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-
     color: #8290a5;
-
-    padding: 0 20px 20px;
-
+    padding: 0 16px 18px;
     text-transform: uppercase;
 }
 
-
-/* Menu */
-
 .menu-item {
-    width: 100%;
-    height: 58px;
-
+    height: 54px;
     border-radius: 9px;
 
     display: flex;
     align-items: center;
 
-    padding: 0 20px;
-
+    padding: 0 16px;
     margin-bottom: 6px;
 
     color: #40516c;
+    font-size: 15px;
 
-    font-size: 16px;
-
+    transition: 0.2s;
     cursor: pointer;
-
-    transition: 0.2s ease;
 }
-
-.menu-item:hover {
-    background: #f0f5fc;
-    color: #1464d2;
-}
-
 .menu-item.active {
     background: #1464d2;
-    color: #ffffff;
-
+    color: white;
     font-weight: 600;
-}
-
-.menu-text {
-    white-space: nowrap;
 }
 
 
@@ -777,7 +754,7 @@ body {
     }
 
     .logo {
-        width: 260px;
+        width: 230px;
     }
 
     .search {
@@ -800,11 +777,10 @@ body {
 
 }
 
-
 @media (max-width: 1050px) {
 
     .logo {
-        width: 240px;
+        width: 230px;
     }
 
     .search {
@@ -859,14 +835,6 @@ body {
         border-bottom: 1px solid #e6eaf0;
 
         padding: 18px 17px;
-    }
-
-    .sidebar-title {
-        padding-bottom: 12px;
-    }
-
-    .menu-item {
-        height: 52px;
     }
 
     .main {
