@@ -202,7 +202,7 @@ body {
 
     gap: 20px;
 
-    background: #f5faff;
+    background: #f5f7fb;
 }
 
 .schedule-area {
@@ -767,6 +767,7 @@ body {
     }
 
     .header {
+        height: 72px;
         padding: 0 15px 0 70px;
     }
 
@@ -774,15 +775,24 @@ body {
         display: none;
     }
 
+    /* SIDEBAR */
+
     .sidebar {
         position: fixed;
         top: 0;
         left: -200px;
+
         width: 180px;
         height: 100vh;
+
         padding: 90px 10px 25px;
+
+        background: white;
+
         z-index: 250;
+
         transition: left 0.25s ease;
+
         box-shadow: 4px 0 15px rgba(0,0,0,0.08);
     }
 
@@ -804,39 +814,46 @@ body {
         display: block;
     }
 
-    .sidebar-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.25);
-    z-index: 200;
-}
+    /* KHUNG XÁM BÊN NGOÀI */
 
-.sidebar-overlay.open {
-    display: block;
-}
+    .sidebar-overlay {
+        display: none;
+
+        position: fixed;
+        inset: 0;
+
+        background: rgba(0, 0, 0, 0.25);
+
+        z-index: 200;
+    }
+
+    .sidebar-overlay.open {
+        display: block;
+    }
+
+    /* MAIN */
 
     .main {
         padding: 15px;
     }
 
-   .schedule-container {
-    padding: 15px 12px;
-}
+    /* SCHEDULE */
 
-.calendar-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
+    .schedule-container {
+        padding: 15px 12px;
+    }
 
-    -webkit-overflow-scrolling: touch;
+    .calendar-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
 
-    scrollbar-width: thin;
-}
-
-.calendar-wrapper::-webkit-scrollbar {
-    height: 6px;
-}
+    .calendar-wrapper::-webkit-scrollbar {
+        height: 6px;
+    }
 
     .right-column {
         grid-template-columns: 1fr;
@@ -851,134 +868,85 @@ body {
         width: 100%;
     }
 
-   /* =====================================================
-   LỊCH TUẦN TRÊN ĐIỆN THOẠI
-   Cho phép cuộn ngang để không bị dồn chữ
-===================================================== */
+    /* LỊCH TUẦN TRÊN ĐIỆN THOẠI */
 
-.calendar-wrapper {
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-}
+    .calendar {
+        width: 760px;
+        min-width: 760px;
 
+        grid-template-columns:
+            55px
+            repeat(7, 1fr);
 
-/* Chiều rộng lịch cố định trên mobile */
+        overflow: visible;
+    }
 
-.calendar {
-    width: 760px;
-    min-width: 760px;
+    .calendar-cell {
+        min-width: 0;
+    }
 
-    grid-template-columns:
-        55px
-        repeat(7, 1fr);
+    .day-header {
+        min-height: 80px;
+        padding: 8px 4px;
+        overflow: hidden;
+    }
 
-    overflow: visible;
-}
+    .day-name {
+        font-size: 12px;
+        white-space: nowrap;
+    }
 
+    .day-date {
+        font-size: 10px;
+        white-space: nowrap;
+        margin-top: 4px;
+    }
 
-/* Ô lịch */
+    .time-header {
+        min-height: 80px;
+    }
 
-.calendar-cell {
-    min-width: 0;
-}
+    .time-cell {
+        min-height: 90px;
+        font-size: 10px;
+        padding-top: 12px;
+        white-space: nowrap;
+    }
 
+    .empty-cell {
+        min-height: 90px;
+    }
 
-/* Header ngày */
+    .class-cell {
+        min-height: 90px;
+        padding: 5px;
+        overflow: visible;
+    }
 
-.day-header {
-    min-height: 80px;
-    padding: 8px 4px;
+    .class-item {
+        min-height: 80px;
+        padding: 8px;
+        border-radius: 7px;
+        overflow: hidden;
+    }
 
-    overflow: hidden;
-}
+    .class-name {
+        font-size: 11px;
+        line-height: 1.4;
+        margin-bottom: 6px;
+        overflow-wrap: break-word;
+        word-break: normal;
+    }
 
-.day-name {
-    font-size: 12px;
-    white-space: nowrap;
-}
+    .class-session {
+        font-size: 10px;
+        margin-bottom: 4px;
+    }
 
-.day-date {
-    font-size: 10px;
-    white-space: nowrap;
-    margin-top: 4px;
-}
-
-
-/* Cột giờ */
-
-.time-header {
-    min-height: 80px;
-}
-
-.time-cell {
-    min-height: 90px;
-
-    font-size: 10px;
-
-    padding-top: 12px;
-
-    white-space: nowrap;
-}
-
-
-/* Ô trống */
-
-.empty-cell {
-    min-height: 90px;
-}
-
-
-/* Ô có lớp */
-
-.class-cell {
-    min-height: 90px;
-
-    padding: 5px;
-
-    overflow: visible;
-}
-
-
-/* Thẻ lớp học */
-
-.class-item {
-    min-height: 80px;
-
-    padding: 8px;
-
-    border-radius: 7px;
-
-    overflow: hidden;
-}
-
-
-/* Tên lớp */
-
-.class-name {
-    font-size: 11px;
-    line-height: 1.4;
-    margin-bottom: 6px;
-    overflow-wrap: break-word;
-    word-break: normal;
-}
-
-
-/* Buổi học */
-
-.class-session {
-    font-size: 10px;
-    margin-bottom: 4px;
-}
-
-
-/* Thời gian */
-
-.class-time {
-    font-size: 9px;
-    white-space: nowrap;
-}
+    .class-time {
+        font-size: 9px;
+        white-space: nowrap;
+    }
 }
 </style>
 </head>
