@@ -740,6 +740,16 @@
                 margin-top: 10px;
             }
 
+            .question-status.answered {
+                background: #e8f7ee;
+                color: #1f9d55;
+            }
+
+            .question-status.unanswered {
+                background: #fff4e3;
+                color: #e89b27;
+            }
+
         }
 
                 /* ================= QUESTION ACTIONS ================= */
@@ -1618,9 +1628,9 @@ async function displayOnlineQuestions(questions) {
                     </div>
                 </div>
 
-                <div class="question-status">
-                    ${answerCount > 0 ? "Đã trả lời" : "Chưa trả lời"}
-                </div>
+                <div class="question-status ${answerCount > 0 ? "answered" : "unanswered"}">
+    ${answerCount > 0 ? "Đã trả lời" : "Chưa trả lời"}
+    </div>
 
                 ${actionButtons}
             `;
