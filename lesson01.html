@@ -371,65 +371,63 @@
 
 .menu-button {
     display: none;
+    position: fixed;
+    top: 16px;
+    left: 15px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dce2eb;
+    border-radius: 8px;
+    background: white;
+    color: #1464d2;
+    font-size: 22px;
+    z-index: 300;
+    align-items: center;
+    justify-content: center;
 }
 
-.sidebar-overlay {
-    display: none;
-}
         /* ================= RESPONSIVE ================= */
 
-        @media (max-width: 700px) {
+        @media (max-width: 600px) {
 
     .header {
-        padding: 0 15px;
-    }
+    padding: 0 15px 0 70px;
+}
 
     /* Nút 3 gạch */
 
     .menu-button {
-        width: 40px;
-        height: 40px;
-        border: none;
-        background: transparent;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 5px;
-        margin-right: 10px;
-    }
-
-    .menu-button span {
-        width: 22px;
-        height: 2px;
-        background: #172b4d;
-        border-radius: 2px;
-    }
+    display: flex;
+}
 
     /* Sidebar trên mobile */
 
     .sidebar {
-        top: 72px;
-        left: -245px;
-        width: 245px;
-        transition: left 0.25s ease;
-    }
+    position: fixed;
+    top: 0;
+    left: -200px;
+    width: 180px;
+    height: 100vh;
+    padding: 90px 10px 25px;
+    transition: left 0.25s ease;
+    box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+}
 
     .sidebar.open {
         left: 0;
     }
 
     .sidebar-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.15);
-        display: none;
-        z-index: 80;
-    }
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.25);
+    z-index: 200;
+    display: none;
+}
 
-    .sidebar-overlay.show {
-        display: block;
-    }
+.sidebar-overlay.open {
+    display: block;
+}
 
     /* Nội dung mobile */
 
@@ -511,15 +509,9 @@
 
 <header class="header">
 
-    <button
-        class="menu-button"
-        onclick="toggleSidebar()"
-        aria-label="Mở menu"
-    >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    <button class="menu-button" onclick="toggleSidebar()">
+    ☰
+</button>
 
     <div class="logo">
 
@@ -859,7 +851,7 @@
 
     sidebar.classList.toggle("open");
 
-    overlay.classList.toggle("show");
+    overlay.classList.toggle("open");
 
 }
 
