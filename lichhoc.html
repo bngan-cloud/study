@@ -394,21 +394,16 @@ body {
 
 .calendar-wrapper {
     width: 100%;
-
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 
 .calendar {
-    min-width: 920px;
-
+    width: 100%;
+    max-width: 100%;
     display: grid;
-
-    grid-template-columns:
-        105px
-        repeat(7, minmax(115px, 1fr));
-
-    border-top: 1px solid #dce7f5;
-    border-left: 1px solid #dce7f5;
+    grid-template-columns: 70px repeat(7, minmax(0, 1fr));
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
 
@@ -752,28 +747,19 @@ body {
 ===================================================== */
 .mobile-menu-button {
     display: none;
-
     position: fixed;
-
     top: 15px;
     left: 15px;
-
     width: 42px;
     height: 42px;
-
     border: none;
     border-radius: 8px;
-
-    background: #1464d2;
-    color: white;
-
+    background: white;
+    color: #1464d2;
     font-size: 22px;
-
     align-items: center;
     justify-content: center;
-
     cursor: pointer;
-
     z-index: 300;
 }
 
@@ -896,6 +882,76 @@ body {
     .view-button {
         flex: 1;
     }
+   .calendar {
+    grid-template-columns: 45px repeat(7, minmax(0, 1fr));
+}
+
+.calendar-cell {
+    min-width: 0;
+}
+
+.day-header {
+    min-width: 0;
+    min-height: 80px;
+    overflow: hidden;
+}
+
+.day-name {
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+.day-date {
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+.time-header {
+    min-height: 80px;
+}
+
+.time-cell {
+    min-height: 80px;
+    font-size: 9px;
+    padding-top: 12px;
+    overflow: hidden;
+}
+
+.empty-cell {
+    min-height: 80px;
+}
+
+.class-cell {
+    min-height: 80px;
+    padding: 3px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.class-item {
+    min-height: 74px;
+    padding: 5px;
+    border-radius: 6px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.class-name {
+    font-size: 9px;
+    line-height: 1.25;
+    margin-bottom: 4px;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.class-session {
+    font-size: 9px;
+    margin-bottom: 3px;
+}
+
+.class-time {
+    font-size: 8px;
+}
 }
 </style>
 </head>
