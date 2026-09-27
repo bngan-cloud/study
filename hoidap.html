@@ -958,6 +958,35 @@
     background: #0f56b8;
 }
 
+.answer-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    margin-left: 48px;
+}
+
+.edit-answer,
+.delete-answer {
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.edit-answer {
+    color: #4a7cff;
+}
+
+.delete-answer {
+    color: #e05252;
+}
+
+.edit-answer:hover,
+.delete-answer:hover {
+    text-decoration: underline;
+}
+
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -1467,8 +1496,6 @@
 
     /* ================= LOAD QUESTIONS ================= */
 
-    /* ================= LOAD QUESTIONS ================= */
-
 async function loadQuestions() {
 
     try {
@@ -1547,7 +1574,10 @@ async function displayOnlineQuestions(questions) {
             });
 
             const time = formatTime(question.created_at);
-            const isMine = myQuestions.includes(question.id);
+            const isMine =
+                myQuestions
+                .map(String)
+                .includes(String(question.id));
 
             let actionButtons = "";
 
@@ -1721,11 +1751,11 @@ async function deleteQuestion(id) {
 
 
     const updatedQuestions =
-        myQuestions.filter(function(questionId) {
+    myQuestions.filter(function(questionId) {
 
-            return questionId !== id;
+        return String(questionId) !== String(id);
 
-        });
+    });
 
 
     localStorage.setItem(
@@ -1754,6 +1784,8 @@ function openQuestionDetail(question) {
 
     const questionDetail =
         document.getElementById("question-detail");
+    
+    questionDetail.dataset.questionId = question.id;
 
     const questionsArea =
         document.querySelector(".questions-area");
@@ -1828,219 +1860,303 @@ function closeQuestionDetail() {
 
 async function loadAnswers(questionId) {
 
-    const answersList =
-        document.getElementById(
-            "answers-list"
-        );
+    const container =
+        document.getElementById("answers-list");
 
-    const answersTitle =
-        document.getElementById(
-            "answers-title"
-        );
-
-
-    answersList.innerHTML =
-        "Đang tải câu trả lời...";
-
+    if (!container) return;
 
     const { data, error } =
         await supabaseClient
             .from("answers")
-            .select("*")
+            .select("id, question_id, name, avatar, content, created_at")
             .eq("question_id", questionId)
             .order("created_at", {
                 ascending: true
             });
 
-
     if (error) {
-
-        console.error(error);
-
-        answersList.innerHTML =
-            "Không thể tải câu trả lời.";
-
+        console.error("LOAD ANSWERS ERROR:", error);
+        showMessage(
+            "Không thể tải phản hồi: " + error.message
+        );
         return;
-
     }
 
+    container.innerHTML = "";
 
-    answersTitle.textContent =
-        "Câu trả lời (" + data.length + ")";
-
-
-    if (data.length === 0) {
-
-        answersList.innerHTML = `
-            <p style="color:#8290a5;">
-                Chưa có câu trả lời nào.
-            </p>
-        `;
-
-        return;
-
-    }
-
-
-    answersList.innerHTML = "";
-
+    const myAnswers =
+        JSON.parse(
+            localStorage.getItem("myAnswers") || "[]"
+        );
 
     data.forEach(function(answer) {
 
-        const card =
+        const isMine =
+            myAnswers
+                .map(String)
+                .includes(String(answer.id));
+
+        const answerCard =
             document.createElement("div");
 
+        answerCard.className = "answer-card";
 
-        card.className =
-            "answer-card";
+        let actionButtons = "";
 
+        if (isMine) {
 
-        card.innerHTML = `
+            actionButtons = `
+                <div class="answer-actions">
 
-            <div class="answer-header">
+                    <button
+                        class="edit-answer"
+                        onclick="editAnswer(${answer.id}); event.stopPropagation();"
+                    >
+                        Sửa
+                    </button>
 
-                <div class="answer-avatar">
-                    ${escapeHTML(answer.avatar || "HV")}
+                    <button
+                        class="delete-answer"
+                        onclick="deleteAnswer(${answer.id}); event.stopPropagation();"
+                    >
+                        Xóa
+                    </button>
+
                 </div>
+            `;
+        }
 
-                <div class="answer-user">
+        answerCard.innerHTML = `
+    <div class="answer-header">
 
-                    <strong>
-                        ${escapeHTML(answer.name)}
-                    </strong>
+        <div class="answer-avatar">
+            ${escapeHTML(answer.avatar || "HV")}
+        </div>
 
-                    <span>
-                        ${formatTime(answer.created_at)}
-                    </span>
+        <div class="answer-user">
 
-                </div>
+            <strong>
+                ${escapeHTML(answer.name)}
+            </strong>
 
-            </div>
+            <span>
+                ${formatTime(answer.created_at)}
+            </span>
 
+        </div>
 
-            <div class="answer-content">
-                ${escapeHTML(answer.content)}
-            </div>
+    </div>
 
-        `;
+    <div class="answer-content">
+        ${escapeHTML(answer.content)}
+    </div>
 
+    ${actionButtons}
+`;
 
-        answersList.appendChild(card);
-
+        container.appendChild(answerCard);
     });
-
 }
 
+async function editAnswer(id) {
+
+    const { data, error } =
+        await supabaseClient
+            .from("answers")
+            .select("content, question_id")
+            .eq("id", id)
+            .single();
+
+    if (error) {
+        console.error("GET ANSWER ERROR:", error);
+        showMessage("Không tìm thấy phản hồi");
+        return;
+    }
+
+    const newContent =
+        prompt(
+            "Chỉnh sửa phản hồi:",
+            data.content
+        );
+
+    if (newContent === null) return;
+
+    const content = newContent.trim();
+
+    if (!content) {
+        showMessage("Nội dung không được để trống");
+        return;
+    }
+
+    const { error: updateError } =
+        await supabaseClient
+            .from("answers")
+            .update({
+                content: content
+            })
+            .eq("id", id);
+
+    if (updateError) {
+        console.error(
+            "UPDATE ANSWER ERROR:",
+            updateError
+        );
+
+        showMessage(
+            "Không thể sửa phản hồi: " +
+            updateError.message
+        );
+
+        return;
+    }
+
+    await loadAnswers(data.question_id);
+    await loadQuestions();
+
+    showMessage("Đã cập nhật phản hồi");
+}
+
+async function deleteAnswer(id) {
+
+    const confirmed =
+        confirm(
+            "Bạn có chắc muốn xóa phản hồi này không?"
+        );
+
+    if (!confirmed) return;
+
+    const { data, error } =
+        await supabaseClient
+            .from("answers")
+            .select("question_id")
+            .eq("id", id)
+            .single();
+
+    if (error) {
+        console.error("GET ANSWER ERROR:", error);
+        showMessage("Không tìm thấy phản hồi");
+        return;
+    }
+
+    const questionId = data.question_id;
+
+    const { error: deleteError } =
+        await supabaseClient
+            .from("answers")
+            .delete()
+            .eq("id", id);
+
+    if (deleteError) {
+        console.error(
+            "DELETE ANSWER ERROR:",
+            deleteError
+        );
+
+        showMessage(
+            "Không thể xóa phản hồi: " +
+            deleteError.message
+        );
+
+        return;
+    }
+
+    /* Xóa ID khỏi danh sách phản hồi của mình */
+    const myAnswers =
+        JSON.parse(
+            localStorage.getItem("myAnswers") || "[]"
+        );
+
+    const updatedAnswers =
+        myAnswers.filter(function(answerId) {
+            return String(answerId) !== String(id);
+        });
+
+    localStorage.setItem(
+        "myAnswers",
+        JSON.stringify(updatedAnswers)
+    );
+
+    await loadAnswers(questionId);
+    await loadQuestions();
+
+    showMessage("Đã xóa phản hồi");
+}
 
 async function submitAnswer() {
 
-    if (!currentQuestion) {
-        return;
-    }
+    const input =
+        document.querySelector("#answer-content");
 
-
-    const nameInput =
-        document.getElementById(
-            "answer-name"
-        );
-
-    const contentInput =
-        document.getElementById(
-            "answer-content"
-        );
-
-
-    const name =
-        nameInput.value.trim();
+    if (!input) return;
 
     const content =
-        contentInput.value.trim();
-
-
-    if (!name) {
-
-        showMessage(
-            "Vui lòng nhập tên của bạn."
-        );
-
-        nameInput.focus();
-
-        return;
-
-    }
-
+        input.value.trim();
 
     if (!content) {
-
-        showMessage(
-            "Vui lòng nhập câu trả lời."
-        );
-
-        contentInput.focus();
-
+        showMessage("Vui lòng nhập nội dung phản hồi");
         return;
-
     }
 
+    const questionId =
+        document
+            .getElementById("question-detail")
+            .dataset.questionId;
 
-    const avatar =
-        name
-            .split(" ")
-            .map(function(word) {
-                return word.charAt(0);
-            })
-            .slice(-2)
-            .join("")
-            .toUpperCase();
+    if (!questionId) {
+        showMessage("Không xác định được câu hỏi");
+        return;
+    }
 
+    const name = "Lê Vũ Quỳnh Giao";
+    const avatar = "HV";
 
-    const { error } =
+    const { data, error } =
         await supabaseClient
             .from("answers")
             .insert([
                 {
-                    question_id:
-                        currentQuestion.id,
-
-                    name:
-                        name,
-
-                    avatar:
-                        avatar,
-
-                    content:
-                        content
+                    question_id: questionId,
+                    name: name,
+                    avatar: avatar,
+                    content: content
                 }
-            ]);
-
+            ])
+            .select()
+            .single();
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            "ANSWER ERROR:",
+            error
+        );
 
         showMessage(
-            "Không thể gửi câu trả lời."
+            "Không thể gửi phản hồi: " +
+            error.message
         );
 
         return;
-
     }
 
+    const myAnswers =
+        JSON.parse(
+            localStorage.getItem("myAnswers") || "[]"
+        );
 
-    contentInput.value = "";
+    myAnswers.push(String(data.id));
 
-
-    showMessage(
-        "Đã gửi câu trả lời."
+    localStorage.setItem(
+        "myAnswers",
+        JSON.stringify(myAnswers)
     );
 
+    input.value = "";
 
-    await loadAnswers(
-    currentQuestion.id
-    );
-
+    await loadAnswers(questionId);
     await loadQuestions();
 
+    showMessage("Đã gửi phản hồi");
 }
     /* ================= FORMAT TIME ================= */
 
@@ -2101,15 +2217,53 @@ async function submitAnswer() {
 
     function escapeHTML(text) {
 
-        return text
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+    return String(text ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
-    }
+}
 
+    /* ================= SEARCH QUESTIONS ================= */
+
+const questionSearch =
+    document.querySelector(".question-search");
+
+questionSearch.addEventListener("input", function() {
+
+    const keyword =
+        questionSearch.value
+            .trim()
+            .toLowerCase();
+
+    document
+        .querySelectorAll(".online-question")
+        .forEach(function(card) {
+
+            const text =
+                card
+                    .querySelector(".question-text")
+                    .textContent
+                    .toLowerCase();
+
+            const name =
+                card
+                    .querySelector(".question-name")
+                    .textContent
+                    .toLowerCase();
+
+            const isMatch =
+                text.includes(keyword) ||
+                name.includes(keyword);
+
+            card.style.display =
+                isMatch ? "" : "none";
+
+        });
+
+});
 
     /* ================= FILTER ================= */
 
