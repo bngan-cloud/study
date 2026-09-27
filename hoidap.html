@@ -1224,146 +1224,7 @@
                     </button>
 
                 </div>
-
-
-                <!-- QUESTION 1 -->
-
-                <div class="question-card">
-
-                    <div class="question-top">
-
-                        <div class="question-avatar">
-                            LT
-                        </div>
-
-                        <div class="question-content">
-
-                            <div class="question-name">
-
-                                <strong>
-                                    Lê Ngọc Tân
-                                </strong>
-
-                            </div>
-
-
-                            <div class="question-text">
-                                Thầy ơi , bữa trước tôi có lên Google coi được một cái thông tin,
-                                thấy hay nên tính để đó chừng nào cần coi lại ,
-                                mà tôi kiếm lại hoài không thấy .
-                                Có cách nào tìm lại được cái bài lúc trước không thầy ?
-                            </div>
-
-
-                            <div class="question-meta">
-                                3 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="question-status">
-                        Chưa trả lời
-                    </div>
-
-                </div>
-
-
-                <!-- QUESTION 2 -->
-
-                <div class="question-card">
-
-                    <div class="question-top">
-
-                        <div class="question-avatar">
-                            HTQ
-                        </div>
-
-                        <div class="question-content">
-
-                            <div class="question-name">
-
-                                <strong>
-                                    Huỳnh Trần Quế Chi
-                                </strong>
-
-                            </div>
-
-
-                            <div class="question-text">
-                                thầy cho tôi hỏi cái này ... tôi lên google thấy người ta chỉ cách làm
-                                cũng giống như bên công ty hướng dẫn ...
-                                mà cái trang đó tôi không biết của ai , không phải trang công ty...
-                                vậy có cách nào coi trước coi người ta chỉ vậy có đúng ko ...
-                                chứ làm sai rồi tôi cũng ko bt sửa ...
-                            </div>
-
-
-                            <div class="question-meta">
-                                4 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="question-status">
-                        Chưa trả lời
-                    </div>
-
-                </div>
-
-
-                <!-- QUESTION 3 -->
-
-                <div class="question-card">
-
-                    <div class="question-top">
-
-                        <div class="question-avatar">
-                            NB
-                        </div>
-
-                        <div class="question-content">
-
-                            <div class="question-name">
-
-                                <strong>
-                                    Nguyễn Phạm Bảo Ngân
-                                </strong>
-
-                            </div>
-
-
-                            <div class="question-text">
-                                Người ta có gửi cho cô cái bảng kêu cô điền thông tin vô rồi gửi lại cho người ta mà sao cô mở ra thấy nhiều ô quá mà không biết phải điền vào đâu
-
-                            </div>
-
-
-                            <div class="question-meta">
-                                5 giờ trước&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="question-status">
-                        Chưa trả lời
-                    </div>
-
-                </div>
-
-
             </div>
-
-        </div>
-
 
         <!-- ================= RIGHT COLUMN ================= -->
 
@@ -1463,7 +1324,7 @@
         "https://gsdjtsllxbadbfsfaqfx.supabase.co";
 
     const SUPABASE_KEY =
-        "sb_publishable_9WZSyLqYWTF7yPRGQXGWsA_wQGETJ1D";
+        "sb_publishable_9WZSyLqYWTF7yPRGQXWsA_wQGETJ1D";
 
     const supabaseClient =
         supabase.createClient(
@@ -1643,151 +1504,104 @@
 
     /* ================= DISPLAY ONLINE QUESTIONS ================= */
 
-    function displayOnlineQuestions(questions) {
+async function displayOnlineQuestions(questions) {
+    const container = document.querySelector(".question-container");
+    if (!container) return;
 
-    const container =
-        document.querySelector(".question-container");
-
-
-    if (!container) {
-        return;
-    }
-
-
-    /*
-     * Xóa các câu hỏi online cũ.
-     */
-
-    document
-        .querySelectorAll(".online-question")
-        .forEach(function(card) {
-            card.remove();
-        });
-
-
-    const filter =
-        document.querySelector(".question-filter");
-
-
-    /*
-     * Lấy danh sách câu hỏi do chính người dùng
-     * đã đăng trên trình duyệt này.
-     */
-
-    const myQuestions =
-        JSON.parse(
-            localStorage.getItem("myQuestions") || "[]"
-        );
-
-
-    questions.forEach(function(question) {
-
-        const card =
-            document.createElement("div");
-
-        card.className =
-            "question-card online-question";
-
-        card.style.cursor = "pointer";
-
-        card.addEventListener("click", function(event) {
-    
-            if (
-                event.target.closest("button")
-            ) {
-                return;
-            }
-
-            openQuestionDetail(question);
-
-        });
-
-        const time =
-            formatTime(question.created_at);
-
-
-        const isMine =
-            myQuestions.includes(question.id);
-
-
-        let actionButtons = "";
-
-
-        if (isMine) {
-
-            actionButtons = `
-
-                <div class="question-actions">
-
-                    <button
-                        class="edit-question"
-                        onclick="editQuestion(${question.id})"
-                    >
-                        Sửa
-                    </button>
-
-                    <button
-                        class="delete-question"
-                        onclick="deleteQuestion(${question.id})"
-                    >
-                        Xóa
-                    </button>
-
-                </div>
-
-            `;
-
-        }
-
-
-        card.innerHTML = `
-
-            <div class="question-top">
-
-                <div class="question-avatar">
-                    ${escapeHTML(question.avatar || "HV")}
-                </div>
-
-                <div class="question-content">
-
-                    <div class="question-name">
-
-                        <strong>
-                            ${escapeHTML(question.name)}
-                        </strong>
-
-                    </div>
-
-                    <div class="question-text">
-                        ${escapeHTML(question.content)}
-                    </div>
-
-                    <div class="question-meta">
-                        ${time}&nbsp;&nbsp;•&nbsp;&nbsp;0 phản hồi
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="question-status">
-                Chưa trả lời
-            </div>
-
-            ${actionButtons}
-
-        `;
-
-
-        filter.insertAdjacentElement(
-            "afterend",
-            card
-        );
-
+    document.querySelectorAll(".online-question").forEach(function(card) {
+        card.remove();
     });
 
-}
+    const filter = document.querySelector(".question-filter");
 
+    const myQuestions =
+        JSON.parse(localStorage.getItem("myQuestions") || "[]");
+
+    const questionCards = await Promise.all(
+        questions.map(async function(question) {
+
+            const { count, error: answerError } =
+                await supabaseClient
+                    .from("answers")
+                    .select("*", { count: "exact", head: true })
+                    .eq("question_id", question.id);
+
+            const answerCount = answerError ? 0 : (count || 0);
+
+            const card = document.createElement("div");
+
+            card.className = "question-card online-question";
+
+            card.dataset.questionId = question.id;
+
+            card.style.cursor = "pointer";
+
+            card.addEventListener("click", function(event) {
+                if (event.target.closest("button")) return;
+                openQuestionDetail(question);
+            });
+
+            const time = formatTime(question.created_at);
+            const isMine = myQuestions.includes(question.id);
+
+            let actionButtons = "";
+
+            if (isMine) {
+                actionButtons = `
+                    <div class="question-actions">
+                        <button
+                            class="edit-question"
+                            onclick="editQuestion(${question.id}); event.stopPropagation();"
+                        >
+                            Sửa
+                        </button>
+
+                        <button
+                            class="delete-question"
+                            onclick="deleteQuestion(${question.id}); event.stopPropagation();"
+                        >
+                            Xóa
+                        </button>
+                    </div>
+                `;
+            }
+
+            card.innerHTML = `
+                <div class="question-top">
+                    <div class="question-avatar">
+                        ${escapeHTML(question.avatar || "HV")}
+                    </div>
+
+                    <div class="question-content">
+                        <div class="question-name">
+                            <strong>${escapeHTML(question.name)}</strong>
+                        </div>
+
+                        <div class="question-text">
+                            ${escapeHTML(question.content)}
+                        </div>
+
+                        <div class="question-meta">
+                            ${time}&nbsp;&nbsp;•&nbsp;&nbsp;${answerCount} phản hồi
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-status">
+                    ${answerCount > 0 ? "Đã trả lời" : "Chưa trả lời"}
+                </div>
+
+                ${actionButtons}
+            `;
+
+            return card;
+        })
+    );
+
+    questionCards.forEach(function(card) {
+    container.appendChild(card);
+    });
+}
     /* ================= EDIT QUESTION ================= */
 
 async function editQuestion(id) {
@@ -2216,9 +2030,11 @@ async function submitAnswer() {
     );
 
 
-    loadAnswers(
-        currentQuestion.id
+    await loadAnswers(
+    currentQuestion.id
     );
+
+    await loadQuestions();
 
 }
     /* ================= FORMAT TIME ================= */
@@ -2292,35 +2108,98 @@ async function submitAnswer() {
 
     /* ================= FILTER ================= */
 
-    const filterButtons =
-        document.querySelectorAll(".filter-button");
+const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+filterButtons.forEach(function(button) {
+
+    button.addEventListener("click", function() {
+
+        filterButtons.forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        const filter =
+            button.textContent.trim();
+
+        const myQuestions =
+            JSON.parse(
+                localStorage.getItem("myQuestions") || "[]"
+            );
+
+        document
+            .querySelectorAll(".online-question")
+            .forEach(function(card) {
+
+                const status =
+                    card.querySelector(".question-status");
+
+                if (!status) return;
+
+                const questionId =
+                    String(card.dataset.questionId);
+
+                const questionStatus =
+                    status.textContent.trim();
+
+                let shouldShow = false;
 
 
-    filterButtons.forEach(function(button) {
+                /* TẤT CẢ */
 
-        button.addEventListener(
-            "click",
-            function() {
+                if (filter === "Tất cả") {
 
-                filterButtons.forEach(
-                    function(item) {
+                    shouldShow = true;
 
-                        item.classList.remove(
-                            "active"
-                        );
+                }
 
-                    }
-                );
 
-                button.classList.add(
-                    "active"
-                );
+                /* CHƯA TRẢ LỜI */
 
-            }
-        );
+                else if (
+                    filter === "Chưa trả lời" &&
+                    questionStatus === "Chưa trả lời"
+                ) {
+
+                    shouldShow = true;
+
+                }
+
+
+                /* ĐÃ TRẢ LỜI */
+
+                else if (
+                    filter === "Đã trả lời" &&
+                    questionStatus === "Đã trả lời"
+                ) {
+
+                    shouldShow = true;
+
+                }
+
+
+                /* CÂU HỎI CỦA TÔI */
+
+                else if (
+                    filter === "Câu hỏi của tôi" &&
+                    myQuestions.map(String).includes(questionId)
+                ) {
+
+                    shouldShow = true;
+
+                }
+
+
+                card.style.display =
+                    shouldShow ? "" : "none";
+
+            });
 
     });
 
+});
 
     /* ================= MOBILE SIDEBAR ================= */
 
