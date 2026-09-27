@@ -706,26 +706,28 @@ body {
 .mobile-menu-button {
     display: none;
     position: fixed;
+    top: 16px;
+    left: 15px;
 
-    top: 11px;
-    left: 12px;
+    width: 40px;
+    height: 40px;
 
-    width: 50px;
-    height: 50px;
-
-    border: 1px solid #dce2ea;
+    border: 1px solid #dce2eb;
     border-radius: 8px;
 
-    background: white;
-    color: #1464d2;
+    background: #ffffff;
 
-    font-size: 24px;
+    color: #1464d2;
+    font-size: 22px;
+
+    z-index: 300;
 
     align-items: center;
     justify-content: center;
 
+    box-shadow: 0 1px 4px rgba(23, 43, 77, 0.08);
+
     cursor: pointer;
-    z-index: 300;
 }
 .sidebar-overlay {
     display: none;
@@ -774,7 +776,7 @@ body {
 
     .header {
     height: 72px;
-    padding: 0 15px 0 81px;
+    padding: 0 15px 0 70px;
 }
 
     .search {
@@ -839,15 +841,31 @@ body {
 
     /* MAIN */
 
-    .main {
-        padding: 15px;
-    }
+.main {
+    padding: 15px;
+}
 
-    /* SCHEDULE */
+/* SCHEDULE */
 
-    .schedule-container {
-        padding: 15px 12px;
-    }
+.schedule-hero {
+    padding: 22px;
+    margin-bottom: 16px;
+}
+
+.schedule-title h1 {
+    font-size: 23px;
+    line-height: 1.25;
+}
+
+.schedule-description {
+    margin-top: 9px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.schedule-container {
+    padding: 15px 12px;
+}
 
     .calendar-wrapper {
         width: 100%;
