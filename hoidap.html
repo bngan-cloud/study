@@ -1466,40 +1466,46 @@
 
     /* ================= LOAD QUESTIONS ================= */
 
-    async function loadQuestions() {
+    /* ================= LOAD QUESTIONS ================= */
 
-        try {
+async function loadQuestions() {
 
-            const { data, error } =
-                await supabaseClient
-                    .from("questions")
-                    .select("*")
-                    .order("created_at", {
-                        ascending: false
-                    });
+    try {
 
+        const { data, error } =
+            await supabaseClient
+                .from("questions")
+                .select("id, name, avatar, content, created_at")
+                .order("created_at", {
+                    ascending: false
+                });
 
-            if (error) {
+        if (error) {
 
-                console.error(error);
+            console.error("SUPABASE ERROR:", error);
 
-                showMessage(
-                    "Không thể tải câu hỏi."
-                );
+            showMessage(
+                "Lỗi Supabase: " + error.message
+            );
 
-                return;
-            }
-
-
-            displayOnlineQuestions(data);
-
-        } catch (error) {
-
-            console.error(error);
-
+            return;
         }
 
+        console.log("QUESTIONS:", data);
+
+        displayOnlineQuestions(data);
+
+    } catch (error) {
+
+        console.error("LOAD QUESTIONS ERROR:", error);
+
+        showMessage(
+            "Có lỗi khi tải câu hỏi: " + error.message
+        );
+
     }
+
+}
 
 
     /* ================= DISPLAY ONLINE QUESTIONS ================= */
@@ -1511,8 +1517,6 @@ async function displayOnlineQuestions(questions) {
     document.querySelectorAll(".online-question").forEach(function(card) {
         card.remove();
     });
-
-    const filter = document.querySelector(".question-filter");
 
     const myQuestions =
         JSON.parse(localStorage.getItem("myQuestions") || "[]");
