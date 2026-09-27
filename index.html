@@ -526,10 +526,16 @@
         /* ================= NOTIFICATION ================= */
 
         .notice {
-            padding: 12px 0;
-            border-bottom: 1px solid #edf0f4;
-            font-size: 13px;
-        }
+    padding: 12px 0;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 13px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.notice:hover {
+    color: #1464d2;
+}
 
         .notice:last-child {
             border-bottom: none;
@@ -1087,37 +1093,50 @@
 
                 <!-- NOTICE -->
 
-                <div class="side-card">
+<!-- NOTICE -->
+<div class="side-card">
 
-                    <div class="side-title">
-                        Thông báo
-                    </div>
+    <div class="side-title">
+        Thông báo
+    </div>
 
-                    <div class="notice">
-                        <span class="notice-dot"></span>
-                        Lịch học buổi 3 đã được cập nhật
-                        <span class="notice-time">
-                            2 ngày trước
-                        </span>
-                    </div>
+    <div
+        class="notice"
+        onclick="window.location.href='lesson02.html'"
+    >
+        <span class="notice-dot"></span>
+        Lịch học buổi 2 đã được cập nhật.
 
-                    <div class="notice">
-                        <span class="notice-dot"></span>
-                        Bài kiểm tra buổi 2 đã mở
-                        <span class="notice-time">
-                            3 ngày trước
-                        </span>
-                    </div>
+        <span class="notice-time">
+            2 ngày trước
+        </span>
+    </div>
 
-                    <div class="notice">
-                        <span class="notice-dot"></span>
-                        Tài liệu mới đã được cập nhật
-                        <span class="notice-time">
-                            1 tuần trước
-                        </span>
-                    </div>
+    <div
+        class="notice"
+        onclick="window.location.href='lesson01.html'"
+    >
+        <span class="notice-dot"></span>
+        Đánh giá buổi 1 đã được cập nhật.
 
-                </div>
+        <span class="notice-time">
+            3 ngày trước
+        </span>
+    </div>
+
+    <div
+        class="notice"
+        onclick="window.location.href='lesson01.html'"
+    >
+        <span class="notice-dot"></span>
+        Tài liệu buổi 1 đã được cập nhật.
+
+        <span class="notice-time">
+            1 tuần trước
+        </span>
+    </div>
+
+</div>
 
             </aside>
 
