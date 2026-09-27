@@ -2,20 +2,27 @@
 <html lang="vi">
 
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Lịch học - StudyHub</title>
 
 <style>
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
@@ -25,52 +32,90 @@ body {
 }
 
 
-/* ================= HEADER ================= */
+/* =====================================================
+   HEADER
+   Đồng bộ với index / hỏi đáp
+===================================================== */
 
 .header {
-    height: 72px;
-    background: white;
+    height: 80px;
+    background: #ffffff;
     border-bottom: 1px solid #e6eaf0;
 
     display: flex;
     align-items: center;
 
-    padding: 0 32px;
+    padding: 0 38px;
 
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
+
+/* Logo */
+
 .logo {
-    width: 245px;
+    width: 295px;
 
     display: flex;
     align-items: center;
+    gap: 14px;
 
-    font-size: 22px;
-    font-weight: 700;
-
-    color: #1464d2;
+    flex-shrink: 0;
 }
 
+.logo-mark {
+    width: 48px;
+    height: 48px;
+
+    border: 3px solid #1464d2;
+    border-radius: 9px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #1464d2;
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.logo-text {
+    color: #1464d2;
+
+    font-size: 26px;
+    font-weight: 700;
+}
+
+
+/* Search */
+
 .search {
-    width: 510px;
+    width: 615px;
 }
 
 .search input {
     width: 100%;
-    height: 42px;
+    height: 51px;
 
     border: 1px solid #dce7f5;
-    border-radius: 8px;
+    border-radius: 9px;
 
-    padding: 0 15px;
+    padding: 0 17px;
 
     outline: none;
 
     color: #172b4d;
-    font-size: 14px;
+
+    font-size: 16px;
+
+    background: #ffffff;
+}
+
+.search input::placeholder {
+    color: #6f7785;
 }
 
 .search input:focus {
@@ -78,26 +123,31 @@ body {
 }
 
 
-/* ================= LAYOUT ================= */
+/* =====================================================
+   LAYOUT
+===================================================== */
 
 .layout {
     display: flex;
-    min-height: calc(100vh - 72px);
+
+    min-height: calc(100vh - 80px);
 }
 
 
-/* ================= SIDEBAR ================= */
+/* =====================================================
+   SIDEBAR
+===================================================== */
 
 .sidebar {
     width: 295px;
 
-    background: white;
+    flex-shrink: 0;
+
+    background: #ffffff;
 
     border-right: 1px solid #e6eaf0;
 
-    padding: 30px 16px;
-
-    flex-shrink: 0;
+    padding: 30px 17px;
 }
 
 .sidebar-title {
@@ -111,7 +161,11 @@ body {
     text-transform: uppercase;
 }
 
+
+/* Menu */
+
 .menu-item {
+    width: 100%;
     height: 58px;
 
     border-radius: 9px;
@@ -127,9 +181,9 @@ body {
 
     font-size: 16px;
 
-    transition: 0.2s;
-
     cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
 .menu-item:hover {
@@ -139,7 +193,8 @@ body {
 
 .menu-item.active {
     background: #1464d2;
-    color: white;
+    color: #ffffff;
+
     font-weight: 600;
 }
 
@@ -148,33 +203,36 @@ body {
 }
 
 
-/* ================= MAIN ================= */
+/* =====================================================
+   MAIN
+===================================================== */
 
 .main {
     flex: 1;
 
-    padding: 24px;
+    min-width: 0;
+
+    padding: 30px;
 
     display: grid;
 
     grid-template-columns:
         minmax(0, 1fr)
-        350px;
+        420px;
 
-    gap: 20px;
+    gap: 24px;
 
     background: #f5faff;
 }
-
-
-/* ================= LEFT CONTENT ================= */
 
 .schedule-area {
     min-width: 0;
 }
 
 
-/* ================= HERO ================= */
+/* =====================================================
+   HERO
+===================================================== */
 
 .schedule-hero {
     background:
@@ -186,45 +244,47 @@ body {
 
     border-radius: 12px;
 
-    padding: 20px 28px;
+    padding: 25px 35px;
 
-    margin-bottom: 14px;
-}
-
-.schedule-title {
-    color: #123e78;
+    margin-bottom: 16px;
 }
 
 .schedule-title h1 {
+    color: #123e78;
+
     font-size: 30px;
     line-height: 1.2;
 }
 
 .schedule-description {
-    margin-top: 8px;
+    margin-top: 9px;
 
     color: #536982;
 
-    font-size: 14px;
+    font-size: 16px;
 
     line-height: 1.5;
 }
 
 
-/* ================= SCHEDULE CARD ================= */
+/* =====================================================
+   SCHEDULE CONTAINER
+===================================================== */
 
 .schedule-container {
-    background: white;
+    background: #ffffff;
 
     border-radius: 12px;
 
-    padding: 16px 20px;
+    padding: 20px 24px;
 
     overflow: hidden;
 }
 
 
-/* ================= TOP CONTROLS ================= */
+/* =====================================================
+   CONTROLS
+===================================================== */
 
 .schedule-controls {
     display: flex;
@@ -238,13 +298,16 @@ body {
     margin-bottom: 14px;
 }
 
+
+/* Week selector */
+
 .week-selector {
-    width: 410px;
-    height: 54px;
+    width: 500px;
+    height: 56px;
 
     border: 1px solid #dce7f5;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
     display: flex;
 
@@ -252,11 +315,13 @@ body {
 
     justify-content: space-between;
 
-    background: white;
+    background: #ffffff;
+
+    flex-shrink: 0;
 }
 
 .week-arrow {
-    width: 48px;
+    width: 52px;
     height: 100%;
 
     border: none;
@@ -265,7 +330,7 @@ body {
 
     color: #1464d2;
 
-    font-size: 22px;
+    font-size: 25px;
 
     cursor: pointer;
 }
@@ -281,10 +346,13 @@ body {
 
     color: #173d77;
 
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: 600;
 }
+
+
+/* View buttons */
 
 .view-buttons {
     display: flex;
@@ -293,27 +361,33 @@ body {
 }
 
 .view-button {
-    height: 54px;
+    height: 56px;
 
-    padding: 0 20px;
+    padding: 0 21px;
 
     border: 1px solid #dce7f5;
 
-    border-radius: 8px;
+    border-radius: 9px;
 
-    background: white;
+    background: #ffffff;
 
     color: #5274a8;
 
-    font-size: 14px;
+    font-size: 15px;
 
     cursor: pointer;
+
+    white-space: nowrap;
+}
+
+.view-button:hover {
+    background: #f5f8fd;
 }
 
 .view-button.active {
     background: #1464d2;
 
-    color: white;
+    color: #ffffff;
 
     border-color: #1464d2;
 
@@ -321,18 +395,22 @@ body {
 }
 
 
-/* ================= WEEK INFO ================= */
+/* =====================================================
+   WEEK INFO
+===================================================== */
 
 .week-info {
     color: #6f91bd;
 
-    font-size: 14px;
+    font-size: 15px;
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 }
 
 
-/* ================= CALENDAR ================= */
+/* =====================================================
+   CALENDAR
+===================================================== */
 
 .calendar-wrapper {
     width: 100%;
@@ -341,34 +419,35 @@ body {
 }
 
 .calendar {
-    min-width: 900px;
+    min-width: 920px;
 
     display: grid;
 
     grid-template-columns:
         105px
-        repeat(7, minmax(110px, 1fr));
+        repeat(7, minmax(115px, 1fr));
 
     border-top: 1px solid #dce7f5;
-
     border-left: 1px solid #dce7f5;
 }
 
+
+/* General cell */
+
 .calendar-cell {
-    min-height: 100px;
-
     border-right: 1px solid #dce7f5;
-
     border-bottom: 1px solid #dce7f5;
 
-    background: white;
+    background: #ffffff;
 }
 
 
-/* ================= DAY HEADER ================= */
+/* =====================================================
+   DAY HEADER
+===================================================== */
 
 .day-header {
-    min-height: 98px;
+    min-height: 100px;
 
     background: #f8fbff;
 
@@ -386,7 +465,7 @@ body {
 }
 
 .day-name {
-    font-size: 15px;
+    font-size: 16px;
 
     font-weight: 700;
 
@@ -399,6 +478,9 @@ body {
     color: #8290a5;
 }
 
+
+/* Chủ nhật */
+
 .day-header.sunday {
     background: #eef6ff;
 
@@ -410,9 +492,13 @@ body {
 }
 
 
-/* ================= TIME COLUMN ================= */
+/* =====================================================
+   TIME COLUMN
+===================================================== */
 
 .time-header {
+    min-height: 100px;
+
     background: #f8fbff;
 }
 
@@ -439,9 +525,24 @@ body {
 }
 
 
-/* ================= CLASS ================= */
+/* =====================================================
+   EMPTY CELL
+===================================================== */
+
+.empty-cell {
+    min-height: 100px;
+
+    background: #ffffff;
+}
+
+
+/* =====================================================
+   CLASS CELL
+===================================================== */
 
 .class-cell {
+    min-height: 100px;
+
     padding: 8px;
 
     position: relative;
@@ -456,11 +557,11 @@ body {
 
     border-radius: 9px;
 
-    padding: 11px 12px;
+    padding: 10px 11px;
 
     cursor: pointer;
 
-    transition: 0.2s;
+    transition: 0.2s ease;
 }
 
 .class-item:hover {
@@ -474,11 +575,11 @@ body {
 
     font-size: 13px;
 
-    line-height: 1.45;
+    line-height: 1.4;
 
     font-weight: 600;
 
-    margin-bottom: 8px;
+    margin-bottom: 7px;
 }
 
 .class-session {
@@ -498,71 +599,70 @@ body {
 }
 
 
-/* ================= EMPTY CELL ================= */
-
-.empty-cell {
-    min-height: 100px;
-
-    background: white;
-}
-
-
-/* ================= RIGHT COLUMN ================= */
+/* =====================================================
+   RIGHT COLUMN
+===================================================== */
 
 .right-column {
     display: flex;
 
     flex-direction: column;
 
-    gap: 20px;
+    gap: 24px;
+
+    min-width: 0;
 }
 
 
-/* ================= SIDE CARD ================= */
+/* =====================================================
+   SIDE CARD
+===================================================== */
 
 .side-card {
-    background: white;
+    background: #ffffff;
 
     border: 1px solid #e5e9ef;
 
     border-radius: 12px;
 
-    padding: 20px;
+    padding: 22px;
 }
 
 .side-card h2 {
     color: #123e78;
 
-    font-size: 19px;
+    font-size: 21px;
 
     margin-bottom: 18px;
 }
 
 
-/* ================= UPCOMING CLASS ================= */
+/* =====================================================
+   UPCOMING CLASS
+===================================================== */
 
 .upcoming-class {
     border: 1px solid #dce7f5;
 
     border-radius: 10px;
 
-    padding: 15px;
+    padding: 16px;
 }
 
 .upcoming-label {
     color: #1464d2;
 
-    font-size: 13px;
+    font-size: 14px;
 
     font-weight: 600;
 
-    margin-bottom: 8px;
+    margin-bottom: 9px;
 }
 
 .upcoming-name {
     color: #173d77;
 
-    font-size: 14px;
+    font-size: 15px;
 
     font-weight: 600;
 
@@ -574,7 +674,7 @@ body {
 .upcoming-info {
     color: #6f91bd;
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.7;
 }
@@ -584,7 +684,7 @@ body {
 
     margin-top: 10px;
 
-    padding: 5px 9px;
+    padding: 5px 10px;
 
     background: #eef4ff;
 
@@ -592,13 +692,15 @@ body {
 
     color: #1464d2;
 
-    font-size: 12px;
+    font-size: 13px;
 
     font-weight: 600;
 }
 
 
-/* ================= MOTIVATION ================= */
+/* =====================================================
+   MOTIVATION
+===================================================== */
 
 .motivation-card {
     background:
@@ -612,13 +714,13 @@ body {
 
     border-radius: 12px;
 
-    padding: 20px;
+    padding: 22px;
 }
 
 .motivation-title {
     color: #1464d2;
 
-    font-size: 17px;
+    font-size: 19px;
 
     font-weight: 700;
 
@@ -628,13 +730,15 @@ body {
 .motivation-text {
     color: #536982;
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.7;
 }
 
 
-/* ================= MESSAGE ================= */
+/* =====================================================
+   MESSAGE
+===================================================== */
 
 #message {
     position: fixed;
@@ -642,9 +746,11 @@ body {
     right: 25px;
     bottom: 25px;
 
+    max-width: 500px;
+
     background: #172b4d;
 
-    color: white;
+    color: #ffffff;
 
     padding: 13px 18px;
 
@@ -655,50 +761,54 @@ body {
     z-index: 300;
 
     font-size: 13px;
+
+    line-height: 1.5;
 }
 
 
-/* ================= MOBILE MENU ================= */
+/* =====================================================
+   RESPONSIVE
+===================================================== */
 
-.mobile-menu-button {
-    display: none;
+@media (max-width: 1250px) {
 
-    position: fixed;
+    .header {
+        padding: 0 28px;
+    }
 
-    top: 16px;
-    left: 15px;
+    .logo {
+        width: 260px;
+    }
 
-    width: 40px;
-    height: 40px;
+    .search {
+        width: 560px;
+    }
 
-    border: 1px solid #dce2eb;
+    .main {
+        grid-template-columns:
+            minmax(0, 1fr)
+            330px;
 
-    border-radius: 8px;
+        gap: 18px;
 
-    background: white;
+        padding: 24px;
+    }
 
-    color: #1464d2;
+    .week-selector {
+        width: 420px;
+    }
 
-    font-size: 22px;
-
-    z-index: 300;
-
-    align-items: center;
-
-    justify-content: center;
 }
 
-.sidebar-overlay {
-    display: none;
-}
 
+@media (max-width: 1050px) {
 
-/* ================= RESPONSIVE ================= */
+    .logo {
+        width: 240px;
+    }
 
-@media (max-width: 1100px) {
-
-    .sidebar {
-        width: 220px;
+    .search {
+        width: 500px;
     }
 
     .main {
@@ -714,14 +824,20 @@ body {
 }
 
 
-@media (max-width: 700px) {
-
-    .mobile-menu-button {
-        display: flex;
-    }
+@media (max-width: 800px) {
 
     .header {
-        padding: 0 15px 0 70px;
+        height: auto;
+
+        min-height: 80px;
+
+        padding: 14px 20px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 12px;
     }
 
     .logo {
@@ -729,56 +845,43 @@ body {
     }
 
     .search {
-        display: none;
+        width: 100%;
     }
 
-
-    /* SIDEBAR */
-
-    .sidebar {
-        position: fixed;
-
-        top: 0;
-        left: -230px;
-
-        width: 220px;
-
-        height: 100vh;
-
-        padding: 90px 10px 25px;
-
-        z-index: 250;
-
-        transition: left 0.25s ease;
-
-        box-shadow:
-            4px 0 15px rgba(0,0,0,0.08);
-    }
-
-    .sidebar.open {
-        left: 0;
-    }
-
-
-    .sidebar-overlay {
-        position: fixed;
-
-        inset: 0;
-
-        background: rgba(0,0,0,0.25);
-
-        z-index: 200;
-    }
-
-    .sidebar-overlay.open {
+    .layout {
         display: block;
     }
 
+    .sidebar {
+        width: 100%;
 
-    .main {
-        padding: 15px;
+        border-right: none;
+        border-bottom: 1px solid #e6eaf0;
+
+        padding: 18px 17px;
     }
 
+    .sidebar-title {
+        padding-bottom: 12px;
+    }
+
+    .menu-item {
+        height: 52px;
+    }
+
+    .main {
+        padding: 18px;
+
+        display: block;
+    }
+
+    .right-column {
+        display: grid;
+
+        grid-template-columns: 1fr;
+
+        margin-top: 18px;
+    }
 
     .schedule-controls {
         flex-direction: column;
@@ -798,43 +901,88 @@ body {
         flex: 1;
     }
 
+}
 
-    .right-column {
-        grid-template-columns: 1fr;
+
+@media (max-width: 500px) {
+
+    .header {
+        padding: 12px 15px;
+    }
+
+    .logo-mark {
+        width: 43px;
+        height: 43px;
+    }
+
+    .logo-text {
+        font-size: 23px;
+    }
+
+    .search input {
+        height: 46px;
+    }
+
+    .sidebar {
+        padding: 18px 12px;
+    }
+
+    .main {
+        padding: 12px;
+    }
+
+    .schedule-hero {
+        padding: 20px;
+    }
+
+    .schedule-title h1 {
+        font-size: 27px;
+    }
+
+    .schedule-description {
+        font-size: 14px;
+    }
+
+    .schedule-container {
+        padding: 14px;
+    }
+
+    .week-title {
+        font-size: 14px;
+    }
+
+    .week-selector,
+    .view-button {
+        height: 50px;
     }
 
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- ================= MOBILE MENU ================= -->
-
-<button
-    class="mobile-menu-button"
-    onclick="toggleSidebar()"
->
-    ☰
-</button>
-
-<div
-    class="sidebar-overlay"
-    onclick="toggleSidebar()"
-></div>
-
-
-<!-- ================= HEADER ================= -->
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header class="header">
 
     <div class="logo">
-        StudyHub
+
+        <div class="logo-mark">
+            S
+        </div>
+
+        <div class="logo-text">
+            StudyHub
+        </div>
+
     </div>
+
 
     <div class="search">
 
@@ -848,12 +996,17 @@ body {
 </header>
 
 
-<!-- ================= LAYOUT ================= -->
+
+<!-- =====================================================
+     LAYOUT
+===================================================== -->
 
 <div class="layout">
 
 
-<!-- ================= SIDEBAR ================= -->
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
 
 <aside class="sidebar">
 
@@ -888,18 +1041,22 @@ body {
         <span class="menu-text">
             Hỏi đáp
         </span>
-
     </div>
 
 </aside>
 
 
-<!-- ================= MAIN ================= -->
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="main">
 
 
-<!-- ================= SCHEDULE AREA ================= -->
+<!-- =====================================================
+     LEFT
+===================================================== -->
 
 <section class="schedule-area">
 
@@ -923,6 +1080,7 @@ body {
     </div>
 
 
+
     <!-- SCHEDULE -->
 
     <div class="schedule-container">
@@ -938,6 +1096,7 @@ body {
                 <button
                     class="week-arrow"
                     onclick="changeWeek(-1)"
+                    aria-label="Tuần trước"
                 >
                     ‹
                 </button>
@@ -954,6 +1113,7 @@ body {
                 <button
                     class="week-arrow"
                     onclick="changeWeek(1)"
+                    aria-label="Tuần sau"
                 >
                     ›
                 </button>
@@ -971,14 +1131,14 @@ body {
 
                 <button
                     class="view-button"
-                    onclick="showMessage('Chế độ tháng đang được phát triển')"
+                    onclick="showMessage('Chế độ tháng đang được phát triển.')"
                 >
                     Tháng
                 </button>
 
                 <button
                     class="view-button"
-                    onclick="showMessage('Chế độ danh sách đang được phát triển')"
+                    onclick="showMessage('Chế độ danh sách đang được phát triển.')"
                 >
                     Danh sách
                 </button>
@@ -988,11 +1148,15 @@ body {
         </div>
 
 
+
+        <!-- WEEK INFO -->
+
         <div
             class="week-info"
             id="week-info"
         >
         </div>
+
 
 
         <!-- CALENDAR -->
@@ -1003,7 +1167,6 @@ body {
                 class="calendar"
                 id="calendar"
             >
-
             </div>
 
         </div>
@@ -1013,7 +1176,10 @@ body {
 </section>
 
 
-<!-- ================= RIGHT COLUMN ================= -->
+
+<!-- =====================================================
+     RIGHT COLUMN
+===================================================== -->
 
 <aside class="right-column">
 
@@ -1031,10 +1197,10 @@ body {
             class="upcoming-class"
             id="upcoming-class"
         >
-
         </div>
 
     </div>
+
 
 
     <!-- CỐ LÊN -->
@@ -1051,7 +1217,6 @@ body {
 
     </div>
 
-
 </aside>
 
 
@@ -1060,16 +1225,28 @@ body {
 </div>
 
 
-<!-- ================= MESSAGE ================= -->
+
+<!-- =====================================================
+     MESSAGE
+===================================================== -->
 
 <div id="message"></div>
 
 
+
 <script>
+
+/* =====================================================
+   DỮ LIỆU KHÓA HỌC
+===================================================== */
+
+const CLASS_NAME =
+    "Đào tạo năng lực số và khả năng ứng dụng AI trong công việc cho người lao động";
 
 
 /* =====================================================
-   DỮ LIỆU 8 BUỔI HỌC
+   8 BUỔI
+   TẤT CẢ ĐỀU VÀO CHỦ NHẬT
 ===================================================== */
 
 const lessons = [
@@ -1117,39 +1294,26 @@ const lessons = [
 ];
 
 
-const CLASS_NAME =
-    "Đào tạo năng lực số và khả năng ứng dụng AI trong công việc cho người lao động";
+/* =====================================================
+   THỜI GIAN HỌC
+===================================================== */
+
+const LESSON_START = "09:30";
+const LESSON_END = "11:00";
 
 
 /* =====================================================
-   TUẦN HIỆN TẠI
+   TUẦN MẶC ĐỊNH
+   Thứ 2: 26/04/2027
+   Chủ nhật: 02/05/2027
 ===================================================== */
 
 let currentWeekStart =
-    new Date("2027-04-26T00:00:00");
+    new Date(2027, 3, 26);
 
 
 /* =====================================================
-   FORMAT DATE
-===================================================== */
-
-function formatDate(date) {
-
-    const day =
-        String(date.getDate()).padStart(2, "0");
-
-    const month =
-        String(date.getMonth() + 1).padStart(2, "0");
-
-    const year =
-        date.getFullYear();
-
-    return `${day}/${month}/${year}`;
-}
-
-
-/* =====================================================
-   DAY NAME
+   TÊN NGÀY
 ===================================================== */
 
 const dayNames = [
@@ -1166,7 +1330,7 @@ const dayNames = [
 
 
 /* =====================================================
-   TIME SLOTS
+   KHUNG GIỜ
 ===================================================== */
 
 const timeSlots = [
@@ -1210,13 +1374,71 @@ const timeSlots = [
 
 
 /* =====================================================
-   CHECK LESSON
+   FORMAT DATE
+   Không dùng toISOString()
+   để tránh lỗi lệch ngày do timezone
+===================================================== */
+
+function formatDate(date) {
+
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const year =
+        date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+}
+
+
+/* =====================================================
+   DATE KEY
+===================================================== */
+
+function getDateKey(date) {
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(date.getMonth() + 1).padStart(2, "0");
+
+    const day =
+        String(date.getDate()).padStart(2, "0");
+
+    return `${year}-${month}-${day}`;
+}
+
+
+/* =====================================================
+   PARSE LESSON DATE
+===================================================== */
+
+function parseLessonDate(dateString) {
+
+    const parts =
+        dateString.split("-");
+
+    return new Date(
+        Number(parts[0]),
+        Number(parts[1]) - 1,
+        Number(parts[2])
+    );
+
+}
+
+
+/* =====================================================
+   TÌM BUỔI HỌC
 ===================================================== */
 
 function getLesson(date) {
 
     const dateString =
-        date.toISOString().split("T")[0];
+        getDateKey(date);
 
     return lessons.find(function(lesson) {
 
@@ -1228,7 +1450,9 @@ function getLesson(date) {
 
 
 /* =====================================================
-   GET WEEK NUMBER
+   SỐ TUẦN
+   Giữ cách đánh số giống giao diện hiện tại:
+   26/04/2027 – 02/05/2027 = Tuần 18
 ===================================================== */
 
 function getWeekNumber(date) {
@@ -1244,7 +1468,11 @@ function getWeekNumber(date) {
         );
 
     return Math.ceil(
-        (difference + firstDay.getDay() + 1) / 7
+        (
+            difference +
+            firstDay.getDay() +
+            1
+        ) / 7
     );
 
 }
@@ -1262,7 +1490,9 @@ function renderCalendar() {
     calendar.innerHTML = "";
 
 
-    /* HEADER GÓC */
+    /* -----------------------------------------------
+       GÓC TRÊN CÙNG
+    ----------------------------------------------- */
 
     const emptyHeader =
         document.createElement("div");
@@ -1273,7 +1503,9 @@ function renderCalendar() {
     calendar.appendChild(emptyHeader);
 
 
-    /* 7 NGÀY */
+    /* -----------------------------------------------
+       7 NGÀY
+    ----------------------------------------------- */
 
     for (
         let i = 0;
@@ -1295,6 +1527,8 @@ function renderCalendar() {
         header.className =
             "calendar-cell day-header";
 
+
+        /* Chủ nhật */
 
         if (i === 6) {
 
@@ -1321,7 +1555,9 @@ function renderCalendar() {
     }
 
 
-    /* CÁC KHUNG GIỜ */
+    /* -----------------------------------------------
+       CÁC KHUNG GIỜ
+    ----------------------------------------------- */
 
     timeSlots.forEach(function(slot) {
 
@@ -1370,13 +1606,19 @@ function renderCalendar() {
 
 
             /*
-             * BUỔI HỌC CHỈ NẰM
-             * TRONG KHUNG 09:00 - 11:00
+             * Buổi học 09:30–11:00.
+             *
+             * Nó thuộc ô khung 09:00–11:00.
+             *
+             * Vì lesson chỉ có date = Chủ nhật,
+             * nó chắc chắn chỉ xuất hiện
+             * ở cột Chủ nhật.
              */
 
             if (
                 lesson &&
-                slot.start === "09:00"
+                slot.start === "09:00" &&
+                day === 6
             ) {
 
                 cell.className =
@@ -1399,7 +1641,7 @@ function renderCalendar() {
                         </div>
 
                         <div class="class-time">
-                            09:00 – 10:30
+                            ${LESSON_START} – ${LESSON_END}
                         </div>
 
                     </div>
@@ -1422,7 +1664,7 @@ function renderCalendar() {
 
 
 /* =====================================================
-   UPDATE WEEK INFORMATION
+   UPDATE WEEK
 ===================================================== */
 
 function updateWeekInformation() {
@@ -1470,7 +1712,6 @@ function changeWeek(direction) {
         direction * 7
     );
 
-
     renderCalendar();
 
 }
@@ -1486,8 +1727,13 @@ function updateUpcomingClass() {
         document.getElementById("upcoming-class");
 
 
+    /*
+     * Mốc hiện tại của giao diện.
+     * Buổi đầu tiên là 02/05/2027.
+     */
+
     const today =
-        new Date("2027-04-26T00:00:00");
+        new Date(2027, 3, 26);
 
 
     let nextLesson = null;
@@ -1500,8 +1746,8 @@ function updateUpcomingClass() {
     ) {
 
         const lessonDate =
-            new Date(
-                lessons[i].date + "T00:00:00"
+            parseLessonDate(
+                lessons[i].date
             );
 
 
@@ -1516,6 +1762,8 @@ function updateUpcomingClass() {
 
     }
 
+
+    /* Nếu đã hoàn thành */
 
     if (!nextLesson) {
 
@@ -1532,12 +1780,13 @@ function updateUpcomingClass() {
         `;
 
         return;
+
     }
 
 
     const lessonDate =
-        new Date(
-            nextLesson.date + "T00:00:00"
+        parseLessonDate(
+            nextLesson.date
         );
 
 
@@ -1553,7 +1802,7 @@ function updateUpcomingClass() {
 
         <div class="upcoming-info">
 
-            09:00 – 10:30
+            ${LESSON_START} – ${LESSON_END}
 
             <br>
 
@@ -1584,17 +1833,19 @@ function showLesson(session) {
         });
 
 
-    if (!lesson) return;
+    if (!lesson) {
+        return;
+    }
 
 
     const date =
-        new Date(
-            lesson.date + "T00:00:00"
+        parseLessonDate(
+            lesson.date
         );
 
 
     showMessage(
-        `${CLASS_NAME} — Buổi học ${session} — ${formatDate(date)} — 09:00–10:30`
+        `${CLASS_NAME} — Buổi học ${session} — ${formatDate(date)} — ${LESSON_START}–${LESSON_END}`
     );
 
 }
@@ -1618,32 +1869,18 @@ function showMessage(text) {
         "block";
 
 
-    setTimeout(function() {
-
-        message.style.display =
-            "none";
-
-    }, 3000);
-
-}
+    clearTimeout(
+        window.messageTimeout
+    );
 
 
-/* =====================================================
-   MOBILE SIDEBAR
-===================================================== */
+    window.messageTimeout =
+        setTimeout(function() {
 
-function toggleSidebar() {
+            message.style.display =
+                "none";
 
-    const sidebar =
-        document.querySelector(".sidebar");
-
-    const overlay =
-        document.querySelector(".sidebar-overlay");
-
-
-    sidebar.classList.toggle("open");
-
-    overlay.classList.toggle("open");
+        }, 3500);
 
 }
 
@@ -1657,5 +1894,4 @@ renderCalendar();
 </script>
 
 </body>
-
 </html>
