@@ -776,6 +776,188 @@
             background: #ffe0e0;
         }
 
+        /* ================= QUESTION DETAIL ================= */
+
+.question-detail {
+    width: 100%;
+}
+
+.back-button {
+    background: none;
+    border: none;
+    color: #1464d2;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0;
+    margin-bottom: 16px;
+}
+
+.question-detail-card {
+    background: white;
+    border: 1px solid #dce7f5;
+    border-radius: 12px;
+    padding: 22px;
+}
+
+.detail-question-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.detail-avatar {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: #eaf4ff;
+    color: #1464d2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: 700;
+}
+
+.detail-user-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-user-info strong {
+    font-size: 14px;
+    color: #173d77;
+}
+
+.detail-user-info span {
+    font-size: 12px;
+    color: #8290a5;
+}
+
+.detail-question-content {
+    color: #234b82;
+    font-size: 15px;
+    line-height: 1.7;
+    white-space: pre-wrap;
+}
+
+.answers-section {
+    margin-top: 20px;
+}
+
+.answers-section h2 {
+    font-size: 18px;
+    color: #123e78;
+    margin-bottom: 14px;
+}
+
+.answer-card {
+    background: white;
+    border: 1px solid #dce7f5;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.answer-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.answer-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #eaf4ff;
+    color: #1464d2;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.answer-user {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.answer-user strong {
+    font-size: 14px;
+    color: #173d77;
+}
+
+.answer-user span {
+    font-size: 12px;
+    color: #8290a5;
+}
+
+.answer-content {
+    color: #334e70;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+}
+
+.answer-form {
+    background: white;
+    border: 1px solid #dce7f5;
+    border-radius: 10px;
+    padding: 18px;
+    margin-top: 18px;
+}
+
+.answer-form h3 {
+    font-size: 16px;
+    color: #123e78;
+    margin-bottom: 14px;
+}
+
+.answer-form input,
+.answer-form textarea {
+    width: 100%;
+    border: 1px solid #dce7f5;
+    border-radius: 8px;
+    padding: 11px 13px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    color: #172b4d;
+    outline: none;
+    margin-bottom: 10px;
+}
+
+.answer-form input:focus,
+.answer-form textarea:focus {
+    border-color: #1464d2;
+}
+
+.answer-form textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.answer-form button {
+    height: 40px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 8px;
+    background: #1464d2;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.answer-form button:hover {
+    background: #0f56b8;
+}
+
     </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -902,6 +1084,65 @@
     <!-- ================= MAIN ================= -->
 
     <main class="main">
+
+        <!-- ================= QUESTION DETAIL ================= -->
+
+<div
+    id="question-detail"
+    class="question-detail"
+    style="display: none;"
+>
+
+    <button
+        class="back-button"
+        onclick="closeQuestionDetail()"
+    >
+        ← Quay lại Hỏi đáp
+    </button>
+
+
+    <div id="question-detail-content"></div>
+
+
+    <div class="answers-section">
+
+        <h2 id="answers-title">
+            Câu trả lời
+        </h2>
+
+
+        <div id="answers-list"></div>
+
+
+        <div class="answer-form">
+
+            <h3>
+                Viết câu trả lời
+            </h3>
+
+
+            <input
+                type="text"
+                id="answer-name"
+                placeholder="Tên của bạn"
+            >
+
+
+            <textarea
+                id="answer-content"
+                placeholder="Viết câu trả lời của bạn..."
+            ></textarea>
+
+
+            <button onclick="submitAnswer()">
+                Gửi trả lời
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
 
 
         <!-- ================= QUESTIONS ================= -->
@@ -1447,6 +1688,19 @@
         card.className =
             "question-card online-question";
 
+        card.style.cursor = "pointer";
+
+        card.addEventListener("click", function(event) {
+    
+            if (
+                event.target.closest("button")
+            ) {
+                return;
+            }
+
+            openQuestionDetail(question);
+
+        });
 
         const time =
             formatTime(question.created_at);
@@ -1669,7 +1923,304 @@ async function deleteQuestion(id) {
     loadQuestions();
 
 }
+/* ================= QUESTION DETAIL ================= */
 
+let currentQuestion = null;
+
+
+function openQuestionDetail(question) {
+
+    currentQuestion = question;
+
+
+    const questionDetail =
+        document.getElementById("question-detail");
+
+    const questionsArea =
+        document.querySelector(".questions-area");
+
+
+    questionsArea.style.display = "none";
+
+    questionDetail.style.display = "block";
+
+
+    const detailContent =
+        document.getElementById(
+            "question-detail-content"
+        );
+
+
+    detailContent.innerHTML = `
+
+        <div class="question-detail-card">
+
+            <div class="detail-question-header">
+
+                <div class="detail-avatar">
+                    ${escapeHTML(question.avatar || "HV")}
+                </div>
+
+                <div class="detail-user-info">
+
+                    <strong>
+                        ${escapeHTML(question.name)}
+                    </strong>
+
+                    <span>
+                        ${formatTime(question.created_at)}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="detail-question-content">
+                ${escapeHTML(question.content)}
+            </div>
+
+        </div>
+
+    `;
+
+
+    loadAnswers(question.id);
+
+}
+
+
+function closeQuestionDetail() {
+
+    currentQuestion = null;
+
+
+    document.getElementById(
+        "question-detail"
+    ).style.display = "none";
+
+
+    document.querySelector(
+        ".questions-area"
+    ).style.display = "block";
+
+}
+
+
+async function loadAnswers(questionId) {
+
+    const answersList =
+        document.getElementById(
+            "answers-list"
+        );
+
+    const answersTitle =
+        document.getElementById(
+            "answers-title"
+        );
+
+
+    answersList.innerHTML =
+        "Đang tải câu trả lời...";
+
+
+    const { data, error } =
+        await supabaseClient
+            .from("answers")
+            .select("*")
+            .eq("question_id", questionId)
+            .order("created_at", {
+                ascending: true
+            });
+
+
+    if (error) {
+
+        console.error(error);
+
+        answersList.innerHTML =
+            "Không thể tải câu trả lời.";
+
+        return;
+
+    }
+
+
+    answersTitle.textContent =
+        "Câu trả lời (" + data.length + ")";
+
+
+    if (data.length === 0) {
+
+        answersList.innerHTML = `
+            <p style="color:#8290a5;">
+                Chưa có câu trả lời nào.
+            </p>
+        `;
+
+        return;
+
+    }
+
+
+    answersList.innerHTML = "";
+
+
+    data.forEach(function(answer) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "answer-card";
+
+
+        card.innerHTML = `
+
+            <div class="answer-header">
+
+                <div class="answer-avatar">
+                    ${escapeHTML(answer.avatar || "HV")}
+                </div>
+
+                <div class="answer-user">
+
+                    <strong>
+                        ${escapeHTML(answer.name)}
+                    </strong>
+
+                    <span>
+                        ${formatTime(answer.created_at)}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-content">
+                ${escapeHTML(answer.content)}
+            </div>
+
+        `;
+
+
+        answersList.appendChild(card);
+
+    });
+
+}
+
+
+async function submitAnswer() {
+
+    if (!currentQuestion) {
+        return;
+    }
+
+
+    const nameInput =
+        document.getElementById(
+            "answer-name"
+        );
+
+    const contentInput =
+        document.getElementById(
+            "answer-content"
+        );
+
+
+    const name =
+        nameInput.value.trim();
+
+    const content =
+        contentInput.value.trim();
+
+
+    if (!name) {
+
+        showMessage(
+            "Vui lòng nhập tên của bạn."
+        );
+
+        nameInput.focus();
+
+        return;
+
+    }
+
+
+    if (!content) {
+
+        showMessage(
+            "Vui lòng nhập câu trả lời."
+        );
+
+        contentInput.focus();
+
+        return;
+
+    }
+
+
+    const avatar =
+        name
+            .split(" ")
+            .map(function(word) {
+                return word.charAt(0);
+            })
+            .slice(-2)
+            .join("")
+            .toUpperCase();
+
+
+    const { error } =
+        await supabaseClient
+            .from("answers")
+            .insert([
+                {
+                    question_id:
+                        currentQuestion.id,
+
+                    name:
+                        name,
+
+                    avatar:
+                        avatar,
+
+                    content:
+                        content
+                }
+            ]);
+
+
+    if (error) {
+
+        console.error(error);
+
+        showMessage(
+            "Không thể gửi câu trả lời."
+        );
+
+        return;
+
+    }
+
+
+    contentInput.value = "";
+
+
+    showMessage(
+        "Đã gửi câu trả lời."
+    );
+
+
+    loadAnswers(
+        currentQuestion.id
+    );
+
+}
     /* ================= FORMAT TIME ================= */
 
     function formatTime(dateString) {
