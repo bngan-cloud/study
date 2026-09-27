@@ -56,16 +56,19 @@ body {
     width: 245px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1464d2;
     flex-shrink: 0;
 }
 
 .logo-mark {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
 
     border: 3px solid #1464d2;
-    border-radius: 9px;
+    border-radius: 8px;
 
     display: flex;
     align-items: center;
@@ -73,38 +76,38 @@ body {
 
     color: #1464d2;
 
-    font-size: 21px;
-    font-weight: 700;
+    font-size: 19px;
+    font-weight: bold;
 }
 
 .logo-text {
     color: #1464d2;
-
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 
 /* Search */
 
 .search {
-    width: 615px;
+    width: 510px;
 }
 
 .search input {
     width: 100%;
-    height: 51px;
+    height: 42px;
 
     border: 1px solid #dce7f5;
-    border-radius: 9px;
+    border-radius: 8px;
 
-    padding: 0 17px;
+    padding: 0 15px;
 
     outline: none;
 
     color: #172b4d;
 
-    font-size: 16px;
+    font-size: 14px;
 
     background: #ffffff;
 }
@@ -124,8 +127,7 @@ body {
 
 .layout {
     display: flex;
-
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh - 72px);
 }
 
 
@@ -134,41 +136,45 @@ body {
 ===================================================== */
 
 .sidebar {
-    width: 230px;
-    min-width: 230px;
+    width: 245px;
 
-    background: #fff;
+    background: white;
 
     border-right: 1px solid #e6eaf0;
 
-    padding: 30px 12px;
+    padding: 25px 14px;
 
     flex-shrink: 0;
 }
 
 .sidebar-title {
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 700;
-    color: #8290a5;
-    padding: 0 16px 18px;
+    color: #8a96a8;
+    padding: 0 16px 15px;
     text-transform: uppercase;
 }
 
 .menu-item {
-    height: 54px;
-    border-radius: 9px;
+    height: 48px;
+    border-radius: 8px;
 
     display: flex;
     align-items: center;
 
     padding: 0 16px;
-    margin-bottom: 6px;
+    margin-bottom: 5px;
 
     color: #40516c;
     font-size: 15px;
 
     transition: 0.2s;
     cursor: pointer;
+}
+
+.menu-item:hover {
+    background: #f0f5fc;
+    color: #1464d2;
 }
 .menu-item.active {
     background: #1464d2;
@@ -184,17 +190,17 @@ body {
 .main {
     flex: 1;
 
-    min-width: 0;
+    padding: 20px;
 
-    padding: 30px;
+    min-width: 0;
 
     display: grid;
 
     grid-template-columns:
         minmax(0, 1fr)
-        420px;
+        350px;
 
-    gap: 24px;
+    gap: 20px;
 
     background: #f5faff;
 }
@@ -742,46 +748,42 @@ body {
 
 /* =====================================================
    RESPONSIVE
+   Đồng bộ với Hỏi đáp
 ===================================================== */
+.mobile-menu-button {
+    display: none;
 
-@media (max-width: 1250px) {
+    position: fixed;
 
-    .header {
-        padding: 0 28px;
-    }
+    top: 15px;
+    left: 15px;
 
-    .logo {
-        width: 230px;
-    }
+    width: 42px;
+    height: 42px;
 
-    .search {
-        width: 560px;
-    }
+    border: none;
+    border-radius: 8px;
 
-    .main {
-        grid-template-columns:
-            minmax(0, 1fr)
-            330px;
+    background: #1464d2;
+    color: white;
 
-        gap: 18px;
+    font-size: 22px;
 
-        padding: 24px;
-    }
+    align-items: center;
+    justify-content: center;
 
-    .week-selector {
-        width: 420px;
-    }
+    cursor: pointer;
 
+    z-index: 300;
 }
 
-@media (max-width: 1050px) {
+.sidebar-overlay {
+    display: none;
+}
+@media (max-width: 900px) {
 
-    .logo {
-        width: 230px;
-    }
-
-    .search {
-        width: 500px;
+    .sidebar {
+        width: 180px;
     }
 
     .main {
@@ -790,67 +792,96 @@ body {
 
     .right-column {
         display: grid;
-
         grid-template-columns: 1fr 1fr;
     }
 
+    .sidebar-title {
+        display: block;
+        padding: 0 12px 15px;
+    }
+
+    .menu-item {
+        justify-content: flex-start;
+        padding: 0 12px;
+    }
+
+    .menu-text {
+        display: block;
+    }
+
 }
 
 
-@media (max-width: 800px) {
+/* =====================================================
+   MOBILE
+===================================================== */
 
-    .header {
-        height: auto;
+@media (max-width: 600px) {
 
-        min-height: 80px;
-
-        padding: 14px 20px;
-
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: 12px;
+    .mobile-menu-button {
+        display: flex;
     }
 
-    .logo {
-        width: auto;
+    .header {
+        padding: 0 15px 0 70px;
     }
 
     .search {
-        width: 100%;
-    }
-
-    .layout {
-        display: block;
+        display: none;
     }
 
     .sidebar {
-        width: 100%;
-
-        border-right: none;
-        border-bottom: 1px solid #e6eaf0;
-
-        padding: 18px 17px;
+        position: fixed;
+        top: 0;
+        left: -200px;
+        width: 180px;
+        height: 100vh;
+        padding: 90px 10px 25px;
+        z-index: 250;
+        transition: left 0.25s ease;
+        box-shadow: 4px 0 15px rgba(0,0,0,0.08);
     }
 
-    .main {
-        padding: 18px;
+    .sidebar.open {
+        left: 0;
+    }
 
+    .sidebar-title {
+        display: block;
+        padding: 0 12px 15px;
+    }
+
+    .menu-item {
+        justify-content: flex-start;
+        padding: 0 12px;
+    }
+
+    .menu-text {
         display: block;
     }
 
+    .sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.25);
+    z-index: 200;
+}
+
+.sidebar-overlay.open {
+    display: block;
+}
+
+    .main {
+        padding: 15px;
+    }
+
     .right-column {
-        display: grid;
-
         grid-template-columns: 1fr;
-
-        margin-top: 18px;
     }
 
     .schedule-controls {
         flex-direction: column;
-
         align-items: stretch;
     }
 
@@ -865,69 +896,25 @@ body {
     .view-button {
         flex: 1;
     }
-
 }
-
-
-@media (max-width: 500px) {
-
-    .header {
-        padding: 12px 15px;
-    }
-
-    .logo-mark {
-        width: 43px;
-        height: 43px;
-    }
-
-    .logo-text {
-        font-size: 23px;
-    }
-
-    .search input {
-        height: 46px;
-    }
-
-    .sidebar {
-        padding: 18px 12px;
-    }
-
-    .main {
-        padding: 12px;
-    }
-
-    .schedule-hero {
-        padding: 20px;
-    }
-
-    .schedule-title h1 {
-        font-size: 27px;
-    }
-
-    .schedule-description {
-        font-size: 14px;
-    }
-
-    .schedule-container {
-        padding: 14px;
-    }
-
-    .week-title {
-        font-size: 14px;
-    }
-
-    .week-selector,
-    .view-button {
-        height: 50px;
-    }
-
-}
-
 </style>
 </head>
 
 
 <body>
+
+<button
+    class="mobile-menu-button"
+    onclick="toggleSidebar()"
+    aria-label="Mở menu"
+>
+    ☰
+</button>
+
+<div
+    class="sidebar-overlay"
+    onclick="toggleSidebar()"
+></div>
 
 
 <!-- =====================================================
@@ -1853,6 +1840,20 @@ function showMessage(text) {
 /* =====================================================
    KHỞI TẠO
 ===================================================== */
+
+function toggleSidebar() {
+
+    const sidebar =
+        document.querySelector(".sidebar");
+
+    const overlay =
+        document.querySelector(".sidebar-overlay");
+
+    sidebar.classList.toggle("open");
+
+    overlay.classList.toggle("open");
+}
+
 
 renderCalendar();
 
