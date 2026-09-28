@@ -900,6 +900,7 @@
     text-align: left;
     margin: 0;
     padding: 0;
+    overflow-wrap: anywhere;
 }
 
         .answer-form {
@@ -1892,9 +1893,7 @@
                 </div>
 
 
-                <div class="detail-question-content">
-    ${escapeHTML(String(question.content || "").trim())}
-</div>
+                <div class="detail-question-content">${escapeHTML(String(question.content || "").trim())}</div>
 
             </div>
 
@@ -2053,9 +2052,7 @@
                     </div>
 
 
-                    <div class="answer-content">
-    ${escapeHTML(String(answer.content || "").trim())}
-</div>
+                    <div class="answer-content">${escapeHTML(String(answer.content || "").trim())}</div>
 
 
                     ${actionButtons}
