@@ -661,8 +661,17 @@
     font-size: 13px;
 }
             .question-filter {
-                flex-wrap: wrap;
-            }
+    flex-wrap: nowrap;
+    gap: 2px;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+            .filter-button {
+    flex-shrink: 0;
+    white-space: nowrap;
+    padding: 10px 12px;
+    font-size: 13px;
+}
 
             .lesson-filter {
                 width: 100%;
