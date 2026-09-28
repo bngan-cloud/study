@@ -45,14 +45,15 @@
         }
 
         .logo {
-            width: 245px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 22px;
-            font-weight: 700;
-            color: #1464d2;
-        }
+    width: 245px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1464d2;
+    flex-shrink: 0;
+}
 
         .logo-mark {
             width: 40px;
@@ -269,37 +270,38 @@
         /* ================= FEEDBACK ================= */
 
         .feedback-box {
-            border: 1px solid #dce2eb;
-            border-radius: 12px;
-            padding: 20px 24px;
-        }
+    border: 1px solid #dce2eb;
+    border-radius: 12px;
+    padding: 20px 24px;
+    min-height: 132px;
+}
 
-        .feedback-info h3 {
-            margin: 0 0 8px;
-            color: #172b4d;
-            font-size: 16px;
-        }
+.feedback-info h3 {
+    margin: 0 0 8px;
+    color: #172b4d;
+    font-size: 16px;
+    font-weight: 600;
+}
 
-        .feedback-info p {
-            color: #8793a5;
-            font-size: 13px;
-            line-height: 1.5;
-            margin-bottom: 18px;
-        }
+.feedback-info p {
+    color: #8793a5;
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
 
-        .feedback-button {
-            border: none;
-            background: #1464d2;
-            color: white;
-            padding: 10px 22px;
-            border-radius: 8px;
-            font-size: 14px;
-        }
+.feedback-button {
+    border: none;
+    background: #1464d2;
+    color: white;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-size: 14px;
+}
 
-        .feedback-button:hover {
-            background: #0f56b8;
-        }
-
+.feedback-button:hover {
+    background: #0f56b8;
+}
 
         /* ================= SIDEBAR ================= */
 
@@ -423,12 +425,16 @@
             }
 
             .logo {
-                width: auto;
-            }
+    width: 245px;
+    flex-shrink: 0;
+}
 
-            .logo-text {
-                display: none;
-            }
+.logo-text {
+    color: #1464d2;
+    font-size: 22px;
+    font-weight: 700;
+    white-space: nowrap;
+}
 
             .search {
                 display: none;
@@ -472,6 +478,28 @@
             .quiz-button {
                 width: 100%;
             }
+
+            .feedback-box {
+    padding: 16px;
+    min-height: auto;
+}
+
+.feedback-info h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.feedback-info p {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.feedback-button {
+    width: 100%;
+    padding: 10px 22px;
+    font-size: 15px;
+}
 
         }
 
@@ -535,7 +563,7 @@
 <aside class="sidebar" id="sidebar">
 
     <div class="sidebar-title">
-        Khóa học
+        KHÓA HỌC
     </div>
 
 
@@ -646,7 +674,7 @@
                 class="document-button"
                 onclick="showMessage('Tài liệu sẽ được cập nhật sau.')"
             >
-                Mở tài liệu
+                Xem tài liệu
             </button>
 
         </div>
