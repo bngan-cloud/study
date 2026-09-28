@@ -372,7 +372,7 @@
 
         .question-status {
     position: absolute;
-    top: 18px;
+    top: 10px;
     right: 18px;
     display: inline-block;
 
@@ -394,14 +394,6 @@
     color: #e89b27;
 }
 
-    background: #fff4e3;
-    color: #e89b27;
-
-    border-radius: 15px;
-    padding: 5px 10px;
-
-    font-size: 11px;
-}
 
 .question-status.answered {
     background: #e8f7ee;
@@ -789,7 +781,7 @@
     background: white;
     border: 1px solid #dce7f5;
     border-radius: 12px;
-    padding: 22px;
+    padding: 18px 22px;
     height: auto;
 }
 
@@ -833,13 +825,16 @@
         .detail-question-content {
     width: 100%;
     color: #234b82;
-    font-size: 18px;
+    font-size: 17px;
     line-height: 1.7;
-    white-space: pre-wrap;
+    white-space: normal;
+    text-align: left;
+    text-indent: 0;
     margin: 0;
     padding: 0;
+    height: auto;
+    min-height: 0;
     overflow-wrap: anywhere;
-    word-break: break-word;
 }
 
         .answers-section {
@@ -985,6 +980,32 @@
         .delete-answer:hover {
             text-decoration: underline;
         }
+        /* QUESTION DETAIL MOBILE */
+
+.question-detail {
+    width: 100%;
+    min-width: 0;
+}
+
+.question-detail-card {
+    width: 100%;
+    height: auto;
+    min-height: 0;
+    padding: 16px;
+    margin: 0;
+}
+
+.detail-question-content {
+    width: 100%;
+    font-size: 17px;
+    line-height: 1.65;
+    text-align: left;
+    text-indent: 0;
+    padding: 0 !important;
+    margin: 0 !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere;
+}
 
     </style>
 
@@ -1854,8 +1875,8 @@
 
 
                 <div class="detail-question-content">
-                    ${escapeHTML(question.content)}
-                </div>
+    ${escapeHTML(String(question.content || "").trim())}
+</div>
 
             </div>
 
