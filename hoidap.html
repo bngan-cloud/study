@@ -894,11 +894,14 @@
         }
 
         .answer-content {
-            color: #334e70;
-            font-size: 14px;
-            line-height: 1.6;
-            white-space: pre-wrap;
-        }
+    color: #334e70;
+    font-size: 14px;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
 
         .answer-form {
             background: white;
@@ -2036,8 +2039,8 @@
 
 
                     <div class="answer-content">
-                        ${escapeHTML(answer.content)}
-                    </div>
+    ${escapeHTML(String(answer.content || "").trim())}
+</div>
 
 
                     ${actionButtons}
