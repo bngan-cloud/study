@@ -848,13 +848,12 @@
         }
 
         .answer-card {
-            background: white;
-            border: 1px solid #dce7f5;
-            border-radius: 10px;
-            padding: 16px;
-            margin-bottom: 12px;
-        }
-
+    background: white;
+    border: 1px solid #dce7f5;
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 12px;
+}
         .answer-header {
             display: flex;
             align-items: center;
@@ -895,8 +894,8 @@
 
         .answer-content {
     color: #334e70;
-    font-size: 14px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.7;
     white-space: pre-wrap;
     text-align: left;
     margin: 0;
@@ -1008,6 +1007,22 @@
     margin: 0 !important;
     white-space: normal !important;
     overflow-wrap: anywhere;
+}
+        @media (max-width: 600px) {
+
+    .answer-card {
+        padding: 16px;
+    }
+
+    .answer-content {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .answer-actions {
+        margin-left: 0;
+    }
+
 }
 
     </style>
